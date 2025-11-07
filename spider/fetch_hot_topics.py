@@ -2,27 +2,51 @@ import json
 import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence
 
 import requests
 
 from spider.aicard_service import ensure_aicard_snapshot
+from spider.config import get_env_list, get_env_str
 from spider.crawler_core import slugify_title
 from spider.daily_heat import update_daily_heat
 
 CHINA_TZ = timezone(timedelta(hours=8))
 
 # ------- 配置 -------
-HOT_TOPIC_DATES = ["2025-10-25"]  # 支持同日多个小时
-HOT_TOPIC_HOURS = [15]
-HOT_TOPIC_SOURCE = (
+_DEFAULT_HOT_TOPIC_DATES = ["2025-10-25"]
+_DEFAULT_HOT_TOPIC_HOURS = [15]
+
+
+def _coerce_hours(values: Sequence[str], fallback: Sequence[int]) -> List[int]:
+    hours: List[int] = []
+    for raw in values:
+        try:
+            hour = int(raw)
+        except (TypeError, ValueError):
+            logging.warning("WEIBO_FETCH_HOURS 包含无效数字：%s", raw)
+            continue
+        if 0 <= hour <= 23:
+            hours.append(hour)
+        else:
+            logging.warning("WEIBO_FETCH_HOURS 超出范围(0-23)：%s", raw)
+    return list(hours) if hours else list(fallback)
+
+
+HOT_TOPIC_DATES = get_env_list("WEIBO_FETCH_DATES", _DEFAULT_HOT_TOPIC_DATES)
+HOT_TOPIC_HOURS = _coerce_hours(
+    get_env_list("WEIBO_FETCH_HOURS", [str(hour) for hour in _DEFAULT_HOT_TOPIC_HOURS]),
+    _DEFAULT_HOT_TOPIC_HOURS,
+)
+HOT_TOPIC_SOURCE = get_env_str(
+    "WEIBO_FETCH_SOURCE",
     "https://raw.githubusercontent.com/lxw15337674/weibo-trending-hot-history/"
-    "refs/heads/master/api/{date}/{hour}.json"
+    "refs/heads/master/api/{date}/{hour}.json",
 )
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE_DIR = PROJECT_ROOT / "data" / "hot_topics"
 POST_DIR = PROJECT_ROOT / "data" / "posts"
-LOG_LEVEL = logging.INFO
+LOG_LEVEL = getattr(logging, (get_env_str("WEIBO_FETCH_LOG_LEVEL", "INFO") or "INFO").upper(), logging.INFO)
 
 
 def ensure_dirs() -> None:

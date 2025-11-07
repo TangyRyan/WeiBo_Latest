@@ -79,7 +79,7 @@ def _build_headers(extra_headers: Optional[Mapping[str, str]]) -> Dict[str, str]
     headers = dict(DEFAULT_HEADERS)
     if extra_headers:
         headers.update(extra_headers)
-    cookie = os.getenv("WEIBO_AICARD_COOKIE") or os.getenv("WEIBO_COOKIE")
+    cookie = os.getenv("WEIBO_COOKIE")
     if cookie:
         headers.setdefault("Cookie", cookie)
     return headers

@@ -6,7 +6,7 @@ import logging
 import sys
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 
@@ -17,6 +17,7 @@ if str(ROOT_DIR) not in sys.path:
 if str(CURRENT_DIR) not in sys.path:
     sys.path.insert(0, str(CURRENT_DIR))
 
+from spider.config import get_env_int, get_env_str
 from spider.fetch_hot_topics import (
     CHINA_TZ,
     ensure_dirs,
@@ -35,17 +36,44 @@ from spider.update_posts import (
     refresh_posts_for_date,
 )
 from spider.daily_heat import update_daily_heat
-POLL_INTERVAL_SECONDS = 600
-RECENT_RETRY_SECONDS = 60
-MAX_LOOKBACK_DAYS = 1
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-HOURLY_ARCHIVE_DIR = PROJECT_ROOT / "data" / "hot_topics" / "hourly"
-LOG_LEVEL = logging.INFO
-LOCAL_FALLBACK_THRESHOLD_MINUTES = 45
-POST_EXPORT_DIR = PROJECT_ROOT / "data" / "hot_posts"
-HOURLY_POST_LIMIT = 20
-HOURLY_POST_CACHE_DIR = PROJECT_ROOT / "data" / "posts" / "hourly"
-HOURLY_POST_CACHE_TTL_SECONDS = 3600
+
+
+def _resolve_path(value: Optional[str], default: Path) -> Path:
+    """Resolve paths from env, allowing relative inputs."""
+    if not value:
+        return default
+    candidate = Path(value)
+    if not candidate.is_absolute():
+        candidate = PROJECT_ROOT / candidate
+    return candidate
+
+
+POLL_INTERVAL_SECONDS = get_env_int("WEIBO_MONITOR_POLL_INTERVAL", 600) or 600
+RECENT_RETRY_SECONDS = get_env_int("WEIBO_MONITOR_RECENT_RETRY", 60) or 60
+MAX_LOOKBACK_DAYS = get_env_int("WEIBO_MONITOR_MAX_LOOKBACK_DAYS", 1) or 1
+HOURLY_ARCHIVE_DIR = _resolve_path(
+    get_env_str("WEIBO_MONITOR_HOURLY_DIR"),
+    PROJECT_ROOT / "data" / "hot_topics" / "hourly",
+)
+_LOG_LEVEL_NAME = (get_env_str("WEIBO_MONITOR_LOG_LEVEL", "INFO") or "INFO").upper()
+LOG_LEVEL = getattr(logging, _LOG_LEVEL_NAME, logging.INFO)
+LOCAL_FALLBACK_THRESHOLD_MINUTES = (
+    get_env_int("WEIBO_MONITOR_LOCAL_FALLBACK_MINUTES", 45) or 45
+)
+POST_EXPORT_DIR = _resolve_path(
+    get_env_str("WEIBO_MONITOR_POST_EXPORT_DIR"),
+    PROJECT_ROOT / "data" / "hot_posts",
+)
+HOURLY_POST_LIMIT = get_env_int("WEIBO_MONITOR_HOURLY_POST_LIMIT", 20) or 20
+HOURLY_POST_CACHE_DIR = _resolve_path(
+    get_env_str("WEIBO_MONITOR_POST_CACHE_DIR"),
+    PROJECT_ROOT / "data" / "posts" / "hourly",
+)
+HOURLY_POST_CACHE_TTL_SECONDS = (
+    get_env_int("WEIBO_MONITOR_POST_CACHE_TTL", 3600) or 3600
+)
 
 
 def ensure_hourly_dir() -> None:

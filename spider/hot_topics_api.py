@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from flask import Flask, Response, jsonify, request
 
+from spider.config import get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, slugify_title
 from spider.daily_heat import ARCHIVE_DIR, SUMMARY_PATH, rebuild_summary
 from spider.aicard_service import ensure_aicard_snapshot
@@ -15,16 +16,27 @@ from spider.update_posts import ensure_topic_posts, load_archive, save_archive
 from spider.export_daily_bundle import write_bundle as export_daily_bundle
 
 app = Flask(__name__)
-LOG_LEVEL = logging.INFO
-DEFAULT_LIMIT = 30
-MAX_LIMIT = 60
-MAX_HOURLY_LIMIT = 50
-MAX_POST_LIMIT = 50
+LOG_LEVEL = getattr(logging, (get_env_str("WEIBO_API_LOG_LEVEL", "INFO") or "INFO").upper(), logging.INFO)
+DEFAULT_LIMIT = get_env_int("WEIBO_API_DAILY_LIMIT", 30) or 30
+MAX_LIMIT = get_env_int("WEIBO_API_MAX_LIMIT", 60) or 60
+MAX_HOURLY_LIMIT = get_env_int("WEIBO_API_MAX_HOURLY_LIMIT", 50) or 50
+MAX_POST_LIMIT = get_env_int("WEIBO_API_MAX_POST_LIMIT", 50) or 50
 
-HOURLY_DIR = ARCHIVE_DIR / "hourly"
-POSTS_DIR = ARCHIVE_DIR.parent / "posts"
-BUNDLE_DIR = ARCHIVE_DIR.parent / "daily_bundles"
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def _resolve_repo_path(raw_value: Optional[str], default: Path) -> Path:
+    if not raw_value:
+        return default
+    candidate = Path(raw_value)
+    if not candidate.is_absolute():
+        return (REPO_ROOT / candidate).resolve()
+    return candidate
+
+
+HOURLY_DIR = _resolve_repo_path(get_env_str("WEIBO_HOURLY_DIR"), ARCHIVE_DIR / "hourly")
+POSTS_DIR = _resolve_repo_path(get_env_str("WEIBO_POSTS_DIR"), ARCHIVE_DIR.parent / "posts")
+BUNDLE_DIR = _resolve_repo_path(get_env_str("WEIBO_BUNDLE_DIR"), ARCHIVE_DIR.parent / "daily_bundles")
 
 
 class DailyHeatStore:
@@ -1104,7 +1116,9 @@ def daily_bundle() -> Any:
 
 def main() -> None:
     logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s [%(levelname)s] %(message)s")
-    app.run(host="0.0.0.0", port=8766)
+    host = get_env_str("WEIBO_API_HOST", "0.0.0.0") or "0.0.0.0"
+    port = get_env_int("WEIBO_API_PORT", 8766) or 8766
+    app.run(host=host, port=port)
 
 
 if __name__ == "__main__":

@@ -12,6 +12,8 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 import requests
 
+from spider.config import get_env_str
+
 try:
     from bs4 import BeautifulSoup  # type: ignore
 except ImportError:  # pragma: no cover - optional dependency
@@ -19,6 +21,9 @@ except ImportError:  # pragma: no cover - optional dependency
 
 
 BASE_URL = "https://m.weibo.cn/api/container/getIndex"
+FALLBACK_COOKIE = "SCF=Ag66U6NXNgzpvI1h1GSjWh8w7HR4yV1THrr4GQFUaPUroylue-wKVTgdNYbxXPXaA4OykzyEAw1XrwEWSLHXGnc.;"
+DEFAULT_COOKIE = get_env_str("WEIBO_COOKIE", FALLBACK_COOKIE) or FALLBACK_COOKIE
+
 DEFAULT_HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) "
@@ -29,10 +34,8 @@ DEFAULT_HEADERS = {
     "mweibo-pwa": "1",
     "Pragma": "no-cache",
     "X-XSRF-TOKEN": "d8443b",
-    "sec-ch-ua-mobile":"?1",
-    "Cookie": (
-        "SCF=Ag66U6NXNgzpvI1h1GSjWh8w7HR4yV1THrr4GQFUaPUroylue-wKVTgdNYbxXPXaA4OykzyEAw1XrwEWSLHXGnc.;"
-    ),
+    "sec-ch-ua-mobile": "?1",
+    "Cookie": DEFAULT_COOKIE,
 }
 REQUEST_TIMEOUT = 10
 MAX_RETRIES = 3

@@ -6,20 +6,39 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
 
+from spider.config import get_env_float, get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, CrawlParams, crawl_topic, ensure_hashtag_format, slugify_title
 from spider.weibo_topic_detail import WeiboPost, get_top_20_hot_posts
 
 # ------- CONFIG -------
-TARGET_DATE = "2025-10-25"
+_DEFAULT_TARGET_DATE = "2025-10-25"
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE_DIR = PROJECT_ROOT / "data" / "hot_topics"
 POST_DIR = PROJECT_ROOT / "data" / "posts"
-TOP_N = 30
-MAX_PAGES = 5
-MIN_SCORE = 0.0
-SINCE = None  # e.g. "2025-10-24T00:00:00+08:00"
-MAX_TOPICS_PER_RUN: Optional[int] = None
-LOG_LEVEL = logging.INFO
+
+
+def _parse_since(value: Optional[str]) -> Optional[datetime]:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        logging.warning("WEIBO_POST_SINCE 无法解析，已忽略：%s", value)
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=CHINA_TZ)
+    return parsed
+
+
+TARGET_DATE = get_env_str("WEIBO_POST_TARGET_DATE", _DEFAULT_TARGET_DATE) or _DEFAULT_TARGET_DATE
+TOP_N = get_env_int("WEIBO_POST_TOP_N", 30) or 30
+MAX_PAGES = get_env_int("WEIBO_POST_MAX_PAGES", 5) or 5
+MIN_SCORE = get_env_float("WEIBO_POST_MIN_SCORE", 0.0) or 0.0
+SINCE = _parse_since(get_env_str("WEIBO_POST_SINCE"))
+MAX_TOPICS_PER_RUN = get_env_int("WEIBO_POST_MAX_TOPICS", None)
+if MAX_TOPICS_PER_RUN is not None and MAX_TOPICS_PER_RUN <= 0:
+    MAX_TOPICS_PER_RUN = None
+LOG_LEVEL = getattr(logging, (get_env_str("WEIBO_POST_LOG_LEVEL", "INFO") or "INFO").upper(), logging.INFO)
 
 
 def ensure_dirs() -> None:
@@ -57,7 +76,7 @@ def update_topic(title: str, record: Dict, date_str: str) -> Dict:
             top_n=TOP_N,
             max_pages=MAX_PAGES,
             min_score=MIN_SCORE,
-            since=None,
+            since=SINCE,
             skip_ids=skip_ids,
         )
         candidate = crawl_topic(params)
