@@ -14,14 +14,14 @@ if str(CURRENT_DIR) not in sys.path:
     sys.path.insert(0, str(CURRENT_DIR))
 
 from spider.crawler_core import CHINA_TZ, ensure_hashtag_format, slugify_title
-from spider.fetch_hot_topics import load_daily_archive, save_daily_archive
 from spider.update_posts import ensure_topic_posts
+from backend.config import ARCHIVE_DIR, HOURLY_DIR, POST_DIR
+from backend.settings import DATA_ROOT
+from backend.storage import load_daily_archive, save_daily_archive
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-HOT_TOPICS_DIR = PROJECT_ROOT / "data" / "hot_topics"
-HOURLY_HOT_TOPICS_DIR = PROJECT_ROOT / "data" / "hot_topics" / "hourly"
-POST_DIR = PROJECT_ROOT / "data" / "posts"
-DAILY_OUTPUT_DIR = PROJECT_ROOT / "data" / "daily_posts"
+HOT_TOPICS_DIR = ARCHIVE_DIR
+HOURLY_HOT_TOPICS_DIR = HOURLY_DIR
+DAILY_OUTPUT_DIR = DATA_ROOT / "daily_posts"
 HOURLY_EXPORT_LIMIT = 20
 
 

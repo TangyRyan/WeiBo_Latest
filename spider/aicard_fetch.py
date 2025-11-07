@@ -9,8 +9,9 @@ from urllib.parse import unquote_plus
 from spider.aicard_client import AICardError, AICardResult, fetch_ai_card
 from spider.aicard_parser import MediaAsset, ParsedCard, render_aicard_markdown
 from spider.crawler_core import slugify_title
+from backend.config import AICARD_DIR
 
-DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parents[1] / "data" / "aicard"
+DEFAULT_OUTPUT_DIR = AICARD_DIR
 
 
 def _derive_topic_slug(result: AICardResult) -> str:

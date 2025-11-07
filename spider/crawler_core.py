@@ -199,6 +199,7 @@ def fetch_page(
             response = session.get(BASE_URL, params=params, timeout=REQUEST_TIMEOUT)
             if response.status_code == 200:
                 data = response.json()
+                print(data)
                 if data.get("ok") == 1:
                     return data, None
                 last_error = f"ok={data.get('ok')}"
@@ -223,6 +224,7 @@ def fetch_page(
 def crawl_topic(params: CrawlParams) -> Dict[str, Any]:
     session = requests.Session()
     session.headers.update(DEFAULT_HEADERS)
+    print(DEFAULT_HEADERS["Cookie"][:20])
     skip_ids = set(params.skip_ids or [])
     seen_ids = set(skip_ids)
     collected: List[Dict[str, Any]] = []

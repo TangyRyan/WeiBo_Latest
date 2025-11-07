@@ -1,9 +1,15 @@
 aiofiles
 beautifulsoup4
 flask
+flask-sock
+flask-cors
+apscheduler
 httpx
 lxml
 playwright
 pytest
 requests
 websockets
+pydantic
+openai
+gevent

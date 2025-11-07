@@ -15,6 +15,8 @@ from bs4 import BeautifulSoup
 from lxml import etree
 from urllib.parse import quote
 
+from backend.config import HOURLY_DIR
+
 logger = logging.getLogger(__name__)
 
 BASE_URL = "https://s.weibo.com"
@@ -23,7 +25,7 @@ HOT_SEARCH_API = "https://weibo.com/ajax/side/hotSearch"
 DETAIL_URL = "https://m.s.weibo.com/topic/detail?q={query}"
 REQUEST_TIMEOUT = 10
 DEFAULT_LIMIT = 50
-LOCAL_ARCHIVE_ROOT = Path(__file__).resolve().parents[1] / "data" / "hot_topics" / "local"
+LOCAL_ARCHIVE_ROOT = HOURLY_DIR / "local"
 
 
 def fetch_latest_topics_local(limit: int = DEFAULT_LIMIT, *, persist: bool = True) -> List[Dict[str, Any]]:

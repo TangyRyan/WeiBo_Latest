@@ -1,7 +1,6 @@
 import json
 import logging
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
 from typing import Dict, List, Optional, Sequence
 
 import requests
@@ -9,7 +8,8 @@ import requests
 from spider.aicard_service import ensure_aicard_snapshot
 from spider.config import get_env_list, get_env_str
 from spider.crawler_core import slugify_title
-from spider.daily_heat import update_daily_heat
+from backend.config import ARCHIVE_DIR, POST_DIR
+from backend.storage import load_daily_archive, save_daily_archive
 
 CHINA_TZ = timezone(timedelta(hours=8))
 
@@ -43,9 +43,6 @@ HOT_TOPIC_SOURCE = get_env_str(
     "https://raw.githubusercontent.com/lxw15337674/weibo-trending-hot-history/"
     "refs/heads/master/api/{date}/{hour}.json",
 )
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-ARCHIVE_DIR = PROJECT_ROOT / "data" / "hot_topics"
-POST_DIR = PROJECT_ROOT / "data" / "posts"
 LOG_LEVEL = getattr(logging, (get_env_str("WEIBO_FETCH_LOG_LEVEL", "INFO") or "INFO").upper(), logging.INFO)
 
 
@@ -63,20 +60,6 @@ def fetch_hour_topics(date_str: str, hour: int) -> List[Dict]:
     if not isinstance(data, list):
         raise ValueError(f"{url} 返回非列表数据")
     return data
-
-
-def load_daily_archive(date_str: str) -> Dict[str, Dict]:
-    path = ARCHIVE_DIR / f"{date_str}.json"
-    if not path.exists():
-        return {}
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def save_daily_archive(date_str: str, data: Dict[str, Dict]) -> None:
-    path = ARCHIVE_DIR / f"{date_str}.json"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    logging.info("已更新归档：%s", path)
 
 
 def iso_time(date_str: str, hour: int) -> str:
@@ -142,23 +125,19 @@ def process_day(date_str: str, hours: List[int]) -> None:
                 logger=logging.getLogger("aicard"),
             )
             if snapshot:
-                record.setdefault("aicard", {})
-                record["aicard"]["html"] = snapshot["html"]
-                record["aicard"]["json"] = snapshot["json"]
-                hours = record["aicard"].setdefault("hours", {})
-                hours[f"{hour:02d}"] = {
-                    "html": snapshot["html"],
-                    "json": snapshot["json"],
-                }
+                aicard_field = record.setdefault("aicard", {})
+                hours = aicard_field.setdefault("hours", {})
+                hour_key = f"{hour:02d}"
+                hours[hour_key] = snapshot
+                aicard_field["latest"] = snapshot
+                aicard_field["html"] = snapshot.get("html")
 
     save_daily_archive(date_str, daily_data)
     try:
-        summary = update_daily_heat(date_str, daily_data)
         logging.debug(
-            "Daily heat summary refreshed for %s: total_heat=%s topics=%s",
-            summary.date,
-            summary.total_heat,
-            summary.topic_count,
+            "Daily archive refreshed for %s: total topics=%s",
+            date_str,
+            len(daily_data),
         )
     except Exception as exc:  # pylint: disable=broad-except
         logging.error("更新 %s 日热度汇总失败：%s", date_str, exc)

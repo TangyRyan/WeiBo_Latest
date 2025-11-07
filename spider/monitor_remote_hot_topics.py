@@ -22,8 +22,6 @@ from spider.fetch_hot_topics import (
     CHINA_TZ,
     ensure_dirs,
     fetch_hour_topics,
-    load_daily_archive,
-    save_daily_archive,
     upsert_topic,
 )
 from spider.local_hot_topics import fetch_latest_topics_local
@@ -31,23 +29,22 @@ from spider.crawler_core import slugify_title
 from spider.aicard_service import ensure_aicard_snapshot
 from spider.update_posts import (
     MAX_TOPICS_PER_RUN,
-    POST_DIR,
     ensure_topic_posts,
     refresh_posts_for_date,
 )
-from spider.daily_heat import update_daily_heat
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+from backend.config import HOURLY_DIR, POST_DIR
+from backend.storage import (
+    load_daily_archive,
+    save_daily_archive,
+    from_data_relative,
+)
 
 
 def _resolve_path(value: Optional[str], default: Path) -> Path:
     """Resolve paths from env, allowing relative inputs."""
     if not value:
         return default
-    candidate = Path(value)
-    if not candidate.is_absolute():
-        candidate = PROJECT_ROOT / candidate
-    return candidate
+    return from_data_relative(value)
 
 
 POLL_INTERVAL_SECONDS = get_env_int("WEIBO_MONITOR_POLL_INTERVAL", 600) or 600
@@ -55,25 +52,14 @@ RECENT_RETRY_SECONDS = get_env_int("WEIBO_MONITOR_RECENT_RETRY", 60) or 60
 MAX_LOOKBACK_DAYS = get_env_int("WEIBO_MONITOR_MAX_LOOKBACK_DAYS", 1) or 1
 HOURLY_ARCHIVE_DIR = _resolve_path(
     get_env_str("WEIBO_MONITOR_HOURLY_DIR"),
-    PROJECT_ROOT / "data" / "hot_topics" / "hourly",
+    HOURLY_DIR,
 )
 _LOG_LEVEL_NAME = (get_env_str("WEIBO_MONITOR_LOG_LEVEL", "INFO") or "INFO").upper()
 LOG_LEVEL = getattr(logging, _LOG_LEVEL_NAME, logging.INFO)
 LOCAL_FALLBACK_THRESHOLD_MINUTES = (
     get_env_int("WEIBO_MONITOR_LOCAL_FALLBACK_MINUTES", 45) or 45
 )
-POST_EXPORT_DIR = _resolve_path(
-    get_env_str("WEIBO_MONITOR_POST_EXPORT_DIR"),
-    PROJECT_ROOT / "data" / "hot_posts",
-)
 HOURLY_POST_LIMIT = get_env_int("WEIBO_MONITOR_HOURLY_POST_LIMIT", 20) or 20
-HOURLY_POST_CACHE_DIR = _resolve_path(
-    get_env_str("WEIBO_MONITOR_POST_CACHE_DIR"),
-    PROJECT_ROOT / "data" / "posts" / "hourly",
-)
-HOURLY_POST_CACHE_TTL_SECONDS = (
-    get_env_int("WEIBO_MONITOR_POST_CACHE_TTL", 3600) or 3600
-)
 
 
 def ensure_hourly_dir() -> None:
@@ -121,26 +107,14 @@ def update_daily_archive(date_str: str, hour: int, topics: List[dict]) -> None:
                 logger=logging.getLogger("aicard"),
             )
             if snapshot:
-                record.setdefault("aicard", {})
-                record["aicard"]["html"] = snapshot["html"]
-                record["aicard"]["json"] = snapshot["json"]
-                hours = record["aicard"].setdefault("hours", {})
-                hours[f"{hour:02d}"] = {
-                    "html": snapshot["html"],
-                    "json": snapshot["json"],
-                }
+                aicard_field = record.setdefault("aicard", {})
+                hours = aicard_field.setdefault("hours", {})
+                hour_key = f"{hour:02d}"
+                hours[hour_key] = snapshot
+                aicard_field["latest"] = snapshot
+                aicard_field["html"] = snapshot.get("html")
     save_daily_archive(date_str, daily_data)
     pending_refresh = sum(1 for item in daily_data.values() if item.get("needs_refresh"))
-    try:
-        summary = update_daily_heat(date_str, daily_data)
-        logging.debug(
-            "Daily heat summary updated during monitor sync %s: total_heat=%s topics=%s",
-            summary.date,
-            summary.total_heat,
-            summary.topic_count,
-        )
-    except Exception as exc:  # pylint: disable=broad-except
-        logging.error("Failed to update daily heat summary for %s: %s", date_str, exc)
     logging.info(
         "Daily archive %s %02d synced: total=%s, new=%s, pending_refresh=%s",
         date_str,
@@ -162,8 +136,7 @@ def process_hour(date_str: str, hour: int) -> bool:
     update_hourly_archive(date_str, hour, topics)
     update_daily_archive(date_str, hour, topics)
     _refresh_posts_if_needed(date_str)
-    payload_map = _collect_hourly_posts(date_str, hour, topics)
-    _export_hourly_posts(date_str, hour, topics, payload_map)
+    _collect_hourly_posts(date_str, hour, topics)
     logging.debug("Completed processing for %s %02d (local_used=%s)", date_str, hour, local_used)
     return True
 
@@ -298,12 +271,8 @@ def _refresh_posts_if_needed(date_str: str) -> None:
 
 
 def _collect_hourly_posts(date_str: str, hour: int, topics: List[dict]) -> Dict[str, Dict[str, Any]]:
-    hour_str = f"{hour:02d}"
-    cache_dir = HOURLY_POST_CACHE_DIR / date_str / hour_str
-    cache_dir.mkdir(parents=True, exist_ok=True)
     daily_data = load_daily_archive(date_str)
     payload_map: Dict[str, Dict[str, Any]] = {}
-    now = datetime.now(tz=CHINA_TZ)
     changed = False
     for index, topic in enumerate(topics):
         if index >= HOURLY_POST_LIMIT:
@@ -315,87 +284,15 @@ def _collect_hourly_posts(date_str: str, hour: int, topics: List[dict]) -> Dict[
         if not record:
             logging.debug("Skip hourly post collection for %s: missing archive record", title)
             continue
-        slug = record.get("slug") or slugify_title(title)
-        cache_path = cache_dir / f"{slug}.json"
-        if cache_path.exists():
-            mtime = datetime.fromtimestamp(cache_path.stat().st_mtime, tz=CHINA_TZ)
-            if (now - mtime) <= timedelta(seconds=HOURLY_POST_CACHE_TTL_SECONDS):
-                try:
-                    payload_map[title] = json.loads(cache_path.read_text(encoding="utf-8"))
-                    continue
-                except json.JSONDecodeError:
-                    logging.warning("Corrupted hourly cache %s, refetching", cache_path)
         updated_record = ensure_topic_posts(title, record, date_str)
         daily_data[title] = updated_record
         payload = updated_record.get("latest_posts") or {}
-        cache_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         payload_map[title] = payload
         changed = True
     if changed:
         save_daily_archive(date_str, daily_data)
     return payload_map
 
-
-def _export_hourly_posts(date_str: str, hour: int, topics: List[dict], payload_map: Dict[str, Dict[str, Any]]) -> None:
-    hour_str = f"{hour:02d}"
-    export_dir = POST_EXPORT_DIR / date_str
-    export_dir.mkdir(parents=True, exist_ok=True)
-    daily_data = load_daily_archive(date_str)
-    seen_titles: set[str] = set()
-    all_payload: List[dict] = []
-    new_payload: List[dict] = []
-    for index, topic in enumerate(topics):
-        if index >= HOURLY_POST_LIMIT:
-            break
-        title = (topic.get("title") or "").strip()
-        if not title or title in seen_titles:
-            continue
-        seen_titles.add(title)
-        record = daily_data.get(title)
-        if not record:
-            logging.warning("Daily archive missing entry for %s", title)
-            continue
-        slug = record.get("slug") or slugify_title(title)
-        payload = payload_map.get(title)
-        if not payload:
-            cache_path = HOURLY_POST_CACHE_DIR / date_str / hour_str / f"{slug}.json"
-            try:
-                payload = json.loads(cache_path.read_text(encoding="utf-8"))
-            except FileNotFoundError:
-                post_path = POST_DIR / date_str / f"{slug}.json"
-                if not post_path.exists():
-                    logging.warning("Post cache not found for %s", post_path)
-                    continue
-                payload = json.loads(post_path.read_text(encoding="utf-8"))
-            except json.JSONDecodeError as exc:
-                logging.error("Failed to load hourly post cache %s: %s", cache_path, exc)
-                continue
-        all_payload.append(payload)
-
-        first_seen = record.get("first_seen")
-        if first_seen:
-            try:
-                first_dt = datetime.fromisoformat(first_seen)
-            except ValueError:
-                logging.debug("first_seen parse error for %s: %s", title, first_seen)
-            else:
-                if first_dt.tzinfo is None:
-                    first_dt = first_dt.replace(tzinfo=CHINA_TZ)
-                first_dt_local = first_dt.astimezone(CHINA_TZ)
-                if first_dt_local.strftime("%H") == hour_str:
-                    new_payload.append(payload)
-
-    all_path = export_dir / f"{date_str}_{hour_str}_all.json"
-    new_path = export_dir / f"{date_str}_{hour_str}_new.json"
-    all_path.write_text(json.dumps(all_payload, ensure_ascii=False, indent=2), encoding='utf-8')
-    new_path.write_text(json.dumps(new_payload, ensure_ascii=False, indent=2), encoding='utf-8')
-    logging.info(
-        "Exported hourly posts %s %s: all=%s new=%s",
-        date_str,
-        hour_str,
-        len(all_payload),
-        len(new_payload),
-    )
 
 async def run_loop() -> None:
     ensure_dirs()

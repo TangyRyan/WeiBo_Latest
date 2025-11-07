@@ -3,18 +3,16 @@ import json
 import logging
 import re
 from datetime import datetime, timedelta
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
 
 from spider.config import get_env_float, get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, CrawlParams, crawl_topic, ensure_hashtag_format, slugify_title
 from spider.weibo_topic_detail import WeiboPost, get_top_20_hot_posts
+from backend.config import ARCHIVE_DIR, POST_DIR
+from backend.storage import to_data_relative
 
 # ------- CONFIG -------
 _DEFAULT_TARGET_DATE = "2025-10-25"
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-ARCHIVE_DIR = PROJECT_ROOT / "data" / "hot_topics"
-POST_DIR = PROJECT_ROOT / "data" / "posts"
 
 
 def _parse_since(value: Optional[str]) -> Optional[datetime]:
@@ -123,7 +121,7 @@ def update_topic(title: str, record: Dict, date_str: str) -> Dict:
     post_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
 
     record["last_post_refresh"] = date_str
-    record["post_output"] = str(post_path)
+    record["post_output"] = to_data_relative(post_path)
     record["known_ids"] = [item["id"] for item in result.get("items", []) if item.get("id")]
     record["latest_posts"] = result
     has_posts = bool(result.get("items"))

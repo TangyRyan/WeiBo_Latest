@@ -1,4 +1,3 @@
-import json
 import logging
 from dataclasses import asdict
 from pathlib import Path
@@ -7,17 +6,15 @@ from typing import Dict, List, Optional
 from spider.aicard_client import AICardError, fetch_ai_card
 from spider.aicard_parser import ParsedCard, render_aicard_markdown
 from spider.crawler_core import ensure_hashtag_format, slugify_title
+from backend.config import AICARD_DIR
+from backend.storage import to_data_relative
 
-BASE_DIR = Path(__file__).resolve().parents[1] / "data" / "aicard"
+BASE_DIR = AICARD_DIR
 HOURLY_DIR_NAME = "hourly"
 
 
 def _relative_to_repo(path: Path) -> str:
-    repo_root = Path(__file__).resolve().parents[1]
-    try:
-        return path.relative_to(repo_root).as_posix()
-    except ValueError:
-        return path.as_posix()
+    return to_data_relative(path)
 
 
 def _wrap_html(body: str, title: str) -> str:
@@ -77,23 +74,13 @@ def ensure_aicard_snapshot(
     *,
     slug: Optional[str] = None,
     base_dir: Path = BASE_DIR,
-    overwrite: bool = False,
     logger: Optional[logging.Logger] = None,
-) -> Optional[Dict[str, str]]:
-    """确保为指定话题生成 AI Card 快照，返回相对路径信息。"""
+) -> Optional[Dict[str, any]]:
+    """生成 AI Card HTML，并返回可直接写入归档的元数据。"""
     logger = logger or logging.getLogger(__name__)
     normalized_slug = slug or slugify_title(title)
     target_dir = base_dir / HOURLY_DIR_NAME / date_str / f"{hour:02d}"
     html_path = target_dir / f"{normalized_slug}.html"
-    json_path = target_dir / f"{normalized_slug}.json"
-
-    if not overwrite and html_path.exists() and json_path.exists():
-        return {
-            "slug": normalized_slug,
-            "html": _relative_to_repo(html_path),
-            "json": _relative_to_repo(json_path),
-            "title": title,
-        }
 
     query = ensure_hashtag_format(title)
     try:
@@ -128,32 +115,15 @@ def ensure_aicard_snapshot(
     target_dir.mkdir(parents=True, exist_ok=True)
     html_doc = _wrap_html(parsed.html, query)
     html_path.write_text(html_doc, encoding="utf-8")
-    payload = {
-        "meta": result.to_dict(),
-        "links": parsed.links,
-        "media": [asdict(asset) for asset in parsed.media],
-        "html_path": _relative_to_repo(html_path),
-    }
-    json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-
-    index_path = target_dir / "index.json"
-    try:
-        index_payload = json.loads(index_path.read_text(encoding="utf-8"))
-    except Exception:
-        index_payload = {}
-    index_payload[normalized_slug] = {
-        "title": title,
-        "html": _relative_to_repo(html_path),
-        "json": _relative_to_repo(json_path),
-        "fetched_at": result.fetched_at.isoformat(timespec="seconds"),
-    }
-    index_path.write_text(json.dumps(index_payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     return {
         "slug": normalized_slug,
         "html": _relative_to_repo(html_path),
-        "json": _relative_to_repo(json_path),
         "title": title,
+        "links": parsed.links,
+        "media": [asdict(asset) for asset in parsed.media],
+        "meta": result.to_dict(),
+        "fetched_at": result.fetched_at.isoformat(timespec="seconds"),
     }
 
 

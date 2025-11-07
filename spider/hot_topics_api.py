@@ -6,85 +6,81 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from flask import Flask, Response, jsonify, request
+from flask import Blueprint, Flask, Response, jsonify, request
 
 from spider.config import get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, slugify_title
-from spider.daily_heat import ARCHIVE_DIR, SUMMARY_PATH, rebuild_summary
 from spider.aicard_service import ensure_aicard_snapshot
 from spider.update_posts import ensure_topic_posts, load_archive, save_archive
-from spider.export_daily_bundle import write_bundle as export_daily_bundle
+from backend.config import (
+    ARCHIVE_DIR as DEFAULT_ARCHIVE_DIR,
+    HOURLY_DIR as DEFAULT_HOURLY_DIR,
+    POST_DIR as DEFAULT_POST_DIR,
+)
+from backend.storage import from_data_relative
 
-app = Flask(__name__)
+bp = Blueprint("hot_topics_api", __name__)
 LOG_LEVEL = getattr(logging, (get_env_str("WEIBO_API_LOG_LEVEL", "INFO") or "INFO").upper(), logging.INFO)
 DEFAULT_LIMIT = get_env_int("WEIBO_API_DAILY_LIMIT", 30) or 30
 MAX_LIMIT = get_env_int("WEIBO_API_MAX_LIMIT", 60) or 60
 MAX_HOURLY_LIMIT = get_env_int("WEIBO_API_MAX_HOURLY_LIMIT", 50) or 50
 MAX_POST_LIMIT = get_env_int("WEIBO_API_MAX_POST_LIMIT", 50) or 50
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
-
-
-def _resolve_repo_path(raw_value: Optional[str], default: Path) -> Path:
+def _resolve_data_path(raw_value: Optional[str], default: Path) -> Path:
     if not raw_value:
         return default
-    candidate = Path(raw_value)
-    if not candidate.is_absolute():
-        return (REPO_ROOT / candidate).resolve()
-    return candidate
+    return from_data_relative(raw_value)
 
 
-HOURLY_DIR = _resolve_repo_path(get_env_str("WEIBO_HOURLY_DIR"), ARCHIVE_DIR / "hourly")
-POSTS_DIR = _resolve_repo_path(get_env_str("WEIBO_POSTS_DIR"), ARCHIVE_DIR.parent / "posts")
-BUNDLE_DIR = _resolve_repo_path(get_env_str("WEIBO_BUNDLE_DIR"), ARCHIVE_DIR.parent / "daily_bundles")
+HOURLY_DIR = _resolve_data_path(get_env_str("WEIBO_HOURLY_DIR"), DEFAULT_HOURLY_DIR)
+POSTS_DIR = _resolve_data_path(get_env_str("WEIBO_POSTS_DIR"), DEFAULT_POST_DIR)
+ARCHIVE_DIR = DEFAULT_ARCHIVE_DIR
 
 
-class DailyHeatStore:
-    def __init__(self) -> None:
-        self._cache: Dict[str, Any] = {"generated_at": None, "data": []}
-        self._mtime: Optional[float] = None
-
-    def invalidate(self) -> None:
-        self._mtime = None
-
-    def _load_from_disk(self) -> None:
-        if not SUMMARY_PATH.exists():
-            rebuild_summary()
-            if not SUMMARY_PATH.exists():
-                logging.warning("Daily heat summary file %s missing after rebuild", SUMMARY_PATH)
-                self._cache = {"generated_at": None, "data": []}
-                self._mtime = None
-                return
-
-        try:
-            text = SUMMARY_PATH.read_text(encoding="utf-8")
-            self._cache = json.loads(text)
-            self._mtime = SUMMARY_PATH.stat().st_mtime
-        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-            logging.error("Failed to load summary file %s: %s", SUMMARY_PATH, exc)
-            self._cache = {"generated_at": None, "data": []}
-            self._mtime = None
-
-    def get_payload(self) -> Dict[str, Any]:
-        if not ARCHIVE_DIR.exists():
-            ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
-        if not SUMMARY_PATH.exists() or self._mtime is None:
-            self._load_from_disk()
-            return self._cache
-
-        try:
-            current_mtime = SUMMARY_PATH.stat().st_mtime
-        except FileNotFoundError:
-            self._mtime = None
-            self._load_from_disk()
-            return self._cache
-
-        if self._mtime != current_mtime:
-            self._load_from_disk()
-        return self._cache
+def _summarize_day_heat(date_str: str) -> Optional[Dict[str, Any]]:
+    path = ARCHIVE_DIR / f"{date_str}.json"
+    if not path.exists():
+        return None
+    try:
+        archive = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        logging.warning("Failed to parse archive %s: %s", path, exc)
+        return None
+    if not isinstance(archive, dict) or not archive:
+        return None
+    total_heat = 0.0
+    topic_count = 0
+    for record in archive.values():
+        if not isinstance(record, dict):
+            continue
+        hot_values = record.get("hot_values") or {}
+        if isinstance(hot_values, dict) and hot_values:
+            latest_key = sorted(hot_values.keys())[-1]
+            try:
+                total_heat += float(hot_values.get(latest_key) or 0.0)
+            except (TypeError, ValueError):
+                pass
+        topic_count += 1
+    return {"date": date_str, "total_heat": total_heat, "topic_count": topic_count}
 
 
-store = DailyHeatStore()
+def _collect_daily_heat(limit: int) -> Dict[str, Any]:
+    limit = max(1, min(limit, MAX_LIMIT))
+    summaries: List[Dict[str, Any]] = []
+    today = datetime.now(tz=CHINA_TZ).date()
+    lookback_days = max(90, limit * 3)
+    for offset in range(lookback_days):
+        if len(summaries) >= limit:
+            break
+        date_str = (today - timedelta(days=offset)).strftime("%Y-%m-%d")
+        summary = _summarize_day_heat(date_str)
+        if summary:
+            summaries.append(summary)
+    summaries.reverse()
+    return {
+        "generated_at": datetime.now(tz=CHINA_TZ).isoformat(timespec="seconds"),
+        "data": summaries,
+    }
 
 OPENAPI_SPEC: Dict[str, Any] = {
     "openapi": "3.0.3",
@@ -108,12 +104,6 @@ OPENAPI_SPEC: Dict[str, Any] = {
                         "in": "query",
                         "description": f"限定返回的天数，默认 {DEFAULT_LIMIT}，最大 {MAX_LIMIT}。",
                         "schema": {"type": "integer", "minimum": 1, "maximum": MAX_LIMIT},
-                    },
-                    {
-                        "name": "refresh",
-                        "in": "query",
-                        "description": "为 1/true/yes 时会强制重建 daily_heat.json 后再返回结果。",
-                        "schema": {"type": "string"},
                     },
                 ],
                 "responses": {
@@ -432,9 +422,10 @@ OPENAPI_SPEC: Dict[str, Any] = {
                     "title": {"type": "string"},
                     "html": {"type": "string"},
                     "html_path": {"type": "string"},
-                    "json_path": {"type": "string"},
                     "links": {"type": "array", "items": {"type": "string"}},
                     "media": {"type": "array", "items": {"$ref": "#/components/schemas/AiCardMedia"}},
+                    "meta": {"type": "object"},
+                    "fetched_at": {"type": "string"},
                 },
             },
             "DailyBundleResponse": {
@@ -442,8 +433,9 @@ OPENAPI_SPEC: Dict[str, Any] = {
                 "properties": {
                     "date": {"type": "string", "format": "date"},
                     "include_posts": {"type": "boolean"},
-                    "source_path": {"type": "string"},
-                    "data": {"type": "object"},
+                    "source": {"type": "string"},
+                    "total": {"type": "integer"},
+                    "data": {"type": "array", "items": {"type": "object"}},
                 },
             },
         }
@@ -490,35 +482,23 @@ def _resolve_limit(raw_value: Optional[str]) -> int:
     return max(1, min(limit, MAX_LIMIT))
 
 
-@app.get("/api/docs/swagger.json")
+@bp.get("/api/docs/swagger.json")
 def swagger_spec() -> Any:
     return jsonify(OPENAPI_SPEC)
 
 
-@app.get("/api/docs")
+@bp.get("/api/docs")
 def swagger_ui() -> Response:
     return Response(SWAGGER_UI_HTML, mimetype="text/html")
 
 
-@app.get("/api/hot_topics/daily_heat")
+@bp.get("/api/hot_topics/daily_heat")
 def daily_heat() -> Any:
-    refresh_flag = request.args.get("refresh")
-    if refresh_flag and refresh_flag.lower() in {"1", "true", "yes"}:
-        rebuild_summary()
-        store.invalidate()
-    payload = store.get_payload()
-    data = payload.get("data") or []
-    if not isinstance(data, list):
-        data = []
     limit = _resolve_limit(request.args.get("limit"))
-    subset: List[Dict[str, Any]] = data[-limit:]
-    response = {
-        "generated_at": payload.get("generated_at"),
-        "requested_limit": limit,
-        "available_days": len(data),
-        "data": subset,
-    }
-    return jsonify(response)
+    payload = _collect_daily_heat(limit)
+    payload["requested_limit"] = limit
+    payload["available_days"] = len(payload.get("data", []))
+    return jsonify(payload)
 
 
 def _parse_hour(raw_hour: Optional[str]) -> Optional[int]:
@@ -749,13 +729,6 @@ def _load_post_payload(date: str, slug: str) -> Tuple[Optional[Dict[str, Any]], 
     return data, path
 
 
-def _load_bundle_payload(date: str, include_posts: bool) -> Tuple[Optional[Any], Path]:
-    filename = "topics_with_posts.json" if include_posts else "topics.json"
-    path = BUNDLE_DIR / date / filename
-    payload = _load_json(path)
-    return payload, path
-
-
 def _ensure_posts_exist(date: str, title: str, archive: Dict[str, Dict[str, Any]]) -> Optional[Dict[str, Any]]:
     record = archive.get(title)
     if not record:
@@ -807,7 +780,7 @@ def _derive_hour_from_record(record: Optional[Dict[str, Any]]) -> Optional[int]:
 HOURLY_STORE = HourlySnapshotStore(HOURLY_DIR)
 
 
-@app.get("/api/hot_topics/hourly")
+@bp.get("/api/hot_topics/hourly")
 def hourly_topics() -> Any:
     date = request.args.get("date")
     raw_hour = request.args.get("hour")
@@ -836,7 +809,7 @@ def hourly_topics() -> Any:
     return jsonify(response)
 
 
-@app.get("/api/hot_topics/posts")
+@bp.get("/api/hot_topics/posts")
 def topic_posts() -> Any:
     date = request.args.get("date")
     raw_hour = request.args.get("hour")
@@ -947,7 +920,7 @@ def topic_posts() -> Any:
     return jsonify(response)
 
 
-@app.get("/api/hot_topics/aicard")
+@bp.get("/api/hot_topics/aicard")
 def topic_aicard() -> Any:
     date = request.args.get("date")
     raw_hour = request.args.get("hour")
@@ -1033,31 +1006,38 @@ def topic_aicard() -> Any:
     if hour is None:
         return jsonify({"error": "hour must be provided or derivable from data"}), 400
 
-    aicard_info = ensure_aicard_snapshot(title, date, hour, slug=slug)
-    if not aicard_info:
+    hour_key = f"{hour:02d}"
+    aicard_info = record.get("aicard") or {}
+    hours_map = aicard_info.get("hours", {})
+    snapshot = hours_map.get(hour_key) or aicard_info.get("latest")
+
+    if not snapshot:
+        snapshot = ensure_aicard_snapshot(title, date, hour, slug=slug)
+        if snapshot:
+            hours_map[hour_key] = snapshot
+            aicard_info["hours"] = hours_map
+            aicard_info["latest"] = snapshot
+            record["aicard"] = aicard_info
+            archive[name] = record
+            save_archive(date, archive)
+    if not snapshot:
         return jsonify({"error": "AI card not available"}), 404
 
-    slug = aicard_info.get("slug", slug)
-    html_rel = aicard_info.get("html")
-    json_rel = aicard_info.get("json")
-
-    html_abs = REPO_ROOT / Path(html_rel) if html_rel else None
-    json_abs = REPO_ROOT / Path(json_rel) if json_rel else None
-
+    html_rel = snapshot.get("html")
+    html_abs = from_data_relative(html_rel) if html_rel else None
     html_content = _read_text_file(html_abs) if html_abs else None
-    json_payload = _load_json(json_abs) if json_abs else None
 
     response: Dict[str, Any] = {
         "date": date,
         "hour": hour,
-        "slug": slug,
+        "slug": snapshot.get("slug") or slug,
         "title": title,
         "html_path": html_rel,
-        "json_path": json_rel,
         "html": html_content,
-        "meta": (json_payload or {}).get("meta"),
-        "links": (json_payload or {}).get("links"),
-        "media": (json_payload or {}).get("media"),
+        "meta": snapshot.get("meta"),
+        "links": snapshot.get("links"),
+        "media": snapshot.get("media"),
+        "fetched_at": snapshot.get("fetched_at"),
     }
 
     if record:
@@ -1067,7 +1047,7 @@ def topic_aicard() -> Any:
     return jsonify(response)
 
 
-@app.get("/api/hot_topics/daily_bundle")
+@bp.get("/api/hot_topics/daily_bundle")
 def daily_bundle() -> Any:
     date = request.args.get("date")
     if not date:
@@ -1078,38 +1058,33 @@ def daily_bundle() -> Any:
         return jsonify({"error": "date must be formatted as YYYY-MM-DD"}), 400
 
     include_posts = _resolve_boolean(request.args.get("include_posts"), True)
-    payload, source_path = _load_bundle_payload(date, include_posts)
+    try:
+        archive = load_archive(date)
+    except FileNotFoundError:
+        return jsonify({"error": "archive not found for date"}), 404
 
-    if payload is None and include_posts:
-        try:
-            export_daily_bundle(date)
-        except Exception as exc:  # pylint: disable=broad-except
-            logging.error("Failed to generate daily bundle for %s: %s", date, exc)
-        payload, source_path = _load_bundle_payload(date, include_posts)
-
-    if payload is None and not include_posts:
-        fallback_path = ARCHIVE_DIR / f"{date}.json"
-        payload = _load_json(fallback_path)
-        if payload is not None:
-            source_path = fallback_path
-
-    if payload is None:
-        return (
-            jsonify(
-                {
-                    "error": "Daily bundle not available",
-                    "expected_path": source_path.as_posix(),
-                    "hint": "Run spider/export_daily_bundle.py to generate bundle",
-                }
-            ),
-            404,
-        )
+    topics: List[Dict[str, Any]] = []
+    for title, record in archive.items():
+        if not isinstance(record, dict):
+            continue
+        topic_entry = dict(record)
+        slug = record.get("slug") or slugify_title(title)
+        if include_posts:
+            posts_payload, _ = _load_post_payload(date, slug)
+            if posts_payload is None:
+                refreshed = _ensure_posts_exist(date, title, archive)
+                posts_payload = (refreshed or {}).get("latest_posts")
+            topic_entry["latest_posts"] = posts_payload or {}
+        else:
+            topic_entry.pop("latest_posts", None)
+        topics.append(topic_entry)
 
     response = {
         "date": date,
         "include_posts": include_posts,
-        "source_path": source_path.as_posix(),
-        "data": payload,
+        "source": "archive",
+        "total": len(topics),
+        "data": topics,
     }
     return jsonify(response)
 
@@ -1118,6 +1093,8 @@ def main() -> None:
     logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s [%(levelname)s] %(message)s")
     host = get_env_str("WEIBO_API_HOST", "0.0.0.0") or "0.0.0.0"
     port = get_env_int("WEIBO_API_PORT", 8766) or 8766
+    app = Flask(__name__)
+    app.register_blueprint(bp)
     app.run(host=host, port=port)
 
 
