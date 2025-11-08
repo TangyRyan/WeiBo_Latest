@@ -1,5 +1,4 @@
 import asyncio
-import json
 import logging
 import re
 from datetime import datetime, timedelta
@@ -9,7 +8,7 @@ from spider.config import get_env_float, get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, CrawlParams, crawl_topic, ensure_hashtag_format, slugify_title
 from spider.weibo_topic_detail import WeiboPost, get_top_20_hot_posts
 from backend.config import ARCHIVE_DIR, POST_DIR
-from backend.storage import to_data_relative
+from backend.storage import load_daily_archive, save_daily_archive, to_data_relative, write_json
 
 # ------- CONFIG -------
 _DEFAULT_TARGET_DATE = "2025-10-25"
@@ -47,13 +46,12 @@ def load_archive(date_str: str) -> Dict[str, Dict]:
     path = ARCHIVE_DIR / f"{date_str}.json"
     if not path.exists():
         raise FileNotFoundError(f"archive {path} not found, please run fetch_hot_topics.py first")
-    return json.loads(path.read_text(encoding="utf-8"))
+    return load_daily_archive(date_str)
 
 
 def save_archive(date_str: str, data: Dict[str, Dict]) -> None:
-    path = ARCHIVE_DIR / f"{date_str}.json"
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    logging.info("Updated archive file %s", path)
+    save_daily_archive(date_str, data)
+    logging.info("Updated archive file %s", ARCHIVE_DIR / f"{date_str}.json")
 
 
 def update_topic(title: str, record: Dict, date_str: str) -> Dict:
@@ -118,7 +116,7 @@ def update_topic(title: str, record: Dict, date_str: str) -> Dict:
 
     post_path = POST_DIR / date_str / f"{slug}.json"
     post_path.parent.mkdir(parents=True, exist_ok=True)
-    post_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json(post_path, result)
 
     record["last_post_refresh"] = date_str
     record["post_output"] = to_data_relative(post_path)

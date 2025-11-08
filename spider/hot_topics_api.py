@@ -1,7 +1,6 @@
 import json
 import logging
 import re
-from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -12,6 +11,7 @@ from spider.config import get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, slugify_title
 from spider.aicard_service import ensure_aicard_snapshot
 from spider.update_posts import ensure_topic_posts, load_archive, save_archive
+from spider.hot_topics_ws import HotTopicsRepository, HotTopicsSnapshot
 from backend.config import (
     ARCHIVE_DIR as DEFAULT_ARCHIVE_DIR,
     HOURLY_DIR as DEFAULT_HOURLY_DIR,
@@ -642,83 +642,6 @@ def _format_post_timestamp(value: Any) -> Optional[str]:
     return dt.strftime("%y-%m-%d %H:%M")
 
 
-@dataclass
-class SnapshotPayload:
-    date: str
-    hour: int
-    topics: List[Dict[str, Any]]
-    path: Path
-    generated_at: datetime
-
-    def sliced_topics(self, limit: Optional[int]) -> List[Dict[str, Any]]:
-        if limit is None:
-            return self.topics
-        return self.topics[:limit]
-
-
-class HourlySnapshotStore:
-    def __init__(self, root: Path) -> None:
-        self.root = root
-
-    def get_snapshot(self, date: Optional[str], hour: Optional[int]) -> Optional[SnapshotPayload]:
-        if date:
-            return self._load_for_date(date, hour)
-        return self._load_latest()
-
-    def _load_for_date(self, date: str, hour: Optional[int]) -> Optional[SnapshotPayload]:
-        try:
-            datetime.strptime(date, "%Y-%m-%d")
-        except ValueError:
-            logging.warning("Invalid date format: %s", date)
-            return None
-
-        directory = self.root / date
-        if not directory.exists():
-            logging.info("Hourly directory missing for %s", date)
-            return None
-
-        if hour is None:
-            candidates: List[Tuple[int, Path]] = []
-            for path in directory.iterdir():
-                if not path.is_file() or path.suffix.lower() != ".json":
-                    continue
-                try:
-                    hour_value = int(path.stem)
-                except ValueError:
-                    continue
-                candidates.append((hour_value, path))
-            if not candidates:
-                return None
-            hour, path = max(candidates, key=lambda item: item[0])
-        else:
-            path = directory / f"{hour:02d}.json"
-            if not path.exists():
-                logging.info("Hourly snapshot %s %02d missing", date, hour)
-                return None
-
-        data = _load_json(path)
-        if data is None:
-            return None
-        topics = _coerce_topic_list(data)
-        mtime = datetime.fromtimestamp(path.stat().st_mtime, tz=CHINA_TZ)
-        return SnapshotPayload(date=date, hour=hour, topics=topics, path=path, generated_at=mtime)
-
-    def _load_latest(self) -> Optional[SnapshotPayload]:
-        if not self.root.exists():
-            return None
-        snapshots: List[SnapshotPayload] = []
-        for directory in self.root.iterdir():
-            if not directory.is_dir():
-                continue
-            snapshot = self._load_for_date(directory.name, None)
-            if snapshot:
-                snapshots.append(snapshot)
-        if not snapshots:
-            return None
-        snapshots.sort(key=lambda item: (item.date, item.hour), reverse=True)
-        return snapshots[0]
-
-
 def _load_post_payload(date: str, slug: str) -> Tuple[Optional[Dict[str, Any]], Optional[Path]]:
     path = POSTS_DIR / date / f"{slug}.json"
     if not path.exists():
@@ -777,7 +700,7 @@ def _derive_hour_from_record(record: Optional[Dict[str, Any]]) -> Optional[int]:
     return None
 
 
-HOURLY_STORE = HourlySnapshotStore(HOURLY_DIR)
+HOT_TOPICS_REPO = HotTopicsRepository(HOURLY_DIR)
 
 
 @bp.get("/api/hot_topics/hourly")
@@ -792,17 +715,18 @@ def hourly_topics() -> Any:
         return jsonify({"error": str(exc)}), 400
 
     limit = _resolve_positive_limit(raw_limit, maximum=MAX_HOURLY_LIMIT)
-    snapshot = HOURLY_STORE.get_snapshot(date, hour)
+    snapshot = HOT_TOPICS_REPO.get_snapshot(date=date, hour=hour)
     if not snapshot:
         return jsonify({"error": "Hourly snapshot not available"}), 404
 
+    topics = snapshot.topics[:limit] if limit is not None else snapshot.topics
     response = {
-        "date": snapshot.date,
-        "hour": snapshot.hour,
+        "date": snapshot.ref.date,
+        "hour": snapshot.ref.hour,
         "generated_at": snapshot.generated_at.isoformat(timespec="seconds"),
         "total": len(snapshot.topics),
-        "topics": snapshot.sliced_topics(limit),
-        "source_path": snapshot.path.as_posix(),
+        "topics": topics,
+        "source_path": snapshot.ref.path.as_posix(),
     }
     if limit is not None:
         response["requested_limit"] = limit
@@ -825,14 +749,14 @@ def topic_posts() -> Any:
 
     limit = _resolve_positive_limit(raw_limit, maximum=MAX_POST_LIMIT)
 
-    snapshot: Optional[SnapshotPayload] = None
+    snapshot: Optional[HotTopicsSnapshot] = None
     if date or hour is not None:
-        snapshot = HOURLY_STORE.get_snapshot(date, hour)
+        snapshot = HOT_TOPICS_REPO.get_snapshot(date=date, hour=hour)
     elif not slug and not title:
-        snapshot = HOURLY_STORE.get_snapshot(None, None)
+        snapshot = HOT_TOPICS_REPO.get_snapshot(date=None, hour=None)
 
     if not date and snapshot:
-        date = snapshot.date
+        date = snapshot.ref.date
 
     if not date:
         return jsonify({"error": "date is required when no hourly snapshot is available"}), 400
@@ -852,7 +776,7 @@ def topic_posts() -> Any:
         if rank <= 0:
             return jsonify({"error": "rank must be >= 1"}), 400
         if snapshot is None:
-            snapshot = HOURLY_STORE.get_snapshot(date, hour)
+            snapshot = HOT_TOPICS_REPO.get_snapshot(date=date, hour=hour)
         if snapshot is None:
             return jsonify({"error": "Unable to resolve snapshot for supplied rank"}), 404
         if rank > len(snapshot.topics):
@@ -860,6 +784,8 @@ def topic_posts() -> Any:
         topic_entry = snapshot.topics[rank - 1]
         title = topic_entry.get("title") or title
         slug = slugify_title(title or "")
+        if hour is None:
+            hour = snapshot.ref.hour
 
     if not slug:
         return jsonify({"error": "slug, title, or rank must be provided"}), 400
@@ -933,14 +859,14 @@ def topic_aicard() -> Any:
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
 
-    snapshot: Optional[SnapshotPayload] = None
+    topic_snapshot: Optional[HotTopicsSnapshot] = None
     if raw_rank or not slug or not title or date is None or hour is None:
-        snapshot = HOURLY_STORE.get_snapshot(date, hour)
-        if snapshot:
+        topic_snapshot = HOT_TOPICS_REPO.get_snapshot(date=date, hour=hour)
+        if topic_snapshot:
             if date is None:
-                date = snapshot.date
+                date = topic_snapshot.ref.date
             if hour is None:
-                hour = snapshot.hour
+                hour = topic_snapshot.ref.hour
 
     if not date:
         return jsonify({"error": "date is required or could not be inferred"}), 400
@@ -952,17 +878,17 @@ def topic_aicard() -> Any:
             return jsonify({"error": "rank must be an integer"}), 400
         if rank <= 0:
             return jsonify({"error": "rank must be >= 1"}), 400
-        if snapshot is None:
-            snapshot = HOURLY_STORE.get_snapshot(date, hour)
-        if snapshot is None:
+        if topic_snapshot is None:
+            topic_snapshot = HOT_TOPICS_REPO.get_snapshot(date=date, hour=hour)
+        if topic_snapshot is None:
             return jsonify({"error": "Unable to resolve snapshot for supplied rank"}), 404
-        if rank > len(snapshot.topics):
+        if rank > len(topic_snapshot.topics):
             return jsonify({"error": "rank exceeds available topics"}), 400
-        topic_entry = snapshot.topics[rank - 1]
+        topic_entry = topic_snapshot.topics[rank - 1]
         title = topic_entry.get("title") or title
         slug = slugify_title(title or "")
         if hour is None:
-            hour = snapshot.hour
+            hour = topic_snapshot.ref.hour
 
     if title:
         title = title.strip()
@@ -972,13 +898,13 @@ def topic_aicard() -> Any:
     if slug:
         slug = slug.strip()
 
-    if snapshot and not title and slug:
-        for topic_entry in snapshot.topics:
+    if topic_snapshot and not title and slug:
+        for topic_entry in topic_snapshot.topics:
             topic_title = topic_entry.get("title") or ""
             if slugify_title(topic_title) == slug:
                 title = topic_title
                 if hour is None:
-                    hour = snapshot.hour
+                    hour = topic_snapshot.ref.hour
                 break
 
     archive: Optional[Dict[str, Dict[str, Any]]] = None
@@ -1009,35 +935,36 @@ def topic_aicard() -> Any:
     hour_key = f"{hour:02d}"
     aicard_info = record.get("aicard") or {}
     hours_map = aicard_info.get("hours", {})
-    snapshot = hours_map.get(hour_key) or aicard_info.get("latest")
+    aicard_snapshot = hours_map.get(hour_key) or aicard_info.get("latest")
 
-    if not snapshot:
-        snapshot = ensure_aicard_snapshot(title, date, hour, slug=slug)
-        if snapshot:
-            hours_map[hour_key] = snapshot
+    if not aicard_snapshot:
+        aicard_snapshot = ensure_aicard_snapshot(title, date, hour, slug=slug)
+        if aicard_snapshot:
+            hours_map[hour_key] = aicard_snapshot
             aicard_info["hours"] = hours_map
-            aicard_info["latest"] = snapshot
+            aicard_info["latest"] = aicard_snapshot
             record["aicard"] = aicard_info
-            archive[name] = record
-            save_archive(date, archive)
-    if not snapshot:
+            if archive is not None and title:
+                archive[title] = record
+                save_archive(date, archive)
+    if not aicard_snapshot:
         return jsonify({"error": "AI card not available"}), 404
 
-    html_rel = snapshot.get("html")
+    html_rel = aicard_snapshot.get("html")
     html_abs = from_data_relative(html_rel) if html_rel else None
     html_content = _read_text_file(html_abs) if html_abs else None
 
     response: Dict[str, Any] = {
         "date": date,
         "hour": hour,
-        "slug": snapshot.get("slug") or slug,
+        "slug": aicard_snapshot.get("slug") or slug,
         "title": title,
         "html_path": html_rel,
         "html": html_content,
-        "meta": snapshot.get("meta"),
-        "links": snapshot.get("links"),
-        "media": snapshot.get("media"),
-        "fetched_at": snapshot.get("fetched_at"),
+        "meta": aicard_snapshot.get("meta"),
+        "links": aicard_snapshot.get("links"),
+        "media": aicard_snapshot.get("media"),
+        "fetched_at": aicard_snapshot.get("fetched_at"),
     }
 
     if record:

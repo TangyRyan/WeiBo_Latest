@@ -10,6 +10,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeout
+from backend.storage import write_json
 
 # -------------------- 常量配置 --------------------
 POSTS_SEARCH_URL = "https://s.weibo.com/weibo?q=%23{}%23&xsort=hot&suball=1&tw=hotweibo"
@@ -79,13 +80,13 @@ def _persist_login_state(storage_state: dict) -> List[dict]:
     """把 storage_state 和 cookies 写回到本地，便于兼容旧流程"""
     try:
         # 写 storage_state
-        AUTH_STATE_PATH.write_text(json.dumps(storage_state, ensure_ascii=False, indent=2), encoding="utf-8")
+        write_json(AUTH_STATE_PATH, storage_state)
     except Exception:
         pass
 
     cookies = storage_state.get("cookies", [])
     try:
-        COOKIES_PATH.write_text(json.dumps(cookies, ensure_ascii=False, indent=2), encoding="utf-8")
+        write_json(COOKIES_PATH, cookies)
     except Exception:
         pass
     return cookies

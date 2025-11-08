@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Weibo 热榜 WebSocket 演示</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 24px;
+      background: #f5f5f5;
+      color: #222;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .panel {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    label {
+      font-weight: 600;
+    }
+    input, button {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+    input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      min-width: 120px;
+    }
+    button {
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: #1677ff;
+      color: white;
+    }
+    button.secondary {
+      background: #666;
+    }
+    button[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    #status {
+      font-weight: 600;
+    }
+    #status.online {
+      color: #1c8b00;
+    }
+    #status.offline {
+      color: #d32029;
+    }
+    #log {
+      height: 180px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 6px;
+      background: #1e1e1e;
+      color: #d1d1d1;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      text-align: left;
+      padding: 6px 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #fafafa;
+    }
+    .controls-inline input {
+      width: 100px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .meta-grid span {
+      background: #fafafa;
+      border-radius: 4px;
+      padding: 6px 10px;
+      border: 1px solid #e5e5e5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weibo 热榜 WebSocket 演示</h1>
+
+  <div class="panel">
+    <div class="form-row">
+      <label for="host">主机:</label>
+      <input id="host" value="127.0.0.1">
+      <label for="port">端口:</label>
+      <input id="port" type="number" value="8765">
+      <label for="limit">limit:</label>
+      <input id="limit" type="number" value="30">
+      <button id="connectBtn">连接</button>
+      <button id="disconnectBtn" class="secondary" disabled>断开</button>
+      <span id="status" class="offline">未连接</span>
+    </div>
+    <div class="form-row controls-inline">
+      <button id="pingBtn" class="secondary" disabled>发送 ping</button>
+      <label for="reqDate">date:</label>
+      <input id="reqDate" placeholder="YYYY-MM-DD">
+      <label for="reqHour">hour:</label>
+      <input id="reqHour" type="number" min="0" max="23">
+      <button id="requestBtn" disabled>request_snapshot</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>消息日志</h2>
+    <div id="log"></div>
+  </div>
+
+  <div class="panel">
+    <h2>最新快照</h2>
+    <div id="snapshotMeta" class="meta-grid"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>话题</th>
+          <th>热度</th>
+          <th>讨论</th>
+          <th>来源链接</th>
+        </tr>
+      </thead>
+      <tbody id="topicsBody">
+        <tr><td colspan="5" style="text-align:center;color:#888;">暂无数据</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const connectBtn = document.getElementById("connectBtn");
+    const disconnectBtn = document.getElementById("disconnectBtn");
+    const pingBtn = document.getElementById("pingBtn");
+    const requestBtn = document.getElementById("requestBtn");
+    const statusSpan = document.getElementById("status");
+    const logEl = document.getElementById("log");
+    const topicsBody = document.getElementById("topicsBody");
+    const snapshotMeta = document.getElementById("snapshotMeta");
+
+    let socket = null;
+    let reconnectTimer = null;
+
+    function log(message, data) {
+      const time = new Date().toLocaleTimeString();
+      const payload = data ? ` ${JSON.stringify(data)}` : "";
+      logEl.textContent += `[${time}] ${message}${payload}\n`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function setStatus(connected) {
+      if (connected) {
+        statusSpan.textContent = "已连接";
+        statusSpan.className = "online";
+      } else {
+        statusSpan.textContent = "未连接";
+        statusSpan.className = "offline";
+      }
+      connectBtn.disabled = connected;
+      disconnectBtn.disabled = !connected;
+      pingBtn.disabled = !connected;
+      requestBtn.disabled = !connected;
+    }
+
+    function buildWsUrl() {
+      const host = document.getElementById("host").value.trim();
+      const port = document.getElementById("port").value.trim();
+      const limit = document.getElementById("limit").value.trim();
+      const query = new URLSearchParams();
+      if (limit) {
+        query.set("limit", limit);
+      }
+      return `ws://${host}:${port}/?${query}`;
+    }
+
+    function renderSnapshot(payload) {
+      if (!payload || !Array.isArray(payload.topics)) {
+        topicsBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#888;">暂无数据</td></tr>';
+        snapshotMeta.innerHTML = "";
+        return;
+      }
+      const metaItems = [
+        ["类型", payload.type],
+        ["日期", payload.date],
+        ["小时", payload.hour],
+        ["生成时间", payload.generated_at],
+        ["总数", payload.total],
+        ["数据源", payload.source_path],
+      ].filter(([, value]) => value !== undefined && value !== null && value !== "");
+      snapshotMeta.innerHTML = metaItems
+        .map(([label, value]) => `<span><strong>${label}：</strong>${value}</span>`)
+        .join("");
+
+      if (payload.topics.length === 0) {
+        topicsBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#888;">暂无话题</td></tr>';
+        return;
+      }
+
+      topicsBody.innerHTML = payload.topics
+        .map((item) => {
+          const hot = item.hot ?? "";
+          const discuss = item.discussCount ?? "";
+          const url = item.url ? `<a href="${item.url}" target="_blank">查看</a>` : "";
+          return `
+            <tr>
+              <td>${item.rank ?? ""}</td>
+              <td>${item.title ?? ""}</td>
+              <td>${hot}</td>
+              <td>${discuss}</td>
+              <td>${url}</td>
+            </tr>
+          `;
+        })
+        .join("");
+    }
+
+    function handleMessage(event) {
+      let data = event.data;
+      try {
+        data = JSON.parse(data);
+      } catch (err) {
+        log("收到非JSON消息", { raw: data });
+        return;
+      }
+      log(`收到 ${data.type || "消息"}`, data);
+      if (data.type === "snapshot" || data.type === "update") {
+        renderSnapshot(data);
+      }
+    }
+
+    function connect() {
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        return;
+      }
+      const url = buildWsUrl();
+      log(`尝试连接 ${url}`);
+      socket = new WebSocket(url);
+
+      socket.addEventListener("open", () => {
+        setStatus(true);
+        log("连接已建立");
+      });
+
+      socket.addEventListener("message", handleMessage);
+
+      socket.addEventListener("close", (evt) => {
+        setStatus(false);
+        log("连接已关闭", { code: evt.code, reason: evt.reason });
+      });
+
+      socket.addEventListener("error", (err) => {
+        log("连接错误", err);
+      });
+    }
+
+    function disconnect() {
+      if (socket) {
+        log("主动断开连接");
+        socket.close();
+        socket = null;
+      }
+      setStatus(false);
+      if (reconnectTimer) {
+        clearTimeout(reconnectTimer);
+        reconnectTimer = null;
+      }
+    }
+
+    connectBtn.addEventListener("click", connect);
+    disconnectBtn.addEventListener("click", disconnect);
+
+    pingBtn.addEventListener("click", () => {
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send("ping");
+        log("发送 ping");
+      }
+    });
+
+    requestBtn.addEventListener("click", () => {
+      if (!socket || socket.readyState !== WebSocket.OPEN) {
+        return;
+      }
+      const date = document.getElementById("reqDate").value.trim();
+      const hourRaw = document.getElementById("reqHour").value.trim();
+      const payload = { action: "request_snapshot" };
+      if (date) payload.date = date;
+      if (hourRaw !== "") payload.hour = Number(hourRaw);
+      socket.send(JSON.stringify(payload));
+      log("发送 request_snapshot", payload);
+    });
+
+    window.addEventListener("beforeunload", () => {
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.close();
+      }
+    });
+  </script>
+</body>
+</html>

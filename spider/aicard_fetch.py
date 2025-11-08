@@ -1,6 +1,5 @@
 import argparse
 import html
-import json
 import logging
 from pathlib import Path
 from typing import Any, Dict, List, Mapping
@@ -10,6 +9,7 @@ from spider.aicard_client import AICardError, AICardResult, fetch_ai_card
 from spider.aicard_parser import MediaAsset, ParsedCard, render_aicard_markdown
 from spider.crawler_core import slugify_title
 from backend.config import AICARD_DIR
+from backend.storage import write_json
 
 DEFAULT_OUTPUT_DIR = AICARD_DIR
 
@@ -133,7 +133,7 @@ def _persist_outputs(
         "media": [_serialize_media(item) for item in parsed.media],
         "html_path": str(html_path),
     }
-    json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json(json_path, payload)
     return {"html": html_path, "json": json_path}
 
 

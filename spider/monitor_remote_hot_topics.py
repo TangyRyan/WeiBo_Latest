@@ -37,6 +37,7 @@ from backend.storage import (
     load_daily_archive,
     save_daily_archive,
     from_data_relative,
+    write_json,
 )
 
 
@@ -86,7 +87,7 @@ def update_hourly_archive(date_str: str, hour: int, topics: List[dict]) -> None:
     target_dir = HOURLY_ARCHIVE_DIR / date_str
     target_dir.mkdir(parents=True, exist_ok=True)
     path = target_dir / f"{hour:02d}.json"
-    path.write_text(json.dumps(topics, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json(path, topics)
     logging.info("Saved hourly snapshot %s", path)
 
 

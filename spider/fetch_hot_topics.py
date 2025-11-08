@@ -1,7 +1,7 @@
 import json
 import logging
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence
 
 import requests
 
@@ -14,7 +14,7 @@ from backend.storage import load_daily_archive, save_daily_archive
 CHINA_TZ = timezone(timedelta(hours=8))
 
 # ------- 配置 -------
-_DEFAULT_HOT_TOPIC_DATES = ["2025-10-25"]
+_DEFAULT_HOT_TOPIC_DATES = ["2025-10-26"]
 _DEFAULT_HOT_TOPIC_HOURS = [15]
 
 
@@ -45,6 +45,51 @@ HOT_TOPIC_SOURCE = get_env_str(
 )
 LOG_LEVEL = getattr(logging, (get_env_str("WEIBO_FETCH_LOG_LEVEL", "INFO") or "INFO").upper(), logging.INFO)
 
+BASE_TOPIC_FIELDS = [
+    "title",
+    "category",
+    "description",
+    "url",
+    "hot",
+    "ads",
+    "readCount",
+    "discussCount",
+    "origin",
+    "appeared_hours",
+    "first_seen",
+    "last_seen",
+    "last_post_refresh",
+    "post_output",
+    "known_ids",
+    "needs_refresh",
+    "slug",
+    "aicard",
+    "latest_posts",
+    "last_post_total",
+]
+
+TOPIC_DEFAULTS: Dict[str, Any] = {
+    "description": "",
+    "appeared_hours": [],
+    "known_ids": [],
+    "needs_refresh": True,
+    "aicard": {},
+    "latest_posts": {},
+    "last_post_total": 0,
+    "ads": False,
+}
+
+def order_topic_fields(record: Dict[str, Any]) -> Dict[str, Any]:
+    """Ensure topic dicts follow BASE_TOPIC_FIELDS ordering for stable JSON output."""
+    ordered: Dict[str, Any] = {}
+    for key in BASE_TOPIC_FIELDS:
+        if key in record:
+            ordered[key] = record[key]
+    for key, value in record.items():
+        if key not in ordered:
+            ordered[key] = value
+    return ordered
+
 
 def ensure_dirs() -> None:
     ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
@@ -66,6 +111,23 @@ def iso_time(date_str: str, hour: int) -> str:
     dt = datetime.fromisoformat(f"{date_str}T{hour:02d}:00:00")
     return dt.replace(tzinfo=CHINA_TZ).isoformat(timespec="seconds")
 
+
+def normalize_topic_record(record: Dict[str, Any]) -> Dict[str, Any]:
+    """补齐 daily archive 需要的基础字段，避免后续文件结构不一致。"""
+    if not record.get("description"):
+        record["description"] = record.get("title") or ""
+    for key, default in TOPIC_DEFAULTS.items():
+        value = record.get(key)
+        if value is None:
+            record[key] = default() if callable(default) else default
+        elif key in {"appeared_hours", "known_ids"} and not isinstance(value, list):
+            record[key] = list(value) if value else []
+        elif key in {"aicard", "latest_posts"} and not isinstance(value, dict):
+            record[key] = {}
+    record.setdefault("first_seen", record.get("last_seen"))
+    record.setdefault("last_seen", record.get("first_seen"))
+    return order_topic_fields(record)
+
 def upsert_topic(record_map: Dict[str, Dict], topic: Dict, date_str: str, hour: int) -> Optional[Dict]:
     title = (topic.get("title") or "").strip()
     if not title:
@@ -83,8 +145,8 @@ def upsert_topic(record_map: Dict[str, Dict], topic: Dict, date_str: str, hour: 
         record["known_ids"] = []
         record["needs_refresh"] = True
         record["slug"] = slugify_title(title)
-        record_map[title] = record
-        return record
+        record_map[title] = normalize_topic_record(record)
+        return record_map[title]
 
     # 更新已有事件
     record.update(topic)
@@ -98,7 +160,7 @@ def upsert_topic(record_map: Dict[str, Dict], topic: Dict, date_str: str, hour: 
     record["slug"] = slugify_title(title)
     if record.get("last_post_refresh") != date_str:
         record["needs_refresh"] = True
-    return record
+    return normalize_topic_record(record)
 
 
 def process_day(date_str: str, hours: List[int]) -> None:

@@ -1,0 +1,6900 @@
+{
+  "新闻女王道歉": {
+    "event_id": "新闻女王道歉-2025-10-29",
+    "name": "新闻女王道歉",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 1182394,
+      "2025-10-29T16:00": 245840,
+      "2025-10-29T17:00": 256491,
+      "2025-10-29T18:00": 182392,
+      "2025-10-29T19:00": 125097
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 1,
+      "2025-10-29T16:00": 13,
+      "2025-10-29T17:00": 21,
+      "2025-10-29T18:00": 25,
+      "2025-10-29T19:00": 32
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 34.29344488793368,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "高市早苗被特朗普介绍后高兴到转圈": {
+    "event_id": "高市早苗被特朗普介绍后高兴到转圈-2025-10-29",
+    "name": "高市早苗被特朗普介绍后高兴到转圈",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 542548
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 2
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "网警提醒护老安全莫松懈平安度重阳": {
+    "event_id": "网警提醒护老安全莫松懈平安度重阳-2025-10-29",
+    "name": "网警提醒护老安全莫松懈平安度重阳",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 390600,
+      "2025-10-29T16:00": 286038
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 3,
+      "2025-10-29T16:00": 3
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 36.615207373271886,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "疑似携带病毒的猴子在美国逃脱": {
+    "event_id": "疑似携带病毒的猴子在美国逃脱-2025-10-29",
+    "name": "疑似携带病毒的猴子在美国逃脱",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 363030,
+      "2025-10-29T16:00": 269140,
+      "2025-10-29T17:00": 268045,
+      "2025-10-29T18:00": 237189,
+      "2025-10-29T19:00": 901041,
+      "2025-10-29T21:00": 213572,
+      "2025-10-29T22:00": 152419
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 4,
+      "2025-10-29T16:00": 4,
+      "2025-10-29T17:00": 4,
+      "2025-10-29T18:00": 4,
+      "2025-10-29T19:00": 4,
+      "2025-10-29T21:00": 10,
+      "2025-10-29T22:00": 9
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 35.683282452755975,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "警方回应留学生深夜擅闯女寝": {
+    "event_id": "警方回应留学生深夜擅闯女寝-2025-10-29",
+    "name": "警方回应留学生深夜擅闯女寝",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 296019,
+      "2025-10-29T16:00": 243994
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 5,
+      "2025-10-29T16:00": 22
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 41.21255730206507,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "未来五年大量的钱将流向这里": {
+    "event_id": "未来五年大量的钱将流向这里-2025-10-29",
+    "name": "未来五年大量的钱将流向这里",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 248782,
+      "2025-10-29T16:00": 245961,
+      "2025-10-29T17:00": 265644
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 6,
+      "2025-10-29T16:00": 7,
+      "2025-10-29T17:00": 8
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 54.00124409967434,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "鹿晗我们的明天上新版本了": {
+    "event_id": "鹿晗我们的明天上新版本了-2025-10-29",
+    "name": "鹿晗我们的明天上新版本了",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 221399,
+      "2025-10-29T16:00": 245979
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 7,
+      "2025-10-29T16:00": 6
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 55.551063916277855,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "很多台湾年轻人不知抗日史": {
+    "event_id": "很多台湾年轻人不知抗日史-2025-10-29",
+    "name": "很多台湾年轻人不知抗日史",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 221174,
+      "2025-10-29T16:00": 245925,
+      "2025-10-29T17:00": 264150,
+      "2025-10-29T18:00": 198442,
+      "2025-10-29T19:00": 198134
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 8,
+      "2025-10-29T16:00": 9,
+      "2025-10-29T17:00": 10,
+      "2025-10-29T18:00": 10,
+      "2025-10-29T19:00": 20
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 49.92239546063837,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "宝宝巴士致歉": {
+    "event_id": "宝宝巴士致歉-2025-10-29",
+    "name": "宝宝巴士致歉",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 218000,
+      "2025-10-29T16:00": 245899
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 9,
+      "2025-10-29T16:00": 10
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 56.398853211009175,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "37张熟脸闯进一部年代剧": {
+    "event_id": "37张熟脸闯进一部年代剧-2025-10-29",
+    "name": "37张熟脸闯进一部年代剧",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 217801
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 10
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "孕妇退房退款酒店员工发信息说恶心": {
+    "event_id": "孕妇退房退款酒店员工发信息说恶心-2025-10-29",
+    "name": "孕妇退房退款酒店员工发信息说恶心",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 215956,
+      "2025-10-29T16:00": 245863,
+      "2025-10-29T17:00": 261158,
+      "2025-10-29T18:00": 198223,
+      "2025-10-29T19:00": 434140,
+      "2025-10-29T21:00": 122455
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 11,
+      "2025-10-29T16:00": 12,
+      "2025-10-29T17:00": 14,
+      "2025-10-29T18:00": 14,
+      "2025-10-29T19:00": 13,
+      "2025-10-29T21:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 14.103169484498089,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "日本熊灾": {
+    "event_id": "日本熊灾-2025-10-29",
+    "name": "日本熊灾",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 213435,
+      "2025-10-29T16:00": 245886,
+      "2025-10-29T17:00": 263660,
+      "2025-10-29T18:00": 198243,
+      "2025-10-29T19:00": 256850
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 12,
+      "2025-10-29T16:00": 11,
+      "2025-10-29T17:00": 11,
+      "2025-10-29T18:00": 13,
+      "2025-10-29T19:00": 17
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 64.78160641233234,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "韩网狂夸韩女的上海汉服妆造": {
+    "event_id": "韩网狂夸韩女的上海汉服妆造-2025-10-29",
+    "name": "韩网狂夸韩女的上海汉服妆造",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 212468,
+      "2025-10-29T16:00": 199181,
+      "2025-10-29T17:00": 152909,
+      "2025-10-29T18:00": 108628
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 13,
+      "2025-10-29T16:00": 25,
+      "2025-10-29T17:00": 38,
+      "2025-10-29T18:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 35.52047296104219,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "张馨予 真不把你们当外人": {
+    "event_id": "张馨予 真不把你们当外人-2025-10-29",
+    "name": "张馨予 真不把你们当外人",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 209482,
+      "2025-10-29T16:00": 245740,
+      "2025-10-29T17:00": 146902
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 14,
+      "2025-10-29T16:00": 17,
+      "2025-10-29T17:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 29.889720843167574,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "刘浩存深蓝L06品牌大使": {
+    "event_id": "刘浩存深蓝L06品牌大使-2025-10-29",
+    "name": "刘浩存深蓝L06品牌大使",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 208828
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 15
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "三峡大学官微关闭评论": {
+    "event_id": "三峡大学官微关闭评论-2025-10-29",
+    "name": "三峡大学官微关闭评论",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 206725
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 16
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "短剧圈也有真夫妻了": {
+    "event_id": "短剧圈也有真夫妻了-2025-10-29",
+    "name": "短剧圈也有真夫妻了",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 203959,
+      "2025-10-29T16:00": 137944
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 17,
+      "2025-10-29T16:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 33.81660039517746,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李沁说张晚意上那种班": {
+    "event_id": "李沁说张晚意上那种班-2025-10-29",
+    "name": "李沁说张晚意上那种班",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 202949,
+      "2025-10-29T16:00": 240422
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 18,
+      "2025-10-29T16:00": 23
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 59.2321223558628,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "建议千万不要水洗鸡蛋": {
+    "event_id": "建议千万不要水洗鸡蛋-2025-10-29",
+    "name": "建议千万不要水洗鸡蛋",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 200597
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 19
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "宝宝病逝34岁妈妈满头白发亲吻墓碑": {
+    "event_id": "宝宝病逝34岁妈妈满头白发亲吻墓碑-2025-10-29",
+    "name": "宝宝病逝34岁妈妈满头白发亲吻墓碑",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 199075,
+      "2025-10-29T16:00": 139783
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 20,
+      "2025-10-29T16:00": 33
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 35.10812507848801,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "今天是百年一遇的晚重阳": {
+    "event_id": "今天是百年一遇的晚重阳-2025-10-29",
+    "name": "今天是百年一遇的晚重阳",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 197977
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 21
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "泽连斯基声称无力施压中国望美出手": {
+    "event_id": "泽连斯基声称无力施压中国望美出手-2025-10-29",
+    "name": "泽连斯基声称无力施压中国望美出手",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 196520
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 22
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "林俊杰回复杨幂工作室": {
+    "event_id": "林俊杰回复杨幂工作室-2025-10-29",
+    "name": "林俊杰回复杨幂工作室",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 191285,
+      "2025-10-29T16:00": 245783,
+      "2025-10-29T17:00": 198992
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 23,
+      "2025-10-29T16:00": 15,
+      "2025-10-29T17:00": 27
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 40.481237514392774,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "23考研26考公": {
+    "event_id": "23考研26考公-2025-10-29",
+    "name": "23考研26考公",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 185894,
+      "2025-10-29T16:00": 245761,
+      "2025-10-29T17:00": 155496
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 24,
+      "2025-10-29T16:00": 16,
+      "2025-10-29T17:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 31.635613461859286,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "当代00后一天的精神状态": {
+    "event_id": "当代00后一天的精神状态-2025-10-29",
+    "name": "当代00后一天的精神状态",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 169157
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 25
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李维嘉杜海涛临时救场offer": {
+    "event_id": "李维嘉杜海涛临时救场offer-2025-10-29",
+    "name": "李维嘉杜海涛临时救场offer",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 164055
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 26
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "澳洲女子徒步被团队忘在海岛上身亡": {
+    "event_id": "澳洲女子徒步被团队忘在海岛上身亡-2025-10-29",
+    "name": "澳洲女子徒步被团队忘在海岛上身亡",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 158261,
+      "2025-10-29T16:00": 107618
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 27,
+      "2025-10-29T16:00": 46
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 34.00016428557888,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "30岁长期熬夜得了60岁的病": {
+    "event_id": "30岁长期熬夜得了60岁的病-2025-10-29",
+    "name": "30岁长期熬夜得了60岁的病",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 149953,
+      "2025-10-29T16:00": 162546
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 28,
+      "2025-10-29T16:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 54.198982347802314,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "娱乐圈不老明星都在用AQ": {
+    "event_id": "娱乐圈不老明星都在用AQ-2025-10-29",
+    "name": "娱乐圈不老明星都在用AQ",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 148166
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "短国李栋旭出现了": {
+    "event_id": "短国李栋旭出现了-2025-10-29",
+    "name": "短国李栋旭出现了",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 147719
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 30
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "毛不易下次有这种婚礼记得先开票": {
+    "event_id": "毛不易下次有这种婚礼记得先开票-2025-10-29",
+    "name": "毛不易下次有这种婚礼记得先开票",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 119414
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 31
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "早餐只吃两颗鸡蛋的含金量": {
+    "event_id": "早餐只吃两颗鸡蛋的含金量-2025-10-29",
+    "name": "早餐只吃两颗鸡蛋的含金量",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 116166,
+      "2025-10-29T16:00": 245698,
+      "2025-10-29T17:00": 262518,
+      "2025-10-29T18:00": 198122,
+      "2025-10-29T19:00": 197642
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 32,
+      "2025-10-29T16:00": 19,
+      "2025-10-29T17:00": 12,
+      "2025-10-29T18:00": 15,
+      "2025-10-29T19:00": 23
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 49.87886251905392,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "每天走10000步身体的变化": {
+    "event_id": "每天走10000步身体的变化-2025-10-29",
+    "name": "每天走10000步身体的变化",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 116132
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 33
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "秦岚讨厌冷空气": {
+    "event_id": "秦岚讨厌冷空气-2025-10-29",
+    "name": "秦岚讨厌冷空气",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 112992
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "ON假期与朋友聚会": {
+    "event_id": "ON假期与朋友聚会-2025-10-29",
+    "name": "ON假期与朋友聚会",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 112052
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 35
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "第一次见这样给奶奶过生日的": {
+    "event_id": "第一次见这样给奶奶过生日的-2025-10-29",
+    "name": "第一次见这样给奶奶过生日的",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 110883
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "现在的裤脚等于以前的裤腰": {
+    "event_id": "现在的裤脚等于以前的裤腰-2025-10-29",
+    "name": "现在的裤脚等于以前的裤腰",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 109528
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 37
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "小酒窝走在学校会被打招呼": {
+    "event_id": "小酒窝走在学校会被打招呼-2025-10-29",
+    "name": "小酒窝走在学校会被打招呼",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 109525
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "男子踩踏奶猫被阻后带三只活猫逃走": {
+    "event_id": "男子踩踏奶猫被阻后带三只活猫逃走-2025-10-29",
+    "name": "男子踩踏奶猫被阻后带三只活猫逃走",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 108862
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "齐聚郑州共赴诗词之约": {
+    "event_id": "齐聚郑州共赴诗词之约-2025-10-29",
+    "name": "齐聚郑州共赴诗词之约",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 108674
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "年轻人把黄金买成最贵周边": {
+    "event_id": "年轻人把黄金买成最贵周边-2025-10-29",
+    "name": "年轻人把黄金买成最贵周边",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 108130
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "邻里误会爆发3分钟冲突致3死3重伤": {
+    "event_id": "邻里误会爆发3分钟冲突致3死3重伤-2025-10-29",
+    "name": "邻里误会爆发3分钟冲突致3死3重伤",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 107709
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "脑控轮椅机器人": {
+    "event_id": "脑控轮椅机器人-2025-10-29",
+    "name": "脑控轮椅机器人",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 107344
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "何赛飞儿子跟自己姓": {
+    "event_id": "何赛飞儿子跟自己姓-2025-10-29",
+    "name": "何赛飞儿子跟自己姓",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 107194
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "KT对战CFO": {
+    "event_id": "KT对战CFO-2025-10-29",
+    "name": "KT对战CFO",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 105641
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "再见爱人": {
+    "event_id": "再见爱人-2025-10-29",
+    "name": "再见爱人",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 105119
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 46
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "潘玮柏吃面一筷子社死一辈子": {
+    "event_id": "潘玮柏吃面一筷子社死一辈子-2025-10-29",
+    "name": "潘玮柏吃面一筷子社死一辈子",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 104859
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "万剑穿心名场面": {
+    "event_id": "万剑穿心名场面-2025-10-29",
+    "name": "万剑穿心名场面",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 103495
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "王者新英雄六耳将到来": {
+    "event_id": "王者新英雄六耳将到来-2025-10-29",
+    "name": "王者新英雄六耳将到来",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 101258
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 49
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "A股再上4000点半日放量719亿": {
+    "event_id": "A股再上4000点半日放量719亿-2025-10-29",
+    "name": "A股再上4000点半日放量719亿",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 99878
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "秋冬温补美味就馋这一口": {
+    "event_id": "秋冬温补美味就馋这一口-2025-10-29",
+    "name": "秋冬温补美味就馋这一口",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 0,
+      "2025-10-29T16:00": 0,
+      "2025-10-29T18:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 51,
+      "2025-10-29T16:00": 51,
+      "2025-10-29T18:00": 51
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "阿维塔12四激光版上市": {
+    "event_id": "阿维塔12四激光版上市-2025-10-29",
+    "name": "阿维塔12四激光版上市",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T15:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 52
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "习近平关于十五五规划的重要论断": {
+    "event_id": "习近平关于十五五规划的重要论断-2025-10-29",
+    "name": "习近平关于十五五规划的重要论断",
+    "first_seen_at": "2025-10-29T15:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T15:00": 0,
+      "2025-10-29T16:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T15:00": 53,
+      "2025-10-29T16:00": 53
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "中美元首釜山会晤": {
+    "event_id": "中美元首釜山会晤-2025-10-29",
+    "name": "中美元首釜山会晤",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 1077277,
+      "2025-10-29T17:00": 269071,
+      "2025-10-29T18:00": 198597,
+      "2025-10-29T19:00": 1047502,
+      "2025-10-29T21:00": 134359,
+      "2025-10-29T22:00": 92670
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 1,
+      "2025-10-29T17:00": 2,
+      "2025-10-29T18:00": 8,
+      "2025-10-29T19:00": 2,
+      "2025-10-29T21:00": 30,
+      "2025-10-29T22:00": 49
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 34.4859667011514,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "三峡大学涉事留学生逃跑被抓": {
+    "event_id": "三峡大学涉事留学生逃跑被抓-2025-10-29",
+    "name": "三峡大学涉事留学生逃跑被抓",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 352367,
+      "2025-10-29T17:00": 260786
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 2,
+      "2025-10-29T17:00": 15
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 37.004884112303365,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "王暖暖前夫俞晓东疑似电诈头目": {
+    "event_id": "王暖暖前夫俞晓东疑似电诈头目-2025-10-29",
+    "name": "王暖暖前夫俞晓东疑似电诈头目",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 266169,
+      "2025-10-29T17:00": 260361
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 5,
+      "2025-10-29T17:00": 16
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 48.90896385379214,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "外交部回应中美元首即将会晤": {
+    "event_id": "外交部回应中美元首即将会晤-2025-10-29",
+    "name": "外交部回应中美元首即将会晤",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 245942,
+      "2025-10-29T17:00": 266904,
+      "2025-10-29T18:00": 152240
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 8,
+      "2025-10-29T17:00": 6,
+      "2025-10-29T18:00": 30
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 28.519617540389053,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "三峡大学通报留学生夜闯女寝": {
+    "event_id": "三峡大学通报留学生夜闯女寝-2025-10-29",
+    "name": "三峡大学通报留学生夜闯女寝",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 245811,
+      "2025-10-29T17:00": 259465,
+      "2025-10-29T18:00": 198332,
+      "2025-10-29T19:00": 402128,
+      "2025-10-29T21:00": 134752
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 14,
+      "2025-10-29T17:00": 17,
+      "2025-10-29T18:00": 12,
+      "2025-10-29T19:00": 16,
+      "2025-10-29T21:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 16.75486412286635,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "钟楚曦C位闹剧该收场了": {
+    "event_id": "钟楚曦C位闹剧该收场了-2025-10-29",
+    "name": "钟楚曦C位闹剧该收场了",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 245718,
+      "2025-10-29T17:00": 262342,
+      "2025-10-29T18:00": 197925,
+      "2025-10-29T19:00": 120838
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 18,
+      "2025-10-29T17:00": 13,
+      "2025-10-29T18:00": 18,
+      "2025-10-29T19:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 30.52620942276115,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "内娱男星穿红衣": {
+    "event_id": "内娱男星穿红衣-2025-10-29",
+    "name": "内娱男星穿红衣",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 245678
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 20
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "A股光伏产业链爆发": {
+    "event_id": "A股光伏产业链爆发-2025-10-29",
+    "name": "A股光伏产业链爆发",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 245666,
+      "2025-10-29T17:00": 134568
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 21,
+      "2025-10-29T17:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 27.388405395944087,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "三峡大学女生反抗被打伤脸部": {
+    "event_id": "三峡大学女生反抗被打伤脸部-2025-10-29",
+    "name": "三峡大学女生反抗被打伤脸部",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 217982,
+      "2025-10-29T17:00": 166410,
+      "2025-10-29T18:00": 125245
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 24,
+      "2025-10-29T17:00": 32,
+      "2025-10-29T18:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 37.631452436752596,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "男人的年龄23242560": {
+    "event_id": "男人的年龄23242560-2025-10-29",
+    "name": "男人的年龄23242560",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 195708,
+      "2025-10-29T17:00": 152396
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 26,
+      "2025-10-29T17:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 38.9345351237558,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "欧阳娜娜自己拍了旅综": {
+    "event_id": "欧阳娜娜自己拍了旅综-2025-10-29",
+    "name": "欧阳娜娜自己拍了旅综",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 166605,
+      "2025-10-29T17:00": 109359
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 27,
+      "2025-10-29T17:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 32.81984334203655,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "易烊千玺同学好帅": {
+    "event_id": "易烊千玺同学好帅-2025-10-29",
+    "name": "易烊千玺同学好帅",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 164291,
+      "2025-10-29T17:00": 258941,
+      "2025-10-29T18:00": 197842,
+      "2025-10-29T19:00": 144151
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 28,
+      "2025-10-29T17:00": 18,
+      "2025-10-29T18:00": 19,
+      "2025-10-29T19:00": 25
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 36.43083875011373,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "一诺见到了电视上的何老师": {
+    "event_id": "一诺见到了电视上的何老师-2025-10-29",
+    "name": "一诺见到了电视上的何老师",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 158547
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 30
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "杨紫是不是醉氧了": {
+    "event_id": "杨紫是不是醉氧了-2025-10-29",
+    "name": "杨紫是不是醉氧了",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 154587,
+      "2025-10-29T17:00": 124008,
+      "2025-10-29T18:00": 106176
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 31,
+      "2025-10-29T17:00": 46,
+      "2025-10-29T18:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 42.81014128120766,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "花108万捡漏的300平米房子": {
+    "event_id": "花108万捡漏的300平米房子-2025-10-29",
+    "name": "花108万捡漏的300平米房子",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 154560,
+      "2025-10-29T17:00": 126439
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 32,
+      "2025-10-29T17:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 40.90288561076605,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "见弟弟被捅哥哥持杀猪刀致2人死亡": {
+    "event_id": "见弟弟被捅哥哥持杀猪刀致2人死亡-2025-10-29",
+    "name": "见弟弟被捅哥哥持杀猪刀致2人死亡",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 133921,
+      "2025-10-29T17:00": 219135,
+      "2025-10-29T18:00": 165809,
+      "2025-10-29T19:00": 93005
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 35,
+      "2025-10-29T17:00": 24,
+      "2025-10-29T18:00": 27,
+      "2025-10-29T19:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 28.045823809322776,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "华为见非凡对话惠英红": {
+    "event_id": "华为见非凡对话惠英红-2025-10-29",
+    "name": "华为见非凡对话惠英红",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 129751,
+      "2025-10-29T17:00": 204051
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 36,
+      "2025-10-29T17:00": 26
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 78.6317639170411,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "今麦郎方便面 虫卵": {
+    "event_id": "今麦郎方便面 虫卵-2025-10-29",
+    "name": "今麦郎方便面 虫卵",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 126817
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 37
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "广州市动物诊疗协会发布倡议": {
+    "event_id": "广州市动物诊疗协会发布倡议-2025-10-29",
+    "name": "广州市动物诊疗协会发布倡议",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 117891
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "杨幂向林俊杰点歌茉莉雨": {
+    "event_id": "杨幂向林俊杰点歌茉莉雨-2025-10-29",
+    "name": "杨幂向林俊杰点歌茉莉雨",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 112945
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "原来大家都听不清啊": {
+    "event_id": "原来大家都听不清啊-2025-10-29",
+    "name": "原来大家都听不清啊",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 112366
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "比跷二郎腿伤害更大的坐姿": {
+    "event_id": "比跷二郎腿伤害更大的坐姿-2025-10-29",
+    "name": "比跷二郎腿伤害更大的坐姿",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 111026
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "举高高 排久久": {
+    "event_id": "举高高 排久久-2025-10-29",
+    "name": "举高高 排久久",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 111026
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "姿态曝LPL转会拍卖选手": {
+    "event_id": "姿态曝LPL转会拍卖选手-2025-10-29",
+    "name": "姿态曝LPL转会拍卖选手",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 111024
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "实胖与虚胖的区别": {
+    "event_id": "实胖与虚胖的区别-2025-10-29",
+    "name": "实胖与虚胖的区别",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 111021
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李宇春下面大蒜的作用是": {
+    "event_id": "李宇春下面大蒜的作用是-2025-10-29",
+    "name": "李宇春下面大蒜的作用是",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 109885
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "8岁男童意外去世后坟墓遭破坏": {
+    "event_id": "8岁男童意外去世后坟墓遭破坏-2025-10-29",
+    "name": "8岁男童意外去世后坟墓遭破坏",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 106446
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "字母哥恐怖如斯": {
+    "event_id": "字母哥恐怖如斯-2025-10-29",
+    "name": "字母哥恐怖如斯",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 104601
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "黄仁勋发出警告": {
+    "event_id": "黄仁勋发出警告-2025-10-29",
+    "name": "黄仁勋发出警告",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 101015,
+      "2025-10-29T17:00": 110371
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 49,
+      "2025-10-29T17:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 54.63099539672326,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "苏有朋三年上芒果3档王牌音综": {
+    "event_id": "苏有朋三年上芒果3档王牌音综-2025-10-29",
+    "name": "苏有朋三年上芒果3档王牌音综",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 100982
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "于和伟多面演绎隐私悬疑大片": {
+    "event_id": "于和伟多面演绎隐私悬疑大片-2025-10-29",
+    "name": "于和伟多面演绎隐私悬疑大片",
+    "first_seen_at": "2025-10-29T16:00:00",
+    "last_seen_at": "2025-10-29T16:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T16:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T16:00": 52
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "茉莉雨": {
+    "event_id": "茉莉雨-2025-10-29",
+    "name": "茉莉雨",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 1105847,
+      "2025-10-29T18:00": 198380,
+      "2025-10-29T19:00": 197825
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 1,
+      "2025-10-29T18:00": 11,
+      "2025-10-29T19:00": 22
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 49.860116947272914,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "十五五规划建议这些与年轻人有关": {
+    "event_id": "十五五规划建议这些与年轻人有关-2025-10-29",
+    "name": "十五五规划建议这些与年轻人有关",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 268786,
+      "2025-10-29T18:00": 237539,
+      "2025-10-29T19:00": 982389
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 3,
+      "2025-10-29T18:00": 3,
+      "2025-10-29T19:00": 3
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "声生不息华流季歌手阵容": {
+    "event_id": "声生不息华流季歌手阵容-2025-10-29",
+    "name": "声生不息华流季歌手阵容",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 267432,
+      "2025-10-29T18:00": 1051964,
+      "2025-10-29T19:00": 620426
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 5,
+      "2025-10-29T18:00": 1,
+      "2025-10-29T19:00": 9
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 29.48893688377169,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "云合": {
+    "event_id": "云合-2025-10-29",
+    "name": "云合",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 265888,
+      "2025-10-29T18:00": 156739
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 7,
+      "2025-10-29T18:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 29.47462841497172,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "韩国会议员开会时专心画大猩猩": {
+    "event_id": "韩国会议员开会时专心画大猩猩-2025-10-29",
+    "name": "韩国会议员开会时专心画大猩猩",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 264702,
+      "2025-10-29T18:00": 221093
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 9,
+      "2025-10-29T18:00": 6
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 41.76262362959101,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "金价下跌备婚人买三金纠结症犯了": {
+    "event_id": "金价下跌备婚人买三金纠结症犯了-2025-10-29",
+    "name": "金价下跌备婚人买三金纠结症犯了",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 258177,
+      "2025-10-29T18:00": 198047,
+      "2025-10-29T19:00": 197940
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 19,
+      "2025-10-29T18:00": 16,
+      "2025-10-29T19:00": 21
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 49.97298621034401,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "一家在拼多多开了十年的羊肉店": {
+    "event_id": "一家在拼多多开了十年的羊肉店-2025-10-29",
+    "name": "一家在拼多多开了十年的羊肉店",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 257455,
+      "2025-10-29T19:00": 403593
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 20,
+      "2025-10-29T19:00": 15
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 78.38127051329359,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "皮肤病是纯搞人心态来的吧": {
+    "event_id": "皮肤病是纯搞人心态来的吧-2025-10-29",
+    "name": "皮肤病是纯搞人心态来的吧",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 256473
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 22
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "前程无忧推送简历被看0次弹窗": {
+    "event_id": "前程无忧推送简历被看0次弹窗-2025-10-29",
+    "name": "前程无忧推送简历被看0次弹窗",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 222682
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 23
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "钟楚曦VOGUE战袍被挂出标价88万": {
+    "event_id": "钟楚曦VOGUE战袍被挂出标价88万-2025-10-29",
+    "name": "钟楚曦VOGUE战袍被挂出标价88万",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 213176,
+      "2025-10-29T18:00": 125974,
+      "2025-10-29T19:00": 87661
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 25,
+      "2025-10-29T18:00": 34,
+      "2025-10-29T19:00": 46
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 34.793290679029006,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "原来健康才是顶配人生": {
+    "event_id": "原来健康才是顶配人生-2025-10-29",
+    "name": "原来健康才是顶配人生",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 176309
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 28
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "文化中国行重阳遇非遗": {
+    "event_id": "文化中国行重阳遇非遗-2025-10-29",
+    "name": "文化中国行重阳遇非遗",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 169475
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "胡歌曾前往墨脱缅怀母亲": {
+    "event_id": "胡歌曾前往墨脱缅怀母亲-2025-10-29",
+    "name": "胡歌曾前往墨脱缅怀母亲",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 168866,
+      "2025-10-29T18:00": 197986,
+      "2025-10-29T19:00": 203916
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 30,
+      "2025-10-29T18:00": 17,
+      "2025-10-29T19:00": 19
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 51.497580637014735,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "韩国多人用女友照片做裸体手办": {
+    "event_id": "韩国多人用女友照片做裸体手办-2025-10-29",
+    "name": "韩国多人用女友照片做裸体手办",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 167289,
+      "2025-10-29T18:00": 197757,
+      "2025-10-29T19:00": 167936,
+      "2025-10-29T21:00": 99964,
+      "2025-10-29T22:00": 132314,
+      "2025-10-29T23:00": 109656
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 31,
+      "2025-10-29T18:00": 21,
+      "2025-10-29T19:00": 24,
+      "2025-10-29T21:00": 49,
+      "2025-10-29T22:00": 27,
+      "2025-10-29T23:00": 37
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 41.437791919222455,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "新音": {
+    "event_id": "新音-2025-10-29",
+    "name": "新音",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 164176,
+      "2025-10-29T18:00": 114470
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 33,
+      "2025-10-29T18:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 34.86197739011792,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "KT的状态": {
+    "event_id": "KT的状态-2025-10-29",
+    "name": "KT的状态",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 160974
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "敖子逸原生眼没戴美瞳": {
+    "event_id": "敖子逸原生眼没戴美瞳-2025-10-29",
+    "name": "敖子逸原生眼没戴美瞳",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 160972
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 35
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "张兴朝以为张艺兴跳五子棋是AI": {
+    "event_id": "张兴朝以为张艺兴跳五子棋是AI-2025-10-29",
+    "name": "张兴朝以为张艺兴跳五子棋是AI",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 154664
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 37
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "水龙吟是罗云熙的翻身仗吗": {
+    "event_id": "水龙吟是罗云熙的翻身仗吗-2025-10-29",
+    "name": "水龙吟是罗云熙的翻身仗吗",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 152434
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "刘宇宁眼纱接花瓣": {
+    "event_id": "刘宇宁眼纱接花瓣-2025-10-29",
+    "name": "刘宇宁眼纱接花瓣",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 152413
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "惠英红 至今唯一的打女影后": {
+    "event_id": "惠英红 至今唯一的打女影后-2025-10-29",
+    "name": "惠英红 至今唯一的打女影后",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 128737
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "历史上黄金牛市是如何终结的": {
+    "event_id": "历史上黄金牛市是如何终结的-2025-10-29",
+    "name": "历史上黄金牛市是如何终结的",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 113772
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "人均30的现制酸奶卖不动了": {
+    "event_id": "人均30的现制酸奶卖不动了-2025-10-29",
+    "name": "人均30的现制酸奶卖不动了",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T17:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 109528
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 49
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "有态度的新品在双11上新盛典": {
+    "event_id": "有态度的新品在双11上新盛典-2025-10-29",
+    "name": "有态度的新品在双11上新盛典",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 0,
+      "2025-10-29T19:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 51,
+      "2025-10-29T19:00": 51
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "千家品牌喊话又好又便宜的11.11只在京东": {
+    "event_id": "千家品牌喊话又好又便宜的11.11只在京东-2025-10-29",
+    "name": "千家品牌喊话又好又便宜的11.11只在京东",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 0,
+      "2025-10-29T21:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 52,
+      "2025-10-29T21:00": 52
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "6个关键词展望习主席韩国之行": {
+    "event_id": "6个关键词展望习主席韩国之行-2025-10-29",
+    "name": "6个关键词展望习主席韩国之行",
+    "first_seen_at": "2025-10-29T17:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T17:00": 0,
+      "2025-10-29T18:00": 0,
+      "2025-10-29T19:00": 0,
+      "2025-10-29T21:00": 0,
+      "2025-10-29T22:00": 0,
+      "2025-10-29T23:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T17:00": 53,
+      "2025-10-29T18:00": 53,
+      "2025-10-29T19:00": 53,
+      "2025-10-29T21:00": 53,
+      "2025-10-29T22:00": 53,
+      "2025-10-29T23:00": 53
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "KT战胜CFO": {
+    "event_id": "KT战胜CFO-2025-10-29",
+    "name": "KT战胜CFO",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 280222,
+      "2025-10-29T19:00": 793955
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 2,
+      "2025-10-29T19:00": 6
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "陈震回应Model3和SU7哪个更好开": {
+    "event_id": "陈震回应Model3和SU7哪个更好开-2025-10-29",
+    "name": "陈震回应Model3和SU7哪个更好开",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 222396,
+      "2025-10-29T19:00": 876105
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 5,
+      "2025-10-29T19:00": 5
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "暗河传 云合评论区": {
+    "event_id": "暗河传 云合评论区-2025-10-29",
+    "name": "暗河传 云合评论区",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 198634
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 7
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "天地剑心": {
+    "event_id": "天地剑心-2025-10-29",
+    "name": "天地剑心",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 198522,
+      "2025-10-29T19:00": 1067289,
+      "2025-10-29T21:00": 199170,
+      "2025-10-29T22:00": 102216
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 9,
+      "2025-10-29T19:00": 1,
+      "2025-10-29T21:00": 23,
+      "2025-10-29T22:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 25.6604910378069,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "建议大家点外卖不要点预订单": {
+    "event_id": "建议大家点外卖不要点预订单-2025-10-29",
+    "name": "建议大家点外卖不要点预订单",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 197822,
+      "2025-10-29T19:00": 557491,
+      "2025-10-29T21:00": 205243,
+      "2025-10-29T22:00": 145942,
+      "2025-10-29T23:00": 192049
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 20,
+      "2025-10-29T19:00": 11,
+      "2025-10-29T21:00": 20,
+      "2025-10-29T22:00": 18,
+      "2025-10-29T23:00": 22
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 65.79634375299777,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Angelababy亮相重阳节敬老活动": {
+    "event_id": "Angelababy亮相重阳节敬老活动-2025-10-29",
+    "name": "Angelababy亮相重阳节敬老活动",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 197549,
+      "2025-10-29T19:00": 435487
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 22,
+      "2025-10-29T19:00": 12
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Viper让圣枪哥小心Faker": {
+    "event_id": "Viper让圣枪哥小心Faker-2025-10-29",
+    "name": "Viper让圣枪哥小心Faker",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 193202,
+      "2025-10-29T19:00": 97203
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 23,
+      "2025-10-29T19:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 25.15579548865954,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "时代峰峻只放一人出席吗": {
+    "event_id": "时代峰峻只放一人出席吗-2025-10-29",
+    "name": "时代峰峻只放一人出席吗",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 192916,
+      "2025-10-29T19:00": 131258
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 24,
+      "2025-10-29T19:00": 28
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 34.01946961371789,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "三峡大学": {
+    "event_id": "三峡大学-2025-10-29",
+    "name": "三峡大学",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 169306
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 26
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "孙颖莎想念爸妈做的饭": {
+    "event_id": "孙颖莎想念爸妈做的饭-2025-10-29",
+    "name": "孙颖莎想念爸妈做的饭",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 160842,
+      "2025-10-29T19:00": 557639
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 28,
+      "2025-10-29T19:00": 10
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "GEN将对战KT": {
+    "event_id": "GEN将对战KT-2025-10-29",
+    "name": "GEN将对战KT",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 146729
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 31
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Deokdam要为Peanut复仇": {
+    "event_id": "Deokdam要为Peanut复仇-2025-10-29",
+    "name": "Deokdam要为Peanut复仇",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 139009
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 32
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Ning说TES打不过G2": {
+    "event_id": "Ning说TES打不过G2-2025-10-29",
+    "name": "Ning说TES打不过G2",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 137055
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 33
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "A股全天高开高走": {
+    "event_id": "A股全天高开高走-2025-10-29",
+    "name": "A股全天高开高走",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 125754
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 35
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "水龙吟编剧": {
+    "event_id": "水龙吟编剧-2025-10-29",
+    "name": "水龙吟编剧",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 116015
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 37
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "外交部回应中国是否复购美国大豆": {
+    "event_id": "外交部回应中国是否复购美国大豆-2025-10-29",
+    "name": "外交部回应中国是否复购美国大豆",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 113481,
+      "2025-10-29T19:00": 111269,
+      "2025-10-29T21:00": 123780
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 39,
+      "2025-10-29T19:00": 37,
+      "2025-10-29T21:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 55.62196119314454,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "小酒窝带作业去工作": {
+    "event_id": "小酒窝带作业去工作-2025-10-29",
+    "name": "小酒窝带作业去工作",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 113401
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "28岁每天运动1小时的体态变化": {
+    "event_id": "28岁每天运动1小时的体态变化-2025-10-29",
+    "name": "28岁每天运动1小时的体态变化",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 113373
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "TTG对战DRG": {
+    "event_id": "TTG对战DRG-2025-10-29",
+    "name": "TTG对战DRG",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 109003,
+      "2025-10-29T19:00": 87296
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 42,
+      "2025-10-29T19:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 40.04293459813033,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "四个周杰伦等于一个月杰伦": {
+    "event_id": "四个周杰伦等于一个月杰伦-2025-10-29",
+    "name": "四个周杰伦等于一个月杰伦",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 100450
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李在明快步上前迎接特朗普": {
+    "event_id": "李在明快步上前迎接特朗普-2025-10-29",
+    "name": "李在明快步上前迎接特朗普",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 98524
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 46
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "华晨宇怎么来文昌了": {
+    "event_id": "华晨宇怎么来文昌了-2025-10-29",
+    "name": "华晨宇怎么来文昌了",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 92836
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "LCK好强": {
+    "event_id": "LCK好强-2025-10-29",
+    "name": "LCK好强",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 91895
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "三峡大学女生宿舍因丢内衣加装钢刺": {
+    "event_id": "三峡大学女生宿舍因丢内衣加装钢刺-2025-10-29",
+    "name": "三峡大学女生宿舍因丢内衣加装钢刺",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 90820,
+      "2025-10-29T19:00": 129650
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 49,
+      "2025-10-29T19:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 71.37744990090289,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "iPhone17屏幕成本或为40美元": {
+    "event_id": "iPhone17屏幕成本或为40美元-2025-10-29",
+    "name": "iPhone17屏幕成本或为40美元",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 86793
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "大六座SUV首选腾势N8L29.98万起": {
+    "event_id": "大六座SUV首选腾势N8L29.98万起-2025-10-29",
+    "name": "大六座SUV首选腾势N8L29.98万起",
+    "first_seen_at": "2025-10-29T18:00:00",
+    "last_seen_at": "2025-10-29T18:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T18:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T18:00": 52
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "花少浪姐团 审美疲劳": {
+    "event_id": "花少浪姐团 审美疲劳-2025-10-29",
+    "name": "花少浪姐团 审美疲劳",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 752450,
+      "2025-10-29T21:00": 208368,
+      "2025-10-29T22:00": 144333,
+      "2025-10-29T23:00": 183421
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 7,
+      "2025-10-29T21:00": 16,
+      "2025-10-29T22:00": 21,
+      "2025-10-29T23:00": 23
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 63.54090887045928,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "王权富贵被万剑穿心": {
+    "event_id": "王权富贵被万剑穿心-2025-10-29",
+    "name": "王权富贵被万剑穿心",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 706332,
+      "2025-10-29T21:00": 228449,
+      "2025-10-29T22:00": 170673
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 8,
+      "2025-10-29T21:00": 4,
+      "2025-10-29T22:00": 7
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 37.354726875582735,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "KPL": {
+    "event_id": "KPL-2025-10-29",
+    "name": "KPL",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 410557
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 14
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "TF家族新年音乐会有53个人": {
+    "event_id": "TF家族新年音乐会有53个人-2025-10-29",
+    "name": "TF家族新年音乐会有53个人",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 224803
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 18
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "新婚夫妻结婚当天被新娘亲哥拦车": {
+    "event_id": "新婚夫妻结婚当天被新娘亲哥拦车-2025-10-29",
+    "name": "新婚夫妻结婚当天被新娘亲哥拦车",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 143532,
+      "2025-10-29T21:00": 113158,
+      "2025-10-29T22:00": 93609
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 26,
+      "2025-10-29T21:00": 45,
+      "2025-10-29T22:00": 46
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 41.362077802718325,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "日本导演呼吁别让父母沦为下流老人": {
+    "event_id": "日本导演呼吁别让父母沦为下流老人-2025-10-29",
+    "name": "日本导演呼吁别让父母沦为下流老人",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 131507
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 27
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "985硕士女生多了": {
+    "event_id": "985硕士女生多了-2025-10-29",
+    "name": "985硕士女生多了",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 129058,
+      "2025-10-29T21:00": 215518,
+      "2025-10-29T22:00": 131465
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 30,
+      "2025-10-29T21:00": 7,
+      "2025-10-29T22:00": 28
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 30.499772640800305,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "雷淞然 好喜欢这对": {
+    "event_id": "雷淞然 好喜欢这对-2025-10-29",
+    "name": "雷淞然 好喜欢这对",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 128883
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 31
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "LCK锁定S15决赛": {
+    "event_id": "LCK锁定S15决赛-2025-10-29",
+    "name": "LCK锁定S15决赛",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 122904
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 33
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "中国兽协就动物血库灰色产业发声": {
+    "event_id": "中国兽协就动物血库灰色产业发声-2025-10-29",
+    "name": "中国兽协就动物血库灰色产业发声",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 117166
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 35
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "小米冬测质疑": {
+    "event_id": "小米冬测质疑-2025-10-29",
+    "name": "小米冬测质疑",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 114761
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李宇春callback白马公主": {
+    "event_id": "李宇春callback白马公主-2025-10-29",
+    "name": "李宇春callback白马公主",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 106202
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "刘嘉玲家里最法式的是梁朝伟的奖杯": {
+    "event_id": "刘嘉玲家里最法式的是梁朝伟的奖杯-2025-10-29",
+    "name": "刘嘉玲家里最法式的是梁朝伟的奖杯",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 102908
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "留学生不会有超国民待遇": {
+    "event_id": "留学生不会有超国民待遇-2025-10-29",
+    "name": "留学生不会有超国民待遇",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 99354
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "常华森素人时期曾去山区支教": {
+    "event_id": "常华森素人时期曾去山区支教-2025-10-29",
+    "name": "常华森素人时期曾去山区支教",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 95951
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "爹万箭穿心儿子万剑穿心": {
+    "event_id": "爹万箭穿心儿子万剑穿心-2025-10-29",
+    "name": "爹万箭穿心儿子万剑穿心",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 92656
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "不同地方的山歌belike": {
+    "event_id": "不同地方的山歌belike-2025-10-29",
+    "name": "不同地方的山歌belike",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 87693
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "考研考编考公三手抓": {
+    "event_id": "考研考编考公三手抓-2025-10-29",
+    "name": "考研考编考公三手抓",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 86457
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "以为是湿疹其实是银屑病": {
+    "event_id": "以为是湿疹其实是银屑病-2025-10-29",
+    "name": "以为是湿疹其实是银屑病",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 85024
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 49
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "徐嘉余备战全运会VLOG": {
+    "event_id": "徐嘉余备战全运会VLOG-2025-10-29",
+    "name": "徐嘉余备战全运会VLOG",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T19:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 84974
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "京东双11给爸妈的推荐位": {
+    "event_id": "京东双11给爸妈的推荐位-2025-10-29",
+    "name": "京东双11给爸妈的推荐位",
+    "first_seen_at": "2025-10-29T19:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T19:00": 0,
+      "2025-10-29T22:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T19:00": 52,
+      "2025-10-29T22:00": 52
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "喜人奇妙夜": {
+    "event_id": "喜人奇妙夜-2025-10-29",
+    "name": "喜人奇妙夜",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 1053524,
+      "2025-10-29T22:00": 509458,
+      "2025-10-29T23:00": 777380
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 1,
+      "2025-10-29T22:00": 2,
+      "2025-10-29T23:00": 2
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 76.2948074227905,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "蒯曼2比3金娜英": {
+    "event_id": "蒯曼2比3金娜英-2025-10-29",
+    "name": "蒯曼2比3金娜英",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 239389,
+      "2025-10-29T22:00": 151284
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 2,
+      "2025-10-29T22:00": 10
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 31.597943096800606,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "中国是韩国第一大贸易伙伴国": {
+    "event_id": "中国是韩国第一大贸易伙伴国-2025-10-29",
+    "name": "中国是韩国第一大贸易伙伴国",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 228599,
+      "2025-10-29T22:00": 420444
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 3,
+      "2025-10-29T22:00": 3
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 91.96103220049082,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "DRG战胜TTG": {
+    "event_id": "DRG战胜TTG-2025-10-29",
+    "name": "DRG战胜TTG",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 228160
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 5
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "你们去过南昌的人嘴太严了": {
+    "event_id": "你们去过南昌的人嘴太严了-2025-10-29",
+    "name": "你们去过南昌的人嘴太严了",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 224331,
+      "2025-10-29T22:00": 243584,
+      "2025-10-29T23:00": 111665
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 6,
+      "2025-10-29T22:00": 5,
+      "2025-10-29T23:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 22.92125098528639,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "大眼音乐节全阵容": {
+    "event_id": "大眼音乐节全阵容-2025-10-29",
+    "name": "大眼音乐节全阵容",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 214909,
+      "2025-10-29T22:00": 93500
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 8,
+      "2025-10-29T22:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 21.75339329669767,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "蒯曼出局": {
+    "event_id": "蒯曼出局-2025-10-29",
+    "name": "蒯曼出局",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 214277,
+      "2025-10-29T22:00": 93164
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 9,
+      "2025-10-29T22:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 21.739150725462835,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "沈梦辰下楼梯摔倒": {
+    "event_id": "沈梦辰下楼梯摔倒-2025-10-29",
+    "name": "沈梦辰下楼梯摔倒",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 212470,
+      "2025-10-29T22:00": 150389,
+      "2025-10-29T23:00": 196423
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 11,
+      "2025-10-29T22:00": 12,
+      "2025-10-29T23:00": 14
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 65.304975762855,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "高铁上上个厕所1万多的电脑没了": {
+    "event_id": "高铁上上个厕所1万多的电脑没了-2025-10-29",
+    "name": "高铁上上个厕所1万多的电脑没了",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 212216,
+      "2025-10-29T22:00": 147910,
+      "2025-10-29T23:00": 196926
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 12,
+      "2025-10-29T22:00": 15,
+      "2025-10-29T23:00": 13
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 66.56953552836184,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "彭小苒收到了2000多份简历": {
+    "event_id": "彭小苒收到了2000多份简历-2025-10-29",
+    "name": "彭小苒收到了2000多份简历",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 210816,
+      "2025-10-29T22:00": 149724,
+      "2025-10-29T23:00": 195288
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 13,
+      "2025-10-29T22:00": 13,
+      "2025-10-29T23:00": 16
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 65.21599743528091,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Elk发文澄清": {
+    "event_id": "Elk发文澄清-2025-10-29",
+    "name": "Elk发文澄清",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 210335,
+      "2025-10-29T22:00": 2221653,
+      "2025-10-29T23:00": 1190281
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 14,
+      "2025-10-29T22:00": 1,
+      "2025-10-29T23:00": 1
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 26.788184293406754,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "大眼音乐节二开": {
+    "event_id": "大眼音乐节二开-2025-10-29",
+    "name": "大眼音乐节二开",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 209595
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 15
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "网传印度人聚众在广州酒店大厅过夜": {
+    "event_id": "网传印度人聚众在广州酒店大厅过夜-2025-10-29",
+    "name": "网传印度人聚众在广州酒店大厅过夜",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 207508,
+      "2025-10-29T22:00": 146960
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 17,
+      "2025-10-29T22:00": 17
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 35.41068296162076,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李在明款待特朗普菜单曝光": {
+    "event_id": "李在明款待特朗普菜单曝光-2025-10-29",
+    "name": "李在明款待特朗普菜单曝光",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 206639
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 18
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "千万网红仙女酵母已近一年无收入": {
+    "event_id": "千万网红仙女酵母已近一年无收入-2025-10-29",
+    "name": "千万网红仙女酵母已近一年无收入",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 206048,
+      "2025-10-29T22:00": 142819,
+      "2025-10-29T23:00": 147873
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 19,
+      "2025-10-29T22:00": 23,
+      "2025-10-29T23:00": 30
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 51.76937242243679,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "台湾歌手坣娜去世": {
+    "event_id": "台湾歌手坣娜去世-2025-10-29",
+    "name": "台湾歌手坣娜去世",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 204553,
+      "2025-10-29T22:00": 125368
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 21,
+      "2025-10-29T22:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 30.64438067395736,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "彭小苒 差十岁你们都嗑得动": {
+    "event_id": "彭小苒 差十岁你们都嗑得动-2025-10-29",
+    "name": "彭小苒 差十岁你们都嗑得动",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 204060,
+      "2025-10-29T22:00": 140963,
+      "2025-10-29T23:00": 105521
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 22,
+      "2025-10-29T22:00": 25,
+      "2025-10-29T23:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 37.42861601980661,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "白鹿助理说谁家小孩落这了": {
+    "event_id": "白鹿助理说谁家小孩落这了-2025-10-29",
+    "name": "白鹿助理说谁家小孩落这了",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 182185,
+      "2025-10-29T22:00": 112372
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 24,
+      "2025-10-29T22:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 30.84008013832094,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "连皮带馅仅1毫米多的肉饼": {
+    "event_id": "连皮带馅仅1毫米多的肉饼-2025-10-29",
+    "name": "连皮带馅仅1毫米多的肉饼",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 167295
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 25
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "子阳结婚": {
+    "event_id": "子阳结婚-2025-10-29",
+    "name": "子阳结婚",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 164210,
+      "2025-10-29T22:00": 120306
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 26,
+      "2025-10-29T22:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 36.631752024846236,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "新毒株甲型H3N2来袭": {
+    "event_id": "新毒株甲型H3N2来袭-2025-10-29",
+    "name": "新毒株甲型H3N2来袭",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 161481,
+      "2025-10-29T22:00": 353565,
+      "2025-10-29T23:00": 464275
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 27,
+      "2025-10-29T22:00": 4,
+      "2025-10-29T23:00": 4
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 65.65624425494605,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "成毅直播": {
+    "event_id": "成毅直播-2025-10-29",
+    "name": "成毅直播",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 135132
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 28
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "韩国偶遇刘强东章泽天": {
+    "event_id": "韩国偶遇刘强东章泽天-2025-10-29",
+    "name": "韩国偶遇刘强东章泽天",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 133373,
+      "2025-10-29T22:00": 130063,
+      "2025-10-29T23:00": 116302
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 31,
+      "2025-10-29T22:00": 31,
+      "2025-10-29T23:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 44.709871370028374,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "厄敌地球毁灭了以后": {
+    "event_id": "厄敌地球毁灭了以后-2025-10-29",
+    "name": "厄敌地球毁灭了以后",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 132390
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 32
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "15岁女儿从126斤到102斤": {
+    "event_id": "15岁女儿从126斤到102斤-2025-10-29",
+    "name": "15岁女儿从126斤到102斤",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 130999
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 33
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李一桐想拉戚薇田曦薇一起搓澡": {
+    "event_id": "李一桐想拉戚薇田曦薇一起搓澡-2025-10-29",
+    "name": "李一桐想拉戚薇田曦薇一起搓澡",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 130581
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 34
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "米兰的黄景瑜我狠狠笑纳了": {
+    "event_id": "米兰的黄景瑜我狠狠笑纳了-2025-10-29",
+    "name": "米兰的黄景瑜我狠狠笑纳了",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 128635
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 35
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "张呈全怪雷淞然": {
+    "event_id": "张呈全怪雷淞然-2025-10-29",
+    "name": "张呈全怪雷淞然",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 128442
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 36
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "樊振东聊爸妈的缘分": {
+    "event_id": "樊振东聊爸妈的缘分-2025-10-29",
+    "name": "樊振东聊爸妈的缘分",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 127685
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 37
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "邹市明6岁儿子拜师少林寺": {
+    "event_id": "邹市明6岁儿子拜师少林寺-2025-10-29",
+    "name": "邹市明6岁儿子拜师少林寺",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 126325
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "孙颖莎王楚钦期待香港总决赛": {
+    "event_id": "孙颖莎王楚钦期待香港总决赛-2025-10-29",
+    "name": "孙颖莎王楚钦期待香港总决赛",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 123002
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "31岁男子腿型修长丝袜厂家求合作": {
+    "event_id": "31岁男子腿型修长丝袜厂家求合作-2025-10-29",
+    "name": "31岁男子腿型修长丝袜厂家求合作",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 122714
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李施嬅 吸渣体质": {
+    "event_id": "李施嬅 吸渣体质-2025-10-29",
+    "name": "李施嬅 吸渣体质",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 119161
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "59岁刘嘉玲怼脸皮肤状态": {
+    "event_id": "59岁刘嘉玲怼脸皮肤状态-2025-10-29",
+    "name": "59岁刘嘉玲怼脸皮肤状态",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 118769
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "金价下跌买是捡漏还是再等等": {
+    "event_id": "金价下跌买是捡漏还是再等等-2025-10-29",
+    "name": "金价下跌买是捡漏还是再等等",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 112918,
+      "2025-10-29T22:00": 96089
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 46,
+      "2025-10-29T22:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 42.54813227297685,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "浙江金华满足碳水脑袋": {
+    "event_id": "浙江金华满足碳水脑袋-2025-10-29",
+    "name": "浙江金华满足碳水脑袋",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 102781
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "DRG确定败者组半决赛": {
+    "event_id": "DRG确定败者组半决赛-2025-10-29",
+    "name": "DRG确定败者组半决赛",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 101078
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 48
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "孙颖莎期待与最顶尖的选手一较高下": {
+    "event_id": "孙颖莎期待与最顶尖的选手一较高下-2025-10-29",
+    "name": "孙颖莎期待与最顶尖的选手一较高下",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 88816
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "京东买药11.11张艺凡送百万免单": {
+    "event_id": "京东买药11.11张艺凡送百万免单-2025-10-29",
+    "name": "京东买药11.11张艺凡送百万免单",
+    "first_seen_at": "2025-10-29T21:00:00",
+    "last_seen_at": "2025-10-29T21:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T21:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T21:00": 51
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "特朗普叫停所有美航母电磁弹射": {
+    "event_id": "特朗普叫停所有美航母电磁弹射-2025-10-29",
+    "name": "特朗普叫停所有美航母电磁弹射",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 192003,
+      "2025-10-29T23:00": 353000
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 6,
+      "2025-10-29T23:00": 6
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 91.92564699509904,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "国乒WTT蒙彼利埃站四连败": {
+    "event_id": "国乒WTT蒙彼利埃站四连败-2025-10-29",
+    "name": "国乒WTT蒙彼利埃站四连败",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 152535,
+      "2025-10-29T23:00": 147999
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 8,
+      "2025-10-29T23:00": 28
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 48.513128134526504,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "on": {
+    "event_id": "on-2025-10-29",
+    "name": "on",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 151036,
+      "2025-10-29T23:00": 198028
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 11,
+      "2025-10-29T23:00": 11
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 65.55655605286157,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Bin": {
+    "event_id": "Bin-2025-10-29",
+    "name": "Bin",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 148918,
+      "2025-10-29T23:00": 195738
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 14,
+      "2025-10-29T23:00": 15
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 65.72006070454881,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Shadow 三天没出门": {
+    "event_id": "Shadow 三天没出门-2025-10-29",
+    "name": "Shadow 三天没出门",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 147489,
+      "2025-10-29T23:00": 135995
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 16,
+      "2025-10-29T23:00": 31
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 46.10343822251151,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "日本网民怒批高市早苗谄媚": {
+    "event_id": "日本网民怒批高市早苗谄媚-2025-10-29",
+    "name": "日本网民怒批高市早苗谄媚",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 145605,
+      "2025-10-29T23:00": 281847
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 19,
+      "2025-10-29T23:00": 7
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 96.78479447821161,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "胡兵携非遗醒狮助力全运会": {
+    "event_id": "胡兵携非遗醒狮助力全运会-2025-10-29",
+    "name": "胡兵携非遗醒狮助力全运会",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 144681
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 20
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "小米高管回应巨省电是空调名": {
+    "event_id": "小米高管回应巨省电是空调名-2025-10-29",
+    "name": "小米高管回应巨省电是空调名",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 143566,
+      "2025-10-29T23:00": 268405
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 22,
+      "2025-10-29T23:00": 8
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 93.47791259769026,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "男子遭多次刑讯逼供后死亡11人被判刑": {
+    "event_id": "男子遭多次刑讯逼供后死亡11人被判刑-2025-10-29",
+    "name": "男子遭多次刑讯逼供后死亡11人被判刑",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 141629,
+      "2025-10-29T23:00": 194375
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 24,
+      "2025-10-29T23:00": 17
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 68.62118633895601,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "昆明警方通报校外男子在高校自杀身亡": {
+    "event_id": "昆明警方通报校外男子在高校自杀身亡-2025-10-29",
+    "name": "昆明警方通报校外男子在高校自杀身亡",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 140934,
+      "2025-10-29T23:00": 105531
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 26,
+      "2025-10-29T23:00": 47
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 37.43986546894291,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "陈瑶一出场就在英雌救美": {
+    "event_id": "陈瑶一出场就在英雌救美-2025-10-29",
+    "name": "陈瑶一出场就在英雌救美",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 130703
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "广州小蛮腰换上限定时装": {
+    "event_id": "广州小蛮腰换上限定时装-2025-10-29",
+    "name": "广州小蛮腰换上限定时装",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 130151,
+      "2025-10-29T23:00": 105577
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 30,
+      "2025-10-29T23:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 40.55942712695254,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Knight 大黄直播间": {
+    "event_id": "Knight 大黄直播间-2025-10-29",
+    "name": "Knight 大黄直播间",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 130057,
+      "2025-10-29T23:00": 105560
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 32,
+      "2025-10-29T23:00": 42
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 40.582206263407585,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "这和自己亲生的有什么区别": {
+    "event_id": "这和自己亲生的有什么区别-2025-10-29",
+    "name": "这和自己亲生的有什么区别",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 129781,
+      "2025-10-29T23:00": 105546
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 33,
+      "2025-10-29T23:00": 44
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 40.66311709726385,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "王楚钦回应获得香港总决赛资格": {
+    "event_id": "王楚钦回应获得香港总决赛资格-2025-10-29",
+    "name": "王楚钦回应获得香港总决赛资格",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 121942,
+      "2025-10-29T23:00": 105505
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 35,
+      "2025-10-29T23:00": 50
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 43.2603204802283,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "成毅李一桐陪看哭了": {
+    "event_id": "成毅李一桐陪看哭了-2025-10-29",
+    "name": "成毅李一桐陪看哭了",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 119949,
+      "2025-10-29T23:00": 115052
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 37,
+      "2025-10-29T23:00": 35
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 47.95871578754304,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李庚希微醺赛道又多了一人": {
+    "event_id": "李庚希微醺赛道又多了一人-2025-10-29",
+    "name": "李庚希微醺赛道又多了一人",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 116426
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "地球你是怎么把恐龙养死了的": {
+    "event_id": "地球你是怎么把恐龙养死了的-2025-10-29",
+    "name": "地球你是怎么把恐龙养死了的",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 113090
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "外交部回应中日领导人是否会晤": {
+    "event_id": "外交部回应中日领导人是否会晤-2025-10-29",
+    "name": "外交部回应中日领导人是否会晤",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 112712
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 40
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "建议早餐要吃够4类食物": {
+    "event_id": "建议早餐要吃够4类食物-2025-10-29",
+    "name": "建议早餐要吃够4类食物",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 99567,
+      "2025-10-29T23:00": 118225
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 43,
+      "2025-10-29T23:00": 33
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 59.369570239135456,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "卢昱晓极星渊vlog": {
+    "event_id": "卢昱晓极星渊vlog-2025-10-29",
+    "name": "卢昱晓极星渊vlog",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 94324
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "黄圣依葛夕都把AQ当健康顾问": {
+    "event_id": "黄圣依葛夕都把AQ当健康顾问-2025-10-29",
+    "name": "黄圣依葛夕都把AQ当健康顾问",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 92235,
+      "2025-10-29T23:00": 193044
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 50,
+      "2025-10-29T23:00": 20
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 100.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "我的百年人生计划": {
+    "event_id": "我的百年人生计划-2025-10-29",
+    "name": "我的百年人生计划",
+    "first_seen_at": "2025-10-29T22:00:00",
+    "last_seen_at": "2025-10-29T22:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T22:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T22:00": 51
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "网络中国节": {
+    "event_id": "网络中国节-2025-10-29",
+    "name": "网络中国节",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 468025
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 3
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "易烊千玺跳失重狂野的探戈": {
+    "event_id": "易烊千玺跳失重狂野的探戈-2025-10-29",
+    "name": "易烊千玺跳失重狂野的探戈",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 367218
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 5
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "张杰带着天下杀回来了": {
+    "event_id": "张杰带着天下杀回来了-2025-10-29",
+    "name": "张杰带着天下杀回来了",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 201489
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 9
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "英伟达": {
+    "event_id": "英伟达-2025-10-29",
+    "name": "英伟达",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 198135
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 10
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李一桐送房求李荣浩给自己写歌": {
+    "event_id": "李一桐送房求李荣浩给自己写歌-2025-10-29",
+    "name": "李一桐送房求李荣浩给自己写歌",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 197276
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 12
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "王曼昱父母用爱托举的奥运冠军": {
+    "event_id": "王曼昱父母用爱托举的奥运冠军-2025-10-29",
+    "name": "王曼昱父母用爱托举的奥运冠军",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 193995
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 18
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "日高校副校长说高市早苗做的过火": {
+    "event_id": "日高校副校长说高市早苗做的过火-2025-10-29",
+    "name": "日高校副校长说高市早苗做的过火",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 193364
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 19
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "杨雨光 李明磊": {
+    "event_id": "杨雨光 李明磊-2025-10-29",
+    "name": "杨雨光 李明磊",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 192404
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 21
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "印度航司加密中国航班": {
+    "event_id": "印度航司加密中国航班-2025-10-29",
+    "name": "印度航司加密中国航班",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 176544
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 24
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "酷酷的滕 团里有人结婚了吗": {
+    "event_id": "酷酷的滕 团里有人结婚了吗-2025-10-29",
+    "name": "酷酷的滕 团里有人结婚了吗",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 170297
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 25
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "张雅钦对卢昱晓的偏爱藏不住了": {
+    "event_id": "张雅钦对卢昱晓的偏爱藏不住了-2025-10-29",
+    "name": "张雅钦对卢昱晓的偏爱藏不住了",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 165381
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 26
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "12306回应轮椅旅客深圳北站行路难": {
+    "event_id": "12306回应轮椅旅客深圳北站行路难-2025-10-29",
+    "name": "12306回应轮椅旅客深圳北站行路难",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 154307
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 27
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "苏暮雨罚站": {
+    "event_id": "苏暮雨罚站-2025-10-29",
+    "name": "苏暮雨罚站",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 147912
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 29
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "蒋易发博": {
+    "event_id": "蒋易发博-2025-10-29",
+    "name": "蒋易发博",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 127197
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 32
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "李逗逗直播": {
+    "event_id": "李逗逗直播-2025-10-29",
+    "name": "李逗逗直播",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 106127
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 38
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "Knight开播回应特别想打T1": {
+    "event_id": "Knight开播回应特别想打T1-2025-10-29",
+    "name": "Knight开播回应特别想打T1",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 105580
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 39
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "北川 基地吃饭": {
+    "event_id": "北川 基地吃饭-2025-10-29",
+    "name": "北川 基地吃饭",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 105569
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 41
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "陈哲远好吃到吧唧嘴": {
+    "event_id": "陈哲远好吃到吧唧嘴-2025-10-29",
+    "name": "陈哲远好吃到吧唧嘴",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 105557
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 43
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "微信对话框这四个字好霸道": {
+    "event_id": "微信对话框这四个字好霸道-2025-10-29",
+    "name": "微信对话框这四个字好霸道",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 105539
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 45
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "井胧请教产后恢复问题": {
+    "event_id": "井胧请教产后恢复问题-2025-10-29",
+    "name": "井胧请教产后恢复问题",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 105535
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 46
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "王艺迪为国乒破局": {
+    "event_id": "王艺迪为国乒破局-2025-10-29",
+    "name": "王艺迪为国乒破局",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 105513
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 49
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "为博流量编造女黑客人设摆拍": {
+    "event_id": "为博流量编造女黑客人设摆拍-2025-10-29",
+    "name": "为博流量编造女黑客人设摆拍",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 51
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  },
+  "华为见非凡品牌计划": {
+    "event_id": "华为见非凡品牌计划-2025-10-29",
+    "name": "华为见非凡品牌计划",
+    "first_seen_at": "2025-10-29T23:00:00",
+    "last_seen_at": "2025-10-29T23:00:00",
+    "last_content_update_date": null,
+    "hot_values": {
+      "2025-10-29T23:00": 0
+    },
+    "hour_list": {
+      "2025-10-29T23:00": 52
+    },
+    "summary_html": null,
+    "posts": [],
+    "llm": {
+      "sentiment": 0.0,
+      "region": null,
+      "topic_type": null
+    },
+    "risk_dims": {
+      "negativity": 0.0,
+      "growth": 50.0,
+      "sensitivity": 0.0,
+      "crowd": 0.0
+    },
+    "risk_score": 0.0
+  }
+}

@@ -17,7 +17,7 @@ from spider.crawler_core import CHINA_TZ, ensure_hashtag_format, slugify_title
 from spider.update_posts import ensure_topic_posts
 from backend.config import ARCHIVE_DIR, HOURLY_DIR, POST_DIR
 from backend.settings import DATA_ROOT
-from backend.storage import load_daily_archive, save_daily_archive
+from backend.storage import load_daily_archive, save_daily_archive, write_json
 
 HOT_TOPICS_DIR = ARCHIVE_DIR
 HOURLY_HOT_TOPICS_DIR = HOURLY_DIR
@@ -74,7 +74,7 @@ def main() -> None:
             "appeared_hours": record.get("appeared_hours", []),
         }
 
-    output_path.write_text(json.dumps(daily_payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json(output_path, daily_payload)
     logging.info("Daily posts archive written to %s (%s topics)", output_path, len(daily_payload))
 
     if changed:
