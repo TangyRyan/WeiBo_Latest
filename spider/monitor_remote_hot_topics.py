@@ -4,6 +4,7 @@ import asyncio
 import json
 import logging
 import sys
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -27,6 +28,7 @@ from spider.fetch_hot_topics import (
 from spider.local_hot_topics import fetch_latest_topics_local
 from spider.crawler_core import slugify_title
 from spider.aicard_service import ensure_aicard_snapshot
+from spider.aicard_client import AICardCooldownError, AICardRateLimitError
 from spider.update_posts import (
     MAX_TOPICS_PER_RUN,
     ensure_topic_posts,
@@ -61,6 +63,7 @@ LOCAL_FALLBACK_THRESHOLD_MINUTES = (
     get_env_int("WEIBO_MONITOR_LOCAL_FALLBACK_MINUTES", 45) or 45
 )
 HOURLY_POST_LIMIT = get_env_int("WEIBO_MONITOR_HOURLY_POST_LIMIT", 20) or 20
+RATE_LIMIT_SLEEP_SECONDS = get_env_int("WEIBO_MONITOR_AICARD_SLEEP", 300) or 300
 
 
 def ensure_hourly_dir() -> None:
@@ -113,7 +116,8 @@ def update_daily_archive(date_str: str, hour: int, topics: List[dict]) -> None:
                 hour_key = f"{hour:02d}"
                 hours[hour_key] = snapshot
                 aicard_field["latest"] = snapshot
-                aicard_field["html"] = snapshot.get("html")
+                if snapshot.get("markdown_path"):
+                    aicard_field["markdown"] = snapshot.get("markdown_path")
     save_daily_archive(date_str, daily_data)
     pending_refresh = sum(1 for item in daily_data.values() if item.get("needs_refresh"))
     logging.info(
@@ -135,7 +139,29 @@ def process_hour(date_str: str, hour: int) -> bool:
     if local_used:
         logging.info("Using local crawler data for %s %02d", date_str, hour)
     update_hourly_archive(date_str, hour, topics)
-    update_daily_archive(date_str, hour, topics)
+    try:
+        update_daily_archive(date_str, hour, topics)
+    except AICardCooldownError as exc:
+        wait_seconds = max(exc.retry_after, 1)
+        logging.warning(
+            "AI Card cooldown (%s) for %s %02d; sleeping %s seconds before retrying",
+            exc.level,
+            date_str,
+            hour,
+            wait_seconds,
+        )
+        time.sleep(wait_seconds)
+        return False
+    except AICardRateLimitError as exc:
+        logging.warning(
+            "AI Card service returned HTTP 418 for %s %02d (%s); sleeping %s seconds before retrying",
+            date_str,
+            hour,
+            exc,
+            RATE_LIMIT_SLEEP_SECONDS,
+        )
+        time.sleep(RATE_LIMIT_SLEEP_SECONDS)
+        return False
     _refresh_posts_if_needed(date_str)
     _collect_hourly_posts(date_str, hour, topics)
     logging.debug("Completed processing for %s %02d (local_used=%s)", date_str, hour, local_used)

@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 import requests
 
 from spider.config import get_env_str
+from spider.rate_limiter import create_policy_from_env
 
 try:
     from bs4 import BeautifulSoup  # type: ignore
@@ -43,6 +44,17 @@ RETRY_BACKOFF = 2
 SLEEP_RANGE = (0.6, 1.2)
 
 CHINA_TZ = timezone(timedelta(hours=8))
+
+_CRAWLER_POLICY = create_policy_from_env(
+    "CRAWLER",
+    base_delay=3.0,
+    jitter=0.3,
+    max_backoff_attempts=3,
+    soft_range=(300, 900),
+    hard_range=(1800, 3600),
+    cooldown_window=3600,
+    soft_threshold=2,
+)
 
 
 @dataclass
@@ -193,13 +205,26 @@ def fetch_page(
 
     attempt = 0
     last_error: Optional[str] = None
+    policy = _CRAWLER_POLICY
     while attempt < MAX_RETRIES:
         attempt += 1
+        while True:
+            in_cooldown, wait_cd = policy.in_cooldown()
+            if not in_cooldown:
+                break
+            logging.warning(
+                "Crawler cooldown (%s) active; sleeping %.1fs before retrying page %s",
+                policy.cooldown_level,
+                wait_cd,
+                page,
+            )
+            time.sleep(wait_cd)
         try:
             response = session.get(BASE_URL, params=params, timeout=REQUEST_TIMEOUT)
             if response.status_code == 200:
                 data = response.json()
                 print(data)
+                policy.record_success()
                 if data.get("ok") == 1:
                     return data, None
                 last_error = f"ok={data.get('ok')}"
@@ -208,7 +233,23 @@ def fetch_page(
             if response.status_code in {403, 418}:
                 last_error = f"http_{response.status_code}"
                 logging.error("HTTP %s requires new cookie or lower frequency", response.status_code)
-                return None, last_error
+                wait_seconds = policy.next_delay()
+                logging.warning(
+                    "Crawler rate limit backoff sleeping %.1fs (attempt %s/%s)",
+                    wait_seconds,
+                    attempt,
+                    MAX_RETRIES,
+                )
+                time.sleep(wait_seconds)
+                cooldown = policy.record_failure()
+                if cooldown:
+                    logging.error(
+                        "Crawler entered %s cooldown for %.0fs while fetching page %s",
+                        cooldown.level,
+                        cooldown.duration,
+                        page,
+                    )
+                continue
             last_error = f"http_{response.status_code}"
             logging.warning("HTTP %s on page %s, retrying...", response.status_code, page)
         except requests.RequestException as exc:

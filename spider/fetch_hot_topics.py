@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional, Sequence
 
 import requests
 
+from spider.aicard_client import AICardCooldownError, AICardRateLimitError
 from spider.aicard_service import ensure_aicard_snapshot
 from spider.config import get_env_list, get_env_str
 from spider.crawler_core import slugify_title
@@ -179,20 +180,40 @@ def process_day(date_str: str, hours: List[int]) -> None:
             record = upsert_topic(daily_data, topic, date_str, hour)
             if not record:
                 continue
-            snapshot = ensure_aicard_snapshot(
-                title,
-                date_str,
-                hour,
-                slug=record.get("slug"),
-                logger=logging.getLogger("aicard"),
-            )
+            snapshot = None
+            try:
+                snapshot = ensure_aicard_snapshot(
+                    title,
+                    date_str,
+                    hour,
+                    slug=record.get("slug"),
+                    logger=logging.getLogger("aicard"),
+                )
+            except AICardCooldownError as exc:
+                logging.warning(
+                    "AI Card cooldown (%s) for %s %02d when fetching %s; skipping snapshot this pass (retry_after=%ss)",
+                    exc.level,
+                    date_str,
+                    hour,
+                    title,
+                    exc.retry_after,
+                )
+            except AICardRateLimitError as exc:
+                logging.warning(
+                    "AI Card rate limited for %s %02d when fetching %s (%s); skipping snapshot this pass",
+                    date_str,
+                    hour,
+                    title,
+                    exc,
+                )
             if snapshot:
                 aicard_field = record.setdefault("aicard", {})
                 hours = aicard_field.setdefault("hours", {})
                 hour_key = f"{hour:02d}"
                 hours[hour_key] = snapshot
                 aicard_field["latest"] = snapshot
-                aicard_field["html"] = snapshot.get("html")
+                if snapshot.get("markdown_path"):
+                    aicard_field["markdown"] = snapshot.get("markdown_path")
 
     save_daily_archive(date_str, daily_data)
     try:

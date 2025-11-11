@@ -26,6 +26,7 @@ from backend.storage import (
     save_daily_archive,
     save_hour_hotlist,
     save_risk_warnings,
+    save_risk_archive,
 )
 from spider.crawler_core import CHINA_TZ, slugify_title
 from spider.monitor_remote_hot_topics import collect_pending_hours, hour_path, process_hour
@@ -86,6 +87,16 @@ def _monitor_tick() -> None:
             _sync_hotlist_snapshot(date_str, hour)
         else:
             logger.warning("Processing remote topics failed for %s %02d", date_str, hour)
+
+
+def _update_risk_snapshots(date_str: str, *, push: bool) -> Dict[str, Any]:
+    """Recompute latest risk warnings, persist to disk, and optionally push via websocket."""
+    warnings = top_risk_warnings()
+    save_risk_warnings(warnings)
+    save_risk_archive(date_str, warnings)
+    if push and RISK_PUSH:
+        RISK_PUSH(warnings)
+    return warnings
 
 
 def _coerce_media(item: Dict[str, Any]) -> List[str]:
@@ -192,7 +203,7 @@ def _extract_hot_score(event: Dict[str, Any]) -> float:
 def _now_iso() -> str:
     return datetime.now(tz=CHINA_TZ).isoformat()
 
-
+#更新归档文件
 def _mutate_event(
     date_str: str,
     archive: Dict[str, Any],
@@ -227,7 +238,7 @@ def _set_llm_status(
 
     _mutate_event(date_str, archive, name, reason, _apply)
 
-
+#风险计算
 def _persist_llm_success(
     date_str: str,
     today: str,
@@ -312,6 +323,7 @@ def _process_event_llm(
         logger.exception("LLM analysis failed for %s: %s", name, exc)
         return {"status": "error", "name": name, "error": str(exc)}
     _persist_llm_success(date_str, today, archive, name, posts, llm_res)
+
     logger.info(
         "Updated %s risk metrics: sentiment=%.2f region=%s topic=%s score=%.2f",
         name,
@@ -404,10 +416,7 @@ def daily_llm_update(*, target_date: Optional[str] = None, force: bool = False) 
 
     if changed:
         save_daily_archive(target_str, archive)
-        warnings = top_risk_warnings()
-        save_risk_warnings(warnings)
-        if RISK_PUSH:
-            RISK_PUSH(warnings)
+        warnings = _update_risk_snapshots(target_str, push=True)
         logger.info(
             (
                 "Daily LLM update finished for %s: refreshed=%s skipped_recent=%s "
@@ -421,22 +430,24 @@ def daily_llm_update(*, target_date: Optional[str] = None, force: bool = False) 
             len((warnings or {}).get("events", [])),
         )
     else:
+        warnings = _update_risk_snapshots(target_str, push=False)
         logger.info(
             (
                 "Daily LLM update finished for %s with no changes "
-                "(skipped_recent=%s skipped_no_posts=%s errors=%s)"
+                "(skipped_recent=%s skipped_no_posts=%s errors=%s warnings=%s)"
             ),
             target_str,
             skipped_recent,
             skipped_without_posts,
             errors,
+            len((warnings or {}).get("events", [])),
         )
 
 
 def top_risk_warnings(window_days: int = 7, top_k: int = 5) -> Dict[str, Any]:
     today = datetime.now(tz=CHINA_TZ).date()
     events: List[Dict[str, Any]] = []
-    for i in range(window_days):
+    for i in range(1, window_days + 1):
         date_str = (today - timedelta(days=i)).strftime("%Y-%m-%d")
         archive = load_daily_archive(date_str)
         for name, event in archive.items():

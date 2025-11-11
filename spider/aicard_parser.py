@@ -37,6 +37,7 @@ class MediaAsset:
 
 @dataclass(slots=True)
 class ParsedCard:
+    markdown: str
     html: str
     media: List[MediaAsset]
     links: List[str]
@@ -49,26 +50,34 @@ def render_aicard_markdown(
 ) -> ParsedCard:
     segments = _split_text_and_media(raw_msg or "")
     html_parts: List[str] = []
+    markdown_parts: List[str] = []
     gathered_media: List[MediaAsset] = []
 
     for kind, payload in segments:
         if kind == "text":
-            html_parts.extend(_render_text_segments(payload))
+            text_html, text_markdown = _render_text_segments(payload)
+            html_parts.extend(text_html)
+            markdown_parts.extend(text_markdown)
         elif kind == "media":
             assets = _convert_media(payload)
             if assets:
-                html_parts.append(_render_media_gallery(assets))
+                gallery_html, gallery_markdown = _render_media_gallery(assets)
+                html_parts.append(gallery_html)
+                markdown_parts.extend(gallery_markdown)
                 gathered_media.extend(assets)
 
     extra_media = _convert_media(multimodal or [])
     seen_urls = {asset.secure_url for asset in gathered_media if asset.secure_url}
     extra_media = [asset for asset in extra_media if asset.secure_url and asset.secure_url not in seen_urls]
     if extra_media:
-        html_parts.append(_render_media_gallery(extra_media))
+        gallery_html, gallery_markdown = _render_media_gallery(extra_media)
+        html_parts.append(gallery_html)
+        markdown_parts.extend(gallery_markdown)
         gathered_media.extend(extra_media)
 
     html_output = "\n".join(html_parts)
-    return ParsedCard(html=html_output, media=gathered_media, links=list(links or []))
+    markdown_output = _join_markdown_lines(markdown_parts)
+    return ParsedCard(markdown=markdown_output, html=html_output, media=gathered_media, links=list(links or []))
 
 
 def _split_text_and_media(raw_msg: str) -> List[Tuple[str, Any]]:
@@ -103,9 +112,10 @@ def _strip_markup(fragment: str) -> str:
     return html.unescape(text)
 
 
-def _render_text_segments(text: str) -> List[str]:
+def _render_text_segments(text: str) -> Tuple[List[str], List[str]]:
     lines = [line.rstrip() for line in text.split("\n")]
     html_parts: List[str] = []
+    markdown_lines: List[str] = []
     in_ul = False
     in_ol = False
 
@@ -113,56 +123,98 @@ def _render_text_segments(text: str) -> List[str]:
         nonlocal in_ul, in_ol
         if in_ul:
             html_parts.append("</ul>")
+            if markdown_lines and markdown_lines[-1] != "":
+                markdown_lines.append("")
             in_ul = False
         if in_ol:
             html_parts.append("</ol>")
+            if markdown_lines and markdown_lines[-1] != "":
+                markdown_lines.append("")
             in_ol = False
+
+    def ensure_blank_line() -> None:
+        if markdown_lines and markdown_lines[-1] != "":
+            markdown_lines.append("")
 
     for raw_line in lines:
         line = raw_line.strip()
         if not line:
             close_lists()
+            ensure_blank_line()
             continue
 
         heading_match = _HEADING_PATTERN.match(line)
         if heading_match:
             close_lists()
+            ensure_blank_line()
             level = min(len(heading_match.group(1)), 4)
             content = heading_match.group(2).strip()
             html_parts.append(f"<h{level}>{_apply_inline_markup(content)}</h{level}>")
+            markdown_lines.append(f"{'#' * level} {content}".rstrip())
+            markdown_lines.append("")
             continue
 
-        if re.match(r"^\d+\.\s+", line):
+        ordered_match = re.match(r"^(\d+)\.\s+(.*)", line)
+        if ordered_match:
             if not in_ol:
                 close_lists()
+                ensure_blank_line()
                 html_parts.append("<ol>")
                 in_ol = True
-            content = re.sub(r"^\d+\.\s+", "", line).strip()
+            content = ordered_match.group(2).strip()
             html_parts.append(f"<li>{_apply_inline_markup(content)}</li>")
+            markdown_lines.append(f"{ordered_match.group(1)}. {content}")
             continue
 
         if line.startswith(("- ", "* ")):
             if not in_ul:
                 close_lists()
+                ensure_blank_line()
                 html_parts.append("<ul>")
                 in_ul = True
             content = line[2:].strip()
             html_parts.append(f"<li>{_apply_inline_markup(content)}</li>")
+            markdown_lines.append(f"- {content}")
             continue
 
         blockquote_match = _BLOCKQUOTE_PATTERN.match(line)
         if blockquote_match:
             close_lists()
+            ensure_blank_line()
             html_parts.append(
                 f"<blockquote><p>{_apply_inline_markup(blockquote_match.group(1).strip())}</p></blockquote>"
             )
+            markdown_lines.append(f"> {blockquote_match.group(1).strip()}")
+            markdown_lines.append("")
             continue
 
         close_lists()
+        ensure_blank_line()
         html_parts.append(f"<p>{_apply_inline_markup(line)}</p>")
+        markdown_lines.append(line)
+        markdown_lines.append("")
 
     close_lists()
-    return html_parts
+    return html_parts, markdown_lines
+
+
+def _join_markdown_lines(lines: Sequence[str]) -> str:
+    cleaned: List[str] = []
+    previous_blank = True
+    for raw in lines:
+        if raw is None:
+            continue
+        line = raw.rstrip()
+        if not line:
+            if not previous_blank and cleaned:
+                cleaned.append("")
+            previous_blank = True
+            continue
+        cleaned.append(line)
+        previous_blank = False
+    while cleaned and cleaned[-1] == "":
+        cleaned.pop()
+    return "\n".join(cleaned)
 
 
 def _apply_inline_markup(text: str) -> str:
@@ -252,8 +304,9 @@ def _deduce_alt(item: Mapping[str, Any]) -> Optional[str]:
     return None
 
 
-def _render_media_gallery(assets: Sequence[MediaAsset]) -> str:
+def _render_media_gallery(assets: Sequence[MediaAsset]) -> Tuple[str, List[str]]:
     figures: List[str] = []
+    markdown_lines: List[str] = []
     for asset in assets:
         attrs = ['loading="lazy"']
         if asset.width:
@@ -273,10 +326,23 @@ def _render_media_gallery(assets: Sequence[MediaAsset]) -> str:
             f'<img src="{src}" {" ".join(attrs)}>'
             f"{figcaption}</figure>"
         )
+        alt_text = asset.alt or asset.user or asset.media_type or "媒体"
+        markdown_lines.append(f"![{_escape_markdown_alt(alt_text)}]({asset.secure_url or asset.original_url})")
+        meta_parts: List[str] = []
+        if asset.user:
+            meta_parts.append(f"作者：{asset.user}")
+        if asset.media_type and asset.media_type.lower() != "image":
+            meta_parts.append(f"类型：{asset.media_type}")
+        if asset.mirrors:
+            meta_parts.append("备用：" + ", ".join(asset.mirrors))
+        if meta_parts:
+            markdown_lines.append("> " + " ｜ ".join(meta_parts))
+        markdown_lines.append("")
     gallery_class = "aicard-media-gallery"
     if len(assets) == 1:
         gallery_class += " single"
-    return f"<div class=\"{gallery_class}\">\n" + "\n".join(figures) + "\n</div>"
+    html_gallery = f"<div class=\"{gallery_class}\">\n" + "\n".join(figures) + "\n</div>"
+    return html_gallery, markdown_lines
 
 
 def _parse_media_block(block: str) -> List[Mapping[str, Any]]:
@@ -321,6 +387,22 @@ def _guess_pid_from_url(url: str) -> Optional[str]:
     if match:
         return match.group(1)
     return None
+
+
+def _escape_markdown_alt(text: str) -> str:
+    if not text:
+        return ""
+    replacements = {
+        "\\": "\\\\",
+        "[": "\\[",
+        "]": "\\]",
+        "(": "\\(",
+        ")": "\\)",
+    }
+    escaped = text
+    for src, target in replacements.items():
+        escaped = escaped.replace(src, target)
+    return escaped
 
 
 __all__ = ["render_aicard_markdown", "ParsedCard", "MediaAsset"]

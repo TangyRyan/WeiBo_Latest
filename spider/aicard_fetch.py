@@ -121,20 +121,20 @@ def _persist_outputs(
     output_dir.mkdir(parents=True, exist_ok=True)
     slug = _derive_topic_slug(result)
     title = unquote_plus(result.response.get("query") or result.query)
-    html_doc = _wrap_html(parsed.html, title)
-
-    html_path = output_dir / f"{slug}.html"
+    markdown_path = output_dir / f"{slug}.md"
     json_path = output_dir / f"{slug}.json"
 
-    html_path.write_text(html_doc, encoding="utf-8")
+    markdown_path.write_text(parsed.markdown, encoding="utf-8")
+    html_doc = _wrap_html(parsed.html, title)
     payload = {
         "meta": result.to_dict(),
         "links": parsed.links,
         "media": [_serialize_media(item) for item in parsed.media],
-        "html_path": str(html_path),
+        "markdown_path": str(markdown_path),
+        "html": html_doc,
     }
     write_json(json_path, payload)
-    return {"html": html_path, "json": json_path}
+    return {"markdown": markdown_path, "json": json_path}
 
 
 def _collect_multimodal_entries(payload: Mapping[str, Any]) -> List[Dict[str, Any]]:
@@ -188,7 +188,7 @@ def main() -> None:
         "--output-dir",
         type=Path,
         default=DEFAULT_OUTPUT_DIR,
-        help="结果输出目录，默认为项目 data/aicard/",
+        help="结果输出目录（默认 data/aicard/，输出 Markdown 文件）",
     )
     parser.add_argument(
         "--log-level",
@@ -208,7 +208,7 @@ def main() -> None:
         logging.error("AI card 请求失败：%s", exc)
         raise SystemExit(1) from exc
 
-    logging.info("HTML 输出：%s", outputs["html"])
+    logging.info("Markdown 输出：%s", outputs["markdown"])
     logging.info("JSON 输出：%s", outputs["json"])
 
 

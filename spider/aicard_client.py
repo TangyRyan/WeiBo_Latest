@@ -10,6 +10,8 @@ import requests
 from requests import Response, Session
 from urllib.parse import quote_plus
 
+from spider.rate_limiter import create_policy_from_env
+
 CHINA_TZ = timezone.utc  # fallback; overwritten on module load
 
 try:
@@ -24,6 +26,16 @@ logger = logging.getLogger(__name__)
 AICARD_URL = "https://ai.s.weibo.com/api/wis/show.json"
 DEFAULT_TIMEOUT = 10
 MAX_RETRIES = 3
+_RATE_POLICY = create_policy_from_env(
+    "AICARD",
+    base_delay=5.0,
+    jitter=0.2,
+    max_backoff_attempts=3,
+    soft_range=(300, 900),
+    hard_range=(1800, 3600),
+    cooldown_window=3600,
+    soft_threshold=2,
+)
 
 DEFAULT_HEADERS: Dict[str, str] = {
     "Pragma": "no-cache",
@@ -45,6 +57,20 @@ DEFAULT_PAYLOAD: Dict[str, Any] = {
 
 class AICardError(RuntimeError):
     """Raised when fetching the AI card payload fails."""
+
+
+class AICardRateLimitError(AICardError):
+    """Raised when the remote AI Card API responds with HTTP 418 (rate limited)."""
+
+
+class AICardCooldownError(AICardRateLimitError):
+    """Raised when the AI Card service enforces cooldown (extended wait)."""
+
+    def __init__(self, level: str, retry_after: float) -> None:
+        seconds = int(max(retry_after, 1))
+        super().__init__(f"AI Card cooldown active ({level}) retry_after={seconds}s")
+        self.level = level
+        self.retry_after = seconds
 
 
 @dataclass(slots=True)
@@ -146,12 +172,34 @@ def fetch_ai_card(
     owns_session = session is None
     sess = session or requests.Session()
 
+    policy = _RATE_POLICY
     try:
         last_error: Optional[Exception] = None
+        response: Optional[Response] = None
         for attempt in range(retries + 1):
             try:
+                in_cooldown, cooldown_wait = policy.in_cooldown()
+                if in_cooldown:
+                    raise AICardCooldownError(policy.cooldown_level or "soft", cooldown_wait)
                 response = _send_request(sess, payload, headers, timeout)
                 status = response.status_code
+                if status == 418:
+                    wait_seconds = policy.next_delay()
+                    logger.warning(
+                        "AI Card request hit HTTP 418 (rate limit) on attempt %s/%s; sleeping %.1fs",
+                        attempt + 1,
+                        retries + 1,
+                        wait_seconds,
+                    )
+                    time.sleep(wait_seconds)
+                    cooldown_info = policy.record_failure()
+                    if cooldown_info:
+                        raise AICardCooldownError(
+                            cooldown_info.level,
+                            cooldown_info.duration,
+                        )
+                    last_error = AICardRateLimitError("AI Card request was rate limited (HTTP 418)")
+                    continue
                 if status >= 500:
                     logger.warning(
                         "AI Card request failed with %s on attempt %s/%s",
@@ -163,6 +211,7 @@ def fetch_ai_card(
                     time.sleep(min(2 ** attempt, 5))
                     continue
                 response.raise_for_status()
+                policy.record_success()
                 break
             except requests.RequestException as exc:
                 last_error = exc
@@ -176,12 +225,16 @@ def fetch_ai_card(
                     raise
                 time.sleep(min(2 ** attempt, 5))
         else:
-            raise AICardError(str(last_error))
+            if isinstance(last_error, Exception):
+                raise last_error
+            raise AICardError(str(last_error) if last_error else "unknown error")
     finally:
         if owns_session:
             sess.close()
 
     try:
+        if response is None:
+            raise AICardError("AI Card response missing after retries")
         payload_json = response.json()
     except json.JSONDecodeError as exc:
         raise AICardError(f"failed to decode JSON: {exc}") from exc

@@ -3,7 +3,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from spider.aicard_client import AICardError, fetch_ai_card
+from spider.aicard_client import AICardCooldownError, AICardError, AICardRateLimitError, fetch_ai_card
 from spider.aicard_parser import ParsedCard, render_aicard_markdown
 from spider.crawler_core import ensure_hashtag_format, slugify_title
 from backend.config import AICARD_DIR
@@ -76,15 +76,19 @@ def ensure_aicard_snapshot(
     base_dir: Path = BASE_DIR,
     logger: Optional[logging.Logger] = None,
 ) -> Optional[Dict[str, any]]:
-    """生成 AI Card HTML，并返回可直接写入归档的元数据。"""
+    """生成 AI Card Markdown，并返回可直接写入归档的元数据。"""
     logger = logger or logging.getLogger(__name__)
     normalized_slug = slug or slugify_title(title)
     target_dir = base_dir / HOURLY_DIR_NAME / date_str / f"{hour:02d}"
-    html_path = target_dir / f"{normalized_slug}.html"
+    markdown_path = target_dir / f"{normalized_slug}.md"
 
     query = ensure_hashtag_format(title)
     try:
         result = fetch_ai_card(query)
+    except AICardCooldownError:
+        raise
+    except AICardRateLimitError:
+        raise
     except AICardError as exc:
         logger.warning("AI Card 获取失败：%s (%s)", title, exc)
         return None
@@ -113,12 +117,13 @@ def ensure_aicard_snapshot(
     )
 
     target_dir.mkdir(parents=True, exist_ok=True)
+    markdown_path.write_text(parsed.markdown, encoding="utf-8")
     html_doc = _wrap_html(parsed.html, query)
-    html_path.write_text(html_doc, encoding="utf-8")
 
     return {
         "slug": normalized_slug,
-        "html": _relative_to_repo(html_path),
+        "markdown_path": _relative_to_repo(markdown_path),
+        "html": html_doc,
         "title": title,
         "links": parsed.links,
         "media": [asdict(asset) for asset in parsed.media],

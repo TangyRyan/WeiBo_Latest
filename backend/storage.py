@@ -79,6 +79,18 @@ def load_risk_warnings():
     return read_json(RISK_DIR / "latest.json", default={"events": []}) or {"events": []}
 
 
+def save_risk_archive(date_str: str, data: Any) -> None:
+    """Persist a daily snapshot of risk warnings for historical lookup."""
+    payload = dict(data or {})
+    payload.setdefault("date", date_str)
+    write_json(RISK_DIR / f"{date_str}.json", payload)
+
+
+def load_risk_archive(date_str: str) -> Dict[str, Any]:
+    """Load a daily risk snapshot; returns empty structure if missing."""
+    return read_json(RISK_DIR / f"{date_str}.json", default={"events": []}) or {"events": []}
+
+
 def get_post_snapshot_path(date_str: str, slug: str) -> Path:
     return POST_DIR / date_str / f"{slug}.json"
 
@@ -105,6 +117,8 @@ __all__ = [
     "save_hour_hotlist",
     "load_risk_warnings",
     "save_risk_warnings",
+    "save_risk_archive",
+    "load_risk_archive",
     "get_post_snapshot_path",
     "load_post_snapshot",
     "get_aicard_hour_dir",

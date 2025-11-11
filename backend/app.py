@@ -12,8 +12,15 @@ from flask_sock import Sock
 
 from backend.config import ALLOWED_ORIGINS, ARCHIVE_DIR, HOTLIST_DIR, DAILY_LLM_TIME
 from backend.hotlist_stream import HotTopicsHotlistStream
-from backend.scheduler import daily_llm_update, set_push_callbacks, start_scheduler
-from backend.storage import load_daily_archive, load_risk_warnings, read_json
+from backend.scheduler import daily_llm_update, set_push_callbacks, start_scheduler, top_risk_warnings
+from backend.storage import (
+    load_daily_archive,
+    load_risk_archive,
+    load_risk_warnings,
+    read_json,
+    save_risk_archive,
+    save_risk_warnings,
+)
 from spider.hot_topics_api import bp as hot_topics_bp
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -27,6 +34,42 @@ logger = logging.getLogger(__name__)
 _hotlist_clients = set()
 _risk_clients = set()
 _hotlist_stream: HotTopicsHotlistStream | None = None
+
+
+def _latest_risk_payload(limit: int | None = 5) -> Dict[str, Any]:
+    """Return the cached risk warnings sorted and capped for display."""
+    payload = load_risk_warnings() or {}
+    events = payload.get("events")
+    if not events:
+        today = datetime.now().strftime("%Y-%m-%d")
+        archive_payload = load_risk_archive(today)
+        archive_events = archive_payload.get("events")
+        if archive_events:
+            payload = archive_payload
+            events = archive_events
+        else:
+            payload = top_risk_warnings()
+            events = payload.get("events")
+            if events:
+                save_risk_archive(today, payload)
+        if events:
+            save_risk_warnings(payload)
+    if limit is None or not isinstance(events, list):
+        return payload
+    def _score(ev: Dict[str, Any]) -> float:
+        raw = ev.get("sort_key")
+        if raw is None:
+            raw = ev.get("risk_score", 0.0)
+        try:
+            return float(raw or 0.0)
+        except (TypeError, ValueError):
+            return 0.0
+    sorted_events = sorted(
+        events,
+        key=_score,
+        reverse=True,
+    )
+    return {**payload, "events": sorted_events[:limit]}
 
 
 def _broadcast(clients, message: Dict[str, Any]) -> None:
@@ -131,7 +174,21 @@ def hotlist_current():
 
 @app.route("/api/risk/latest")
 def risk_latest():
-    return jsonify(load_risk_warnings())
+    return jsonify(_latest_risk_payload())
+
+
+@app.route("/api/risk/archive")
+def risk_archive():
+    date = request.args.get("date")
+    if not date:
+        date = datetime.now().strftime("%Y-%m-%d")
+    snapshot = load_risk_archive(date)
+    events = snapshot.get("events")
+    if not events:
+        return jsonify({"error": "risk archive not found", "date": date}), 404
+    response = dict(snapshot)
+    response.setdefault("date", date)
+    return jsonify(response)
 
 
 @app.route("/api/risk/event")
@@ -174,13 +231,15 @@ def central_data():
             if not llm:
                 continue
             seen.add(name)
+            risk_value = float(ev.get("risk_score", 0.0))
             out.append({
                 "name": name,
                 "date": ev.get("last_seen_at", f"{d}T00:00:00")[:10],
                 "领域": llm.get("topic_type") or "其他",
                 "地区": llm.get("region") or "国外",
                 "情绪": float(llm.get("sentiment", 0.0)),
-                "风险": float(ev.get("risk_score", 0.0)),
+                "风险": risk_value,
+                "风险值": risk_value,
                 "热度": _extract_event_heat(ev),
             })
     return jsonify({"data": out})
@@ -225,6 +284,12 @@ def ws_hotlist(ws):
 @sock.route("/ws/risk_warnings")
 def ws_risk(ws):
     _risk_clients.add(ws)
+    initial_payload = _latest_risk_payload()
+    if initial_payload:
+        try:
+            ws.send(json.dumps(initial_payload, ensure_ascii=False))
+        except Exception:
+            logger.exception("Failed to send initial risk snapshot")
     try:
         while True:
             ws.receive()

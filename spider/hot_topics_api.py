@@ -9,6 +9,7 @@ from flask import Blueprint, Flask, Response, jsonify, request
 
 from spider.config import get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, slugify_title
+from spider.aicard_client import AICardCooldownError, AICardRateLimitError
 from spider.aicard_service import ensure_aicard_snapshot
 from spider.update_posts import ensure_topic_posts, load_archive, save_archive
 from spider.hot_topics_ws import HotTopicsRepository, HotTopicsSnapshot
@@ -225,7 +226,7 @@ OPENAPI_SPEC: Dict[str, Any] = {
         "/api/hot_topics/aicard": {
             "get": {
                 "summary": "获取 AI Card 快照",
-                "description": "返回指定话题的 AI Card HTML 与相关元数据，必要时会补全本地快照。",
+                "description": "返回指定话题的 AI Card Markdown/HTML 以及相关元数据，必要时会补全本地快照。",
                 "parameters": [
                     {
                         "name": "date",
@@ -258,7 +259,7 @@ OPENAPI_SPEC: Dict[str, Any] = {
                 ],
                 "responses": {
                     "200": {
-                        "description": "AI Card HTML 及资源信息",
+                        "description": "AI Card Markdown 与资源信息",
                         "content": {"application/json": {"schema": {"$ref": "#/components/schemas/AiCardResponse"}}},
                     },
                     "400": {
@@ -420,6 +421,8 @@ OPENAPI_SPEC: Dict[str, Any] = {
                     "hour": {"type": "integer"},
                     "slug": {"type": "string"},
                     "title": {"type": "string"},
+                    "markdown": {"type": "string", "description": "Markdown 内容"},
+                    "markdown_path": {"type": "string", "description": "Markdown 文件路径"},
                     "html": {"type": "string"},
                     "html_path": {"type": "string"},
                     "links": {"type": "array", "items": {"type": "string"}},
@@ -938,7 +941,20 @@ def topic_aicard() -> Any:
     aicard_snapshot = hours_map.get(hour_key) or aicard_info.get("latest")
 
     if not aicard_snapshot:
-        aicard_snapshot = ensure_aicard_snapshot(title, date, hour, slug=slug)
+        try:
+            aicard_snapshot = ensure_aicard_snapshot(title, date, hour, slug=slug)
+        except AICardCooldownError as exc:
+            return jsonify({
+                "error": "ai_card_cooldown",
+                "message": str(exc),
+                "retry_after": exc.retry_after,
+                "level": exc.level,
+            }), 429
+        except AICardRateLimitError as exc:
+            return jsonify({
+                "error": "ai_card_rate_limited",
+                "message": str(exc),
+            }), 429
         if aicard_snapshot:
             hours_map[hour_key] = aicard_snapshot
             aicard_info["hours"] = hours_map
@@ -950,16 +966,30 @@ def topic_aicard() -> Any:
     if not aicard_snapshot:
         return jsonify({"error": "AI card not available"}), 404
 
-    html_rel = aicard_snapshot.get("html")
-    html_abs = from_data_relative(html_rel) if html_rel else None
-    html_content = _read_text_file(html_abs) if html_abs else None
+    markdown_rel = aicard_snapshot.get("markdown_path") or aicard_info.get("markdown")
+    markdown_abs = from_data_relative(markdown_rel) if markdown_rel else None
+    markdown_content = _read_text_file(markdown_abs) if markdown_abs else None
+
+    raw_html_value = aicard_snapshot.get("html") or aicard_info.get("html")
+    html_path: Optional[str] = None
+    html_content: Optional[str] = None
+    if isinstance(raw_html_value, str) and raw_html_value.strip():
+        stripped = raw_html_value.lstrip()
+        if stripped.startswith("<"):
+            html_content = raw_html_value
+        else:
+            html_path = raw_html_value
+            html_abs = from_data_relative(html_path)
+            html_content = _read_text_file(html_abs)
 
     response: Dict[str, Any] = {
         "date": date,
         "hour": hour,
         "slug": aicard_snapshot.get("slug") or slug,
         "title": title,
-        "html_path": html_rel,
+        "markdown_path": markdown_rel,
+        "markdown": markdown_content,
+        "html_path": html_path,
         "html": html_content,
         "meta": aicard_snapshot.get("meta"),
         "links": aicard_snapshot.get("links"),
