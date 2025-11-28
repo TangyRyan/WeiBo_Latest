@@ -1,0 +1,10 @@
+{
+    "updated_at": "2025-11-14T12:56:52.926148+08:00",
+    "summary": {
+        "total_events": 0,
+        "by_major": {}
+    },
+    "events": [],
+    "date": "2025-11-05"
+}
+

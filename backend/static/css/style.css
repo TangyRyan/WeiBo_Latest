@@ -350,3 +350,238 @@ button.active {
 #health-details .detail-col {
   overflow:auto;
 }
+
+/* === HEALTH TIMELINE 布局增强（覆盖上方基础样式） === */
+#health-timeline {
+  --health-axis-height: 40px;
+  --health-axis-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 12px 8px;
+  min-height: 400px;
+  border-radius: 10px;
+  border: 1px solid #e6e9ef;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.health-timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  padding: 0 4px;
+}
+
+#health-timeline-scroller {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 0 0;
+  min-height: 425px;
+}
+
+#health-timeline-list {
+  flex: 1 1 auto;
+  position: relative;
+  display: block;
+  padding: 8px 0 calc(var(--health-axis-height) + var(--health-axis-gap));
+  margin: 0;
+  width: 100%;
+  min-height: 350px;
+  box-sizing: border-box;
+  z-index: 1;
+  overflow: visible;
+}
+
+.timeline-day-column {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--health-axis-height) + var(--health-axis-gap));
+  transform: translateX(-50%);
+  width: 300px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  background: #f2f2ff;
+  border-radius: 16px;
+  padding: 10px 16px;
+  box-shadow: inset 0 0 0 1px rgba(74, 85, 104, 0.08);
+  overflow: visible;
+  z-index: 3;
+  --connector-height: 0px;
+}
+
+.timeline-day-column::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(-1 * var(--connector-height, 0px));
+  width: 2px;
+  height: var(--connector-height, 0px);
+  background: linear-gradient(180deg, rgba(63, 91, 255, 0.5), rgba(15, 23, 42, 0.25));
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.timeline-day-events {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.timeline-list-item {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: #f6f7fb;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.timeline-list-item.is-selected {
+  border-color: #3f5bff;
+  background: #eef1ff;
+}
+
+.timeline-list-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid transparent;
+}
+
+.timeline-list-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.timeline-list-title {
+  font-weight: 600;
+  color: #111;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.health-timeline-chart-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--health-axis-height);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#health-timeline-chart {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 32px;
+  padding: 0;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+#health-timeline-chart .health-date-axis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.health-date-tick {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.health-date-line {
+  width: 2px;
+  height: 12px;
+  margin: 0 auto;
+  background: #0f172a;
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+.health-date-label {
+  font-size: 12px;
+  color: #0f172a;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+#health-timeline-chart svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#health-timeline-chart .milestones__category_label {
+  display: none;
+}
+
+#health-timeline-chart .milestones__horizontal_line {
+  background-color: #000410;
+  height: 3px;
+  margin: 0;
+  bottom: 0;
+}
+
+#health-timeline-chart .milestones__vertical_line {
+  bottom: 0;
+}
+
+#health-timeline-chart .milestones__group {
+  font-size: 0;
+}
+
+#health-timeline-chart .milestones__group__bullet {
+  position: relative;
+  z-index: 4;
+  opacity: 1;
+  box-shadow: 0 0 0 4px rgba(63, 91, 255, 0.14);
+  transition: box-shadow 0.2s ease, border-width 0.2s ease;
+}
+
+#health-timeline-chart .milestones__group__label {
+  display: block !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+#health-timeline-chart .milestones__group__label-vertical text {
+  font-weight: 700;
+  font-size: 14px;
+  fill: #333;
+}

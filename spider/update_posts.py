@@ -119,10 +119,17 @@ def update_topic(title: str, record: Dict, date_str: str) -> Dict:
     write_json(post_path, result)
 
     record["last_post_refresh"] = date_str
-    record["post_output"] = to_data_relative(post_path)
+    snapshot_rel = to_data_relative(post_path)
+    record["post_output"] = snapshot_rel
     record["known_ids"] = [item["id"] for item in result.get("items", []) if item.get("id")]
-    record["latest_posts"] = result
     has_posts = bool(result.get("items"))
+    record["latest_posts"] = {
+        "snapshot": snapshot_rel,
+        "total": result.get("total", 0),
+        "top_n": result.get("top_n", TOP_N),
+        "fetched_at": result.get("fetched_at"),
+        "has_posts": has_posts,
+    }
     record["needs_refresh"] = not has_posts
     record["last_post_total"] = result.get("total", 0)
     return record

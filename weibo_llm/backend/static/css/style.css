@@ -339,6 +339,44 @@ button.active {
   background: #ffffff;
   border: 1px solid #e6e9ef;
   border-radius: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#health-timeline-chart {
+  min-height: 100%;
+  min-width: 960px;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+#health-timeline-chart .milestones__horizontal_line {
+  background-color: #dfe6ff;
+  height: 3px;
+}
+
+#health-timeline-chart .milestones__group {
+  font-size: 0;
+}
+
+#health-timeline-chart .milestones__group__bullet {
+  transition: box-shadow 0.2s ease, border-width 0.2s ease;
+}
+
+#health-timeline-chart .milestones__group__label-horizontal,
+#health-timeline-chart .milestones__group__label-vertical {
+  display: none !important;
+}
+
+.health-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 13px;
+  text-align: center;
 }
 
 /* 下半详情区 */

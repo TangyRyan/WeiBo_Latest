@@ -17,12 +17,26 @@ from backend.config import (
     LLM_ANALYSIS_WORKERS,
     LLM_ENABLED,
     MONITOR_ENABLED,
+    HEALTH_TOPIC_ENABLED,
+    HEALTH_TOPIC_INTERVAL_MINUTES,
+    HEALTH_TOPIC_WINDOW_HOURS,
 )
 from backend.llm.analysis import call_openai
-from backend.risk_model import calc_crowd, calc_growth, calc_negativity, calc_sensitivity, aggregate_score
+from backend.health import refresh_health_snapshot
+from backend.risk_model import (
+    calc_crowd,
+    calc_growth,
+    calc_negativity,
+    calc_sensitivity,
+    aggregate_score,
+    risk_level_from_score,
+    risk_level_label,
+    risk_tier_segments,
+)
 from backend.storage import (
     load_daily_archive,
     load_post_snapshot,
+    from_data_relative,
     save_daily_archive,
     save_hour_hotlist,
     save_risk_warnings,
@@ -99,6 +113,17 @@ def _update_risk_snapshots(date_str: str, *, push: bool) -> Dict[str, Any]:
     return warnings
 
 
+def _health_topic_job() -> None:
+    try:
+        refresh_health_snapshot(hours=HEALTH_TOPIC_WINDOW_HOURS)
+        logger.info(
+            "Health topic snapshot refreshed (window=%sh)",
+            HEALTH_TOPIC_WINDOW_HOURS,
+        )
+    except Exception:
+        logger.exception("Health topic job failed")
+
+
 def _coerce_media(item: Dict[str, Any]) -> List[str]:
     media: List[str] = []
     pics = item.get("pics") or item.get("image_links") or []
@@ -144,11 +169,33 @@ def _normalize_posts(payload: Optional[Dict[str, Any]], fallback_slug: str) -> L
     return normalized
 
 
+def _read_post_payload_from_path(raw_path: str) -> Optional[Dict[str, Any]]:
+    try:
+        path = from_data_relative(raw_path)
+    except Exception:
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
 def _load_posts_for_event(date_str: str, event: Dict[str, Any]) -> List[Dict[str, Any]]:
-    latest = event.get("latest_posts")
     slug = event.get("slug") or slugify_title(event.get("name") or "")
-    payload = latest
-    if not payload and slug:
+    payload = None
+    latest = event.get("latest_posts")
+    if isinstance(latest, dict):
+        if latest.get("items"):
+            payload = latest
+        else:
+            snapshot = latest.get("snapshot") or latest.get("post_output")
+            if snapshot:
+                payload = _read_post_payload_from_path(snapshot)
+    if payload is None:
+        post_path = event.get("post_output")
+        if post_path:
+            payload = _read_post_payload_from_path(post_path)
+    if payload is None and slug:
         payload = load_post_snapshot(date_str, slug)
     return _normalize_posts(payload, slug or "event")
 
@@ -251,12 +298,19 @@ def _persist_llm_success(
 
     def _apply(event: Dict[str, Any]) -> None:
         event["posts"] = posts
-        event["llm"] = {
+        llm_payload = {
             "sentiment": llm_res.sentiment,
             "region": llm_res.region,
             "topic_type": llm_res.topic_type,
             "source": llm_res.source,
         }
+        if llm_res.health_major:
+            llm_payload["health_major"] = llm_res.health_major
+        if llm_res.health_minor:
+            llm_payload["health_minor"] = llm_res.health_minor
+        if llm_res.sentiment_vector:
+            llm_payload["sentiment_vector"] = dict(llm_res.sentiment_vector)
+        event["llm"] = llm_payload
         hot_values = event.get("hot_values") or {}
         current_hot = None
         prev_hot = None
@@ -276,7 +330,14 @@ def _persist_llm_success(
             "crowd": crowd,
         }
         event["risk_score"] = aggregate_score(event["risk_dims"])
+        tiers = risk_tier_segments(event["risk_score"])
+        event["risk_low"] = tiers["low"]
+        event["risk_mid"] = tiers["mid"]
+        event["risk_high"] = tiers["high"]
+        event["risk_level"] = risk_level_from_score(event["risk_score"])
+        event["risk_level_label"] = risk_level_label(event["risk_level"])
         event["last_content_update_date"] = today
+        event["posts"] = posts[:20]  # 限制写回归档的贴文数量，避免文件过大
         event["llm_status"] = {
             "state": "succeeded",
             "updated_at": timestamp,
@@ -458,6 +519,11 @@ def top_risk_warnings(window_days: int = 7, top_k: int = 5) -> Dict[str, Any]:
                 "name": name,
                 "date": seen_at,
                 "risk_score": score,
+                "risk_low": event.get("risk_low", 0.0),
+                "risk_mid": event.get("risk_mid", 0.0),
+                "risk_high": event.get("risk_high", 0.0),
+                "risk_level": event.get("risk_level") or risk_level_from_score(score),
+                "risk_level_label": event.get("risk_level_label") or risk_level_label(event.get("risk_level") or risk_level_from_score(score)),
                 "llm": event.get("llm", {}),
                 "risk_dims": event.get("risk_dims", {}),
                 "sort_key": score - recency * 5.0,
@@ -490,13 +556,25 @@ def start_scheduler() -> BackgroundScheduler:
         )
     else:
         logger.info("Daily LLM job disabled via WEIBO_LLM_ENABLED")
+    if HEALTH_TOPIC_ENABLED:
+        scheduler.add_job(
+            _health_topic_job,
+            "interval",
+            minutes=HEALTH_TOPIC_INTERVAL_MINUTES,
+            id="health_topic",
+        )
+        _health_topic_job()
+    else:
+        logger.info("Health topic job disabled via HEALTH_TOPIC_ENABLED")
     scheduler.start()
     _SCHEDULER = scheduler
     logger.info(
-        "Scheduler started (monitor_enabled=%s llm_enabled=%s interval=%sm scheduled_llm=%s)",
+        "Scheduler started (monitor_enabled=%s llm_enabled=%s health_enabled=%s interval=%sm scheduled_llm=%s health_interval=%sm)",
         MONITOR_ENABLED,
         LLM_ENABLED,
+        HEALTH_TOPIC_ENABLED,
         HOUR_CHECK_INTERVAL_MINUTES,
         DAILY_LLM_TIME,
+        HEALTH_TOPIC_INTERVAL_MINUTES,
     )
     return scheduler

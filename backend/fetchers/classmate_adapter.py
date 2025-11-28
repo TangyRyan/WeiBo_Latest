@@ -3,12 +3,13 @@
 
 from __future__ import annotations
 
+import json
 from datetime import datetime, timedelta
 from typing import Any, Dict, List, Optional
 
 import requests
 
-from backend.storage import load_daily_archive, load_hour_hotlist, save_daily_archive
+from backend.storage import from_data_relative, load_daily_archive, load_hour_hotlist, save_daily_archive
 from spider.crawler_core import CHINA_TZ
 from spider.update_posts import ensure_topic_posts
 
@@ -97,6 +98,17 @@ def _normalize_posts(payload: Dict[str, Any], event_name: str, limit: int) -> Li
     return posts
 
 
+def _read_post_payload_from_path(raw_path: str) -> Optional[Dict[str, Any]]:
+    try:
+        path = from_data_relative(raw_path)
+    except Exception:
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
 def _load_local_posts(event_name: str, limit: int) -> List[Dict[str, Any]]:
     today = datetime.now(tz=CHINA_TZ).date()
     for offset in range(0, 3):
@@ -111,8 +123,20 @@ def _load_local_posts(event_name: str, limit: int) -> List[Dict[str, Any]]:
             archive[event_name] = updated
             save_daily_archive(date_str, archive)
             payload = updated.get("latest_posts")
-        if payload:
+        if isinstance(payload, dict):
             posts = _normalize_posts(payload, event_name, limit)
+            if posts:
+                return posts
+            snapshot = payload.get("snapshot") or payload.get("post_output")
+            if snapshot:
+                snap_payload = _read_post_payload_from_path(snapshot)
+                posts = _normalize_posts(snap_payload or {}, event_name, limit)
+                if posts:
+                    return posts
+        post_path = record.get("post_output")
+        if post_path:
+            snap_payload = _read_post_payload_from_path(post_path)
+            posts = _normalize_posts(snap_payload or {}, event_name, limit)
             if posts:
                 return posts
     return []
