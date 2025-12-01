@@ -41,6 +41,24 @@
   let lastAttr = null;
   let lastColor = null;
 
+  // 兼容多种日期格式的解析器（含兜底）
+  const dateParsers = [
+    d3.timeParse("%Y-%m-%d"),
+    d3.timeParse("%Y/%m/%d"),
+    d3.timeParse("%Y-%m-%d %H:%M:%S"),
+    d3.timeParse("%Y/%m/%d %H:%M:%S"),
+    d3.timeParse("%Y-%m-%dT%H:%M:%S"),
+  ];
+  function parseDateSafe(value) {
+    if (!value) return null;
+    for (const parser of dateParsers) {
+      const d = parser(value);
+      if (d && !isNaN(d.getTime())) return d;
+    }
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+
   // 动画时长（可调）
   const transitionDuration = 750;
 
@@ -84,8 +102,7 @@
       const rv = (row["风险值"] != null ? +row["风险值"] : 0);
       return colorCont(rv);
     } else if (colorby === "时间"){
-      const parse = d3.timeParse("%Y-%m-%d");
-      const d = parse(row.date);
+      const d = parseDateSafe(row.date);
       if (!d || isNaN(d.getTime())) return colorCont(0);
       const today = new Date();
       const start = d3.timeMonth.offset(today, -6);
@@ -566,7 +583,6 @@
     //坐标轴位置（y轴方向）
     const axisBaseline = Math.max(padding.top, currentHeight - 100); 
 
-    const parse = d3.timeParse("%Y-%m-%d");
     const heatExtent = d3.extent(data, d => Number(d["热度"]) || 0);
     const resolvedHeatExtent = heatExtent.every(v => Number.isFinite(v)) ? heatExtent : [0, 1];
     const radiusScale = d3.scaleSqrt().domain(resolvedHeatExtent).range([6, 13]).clamp(true);
@@ -617,7 +633,7 @@
       } else if (timeRange === 'three-months') {
         startDate = d3.timeMonth.offset(today, -3);
       } else {
-        const dates = data.map(d => parse(d.date)).filter(d => d && !isNaN(d.getTime()));
+        const dates = data.map(d => parseDateSafe(d.date)).filter(d => d && !isNaN(d.getTime()));
         startDate = dates.length ? d3.min(dates) : d3.timeMonth.offset(today, -3);
       }
       domain = [startDate, today];
@@ -629,7 +645,7 @@
     if (attribute === "时间"){
       xTime.domain(domain);
       x.domain(xTime.domain());
-      data.forEach(d => d.__x = xTime(parse(d.date)));
+      data.forEach(d => d.__x = xTime(parseDateSafe(d.date)));
     } else {
       x.domain(domain);
       data.forEach(d => d.__x = x(d[attribute]));
@@ -685,7 +701,7 @@
       } else if (timeRange === 'three-months') {
         startDate = d3.timeMonth.offset(today, -3);
       } else {
-        const dates = data.map(d => parse(d.date)).filter(d => d && !isNaN(d.getTime()));
+        const dates = data.map(d => parseDateSafe(d.date)).filter(d => d && !isNaN(d.getTime()));
         startDate = dates.length ? d3.min(dates) : d3.timeMonth.offset(today, -3);
       }
       const axisOffset = padding.left + 50;
@@ -767,7 +783,7 @@
         d.__levelKey = level.key;
         d.__levelLabel = level.label;
         d.__bandY = bandPositions[level.key];
-        const date = parse(d.date);
+        const date = parseDateSafe(d.date);
         const safeDate = date && !isNaN(date.getTime()) ? date : startDate;
         d.__x = xTime(safeDate);
       });
@@ -1024,9 +1040,6 @@
     const attr = document.getElementById("central-attribute").value;
     const colorby = document.getElementById("central-colorby").value;
 
-    //日期解析：用于字符串→Date 对象的转换
-    const parse = d3.timeParse("%Y-%m-%d");
-
     let processedData = data;
     const activeBtn = d3.select(".time-filter button.active").node();
     const timeRange = activeBtn ? activeBtn.dataset.range : 'all';
@@ -1044,7 +1057,7 @@
       }
 
       processedData = data.filter(d => {
-        const date = parse(d.date);
+        const date = parseDateSafe(d.date);
         return date && date >= startDate && date <= today;
       });
     }

@@ -18,7 +18,7 @@ if str(ROOT_DIR) not in sys.path:
 if str(CURRENT_DIR) not in sys.path:
     sys.path.insert(0, str(CURRENT_DIR))
 
-from spider.config import get_env_int, get_env_str
+from spider.config import get_env_bool, get_env_int, get_env_str
 from spider.fetch_hot_topics import (
     CHINA_TZ,
     ensure_dirs,
@@ -53,6 +53,8 @@ def _resolve_path(value: Optional[str], default: Path) -> Path:
 POLL_INTERVAL_SECONDS = get_env_int("WEIBO_MONITOR_POLL_INTERVAL", 600) or 600
 RECENT_RETRY_SECONDS = get_env_int("WEIBO_MONITOR_RECENT_RETRY", 60) or 60
 MAX_LOOKBACK_DAYS = get_env_int("WEIBO_MONITOR_MAX_LOOKBACK_DAYS", 1) or 1
+# Guard to force remote-only mode: when true, skip all local crawler fallbacks.
+REMOTE_ONLY = get_env_bool("WEIBO_MONITOR_REMOTE_ONLY", False)
 HOURLY_ARCHIVE_DIR = _resolve_path(
     get_env_str("WEIBO_MONITOR_HOURLY_DIR"),
     HOURLY_DIR,
@@ -211,6 +213,14 @@ def fetch_topics_with_fallback(date_str: str, hour: int) -> Tuple[List[dict], bo
                 date_str,
                 hour,
             )
+        if REMOTE_ONLY:
+            logging.warning(
+                "Remote-only mode: skip local fallback for %s %02d (status=%s)",
+                date_str,
+                hour,
+                status_code,
+            )
+            return [], False
         return _maybe_fetch_local(date_str, hour, "remote fetch error")
     except (requests.RequestException, ValueError) as exc:
         logging.error(
@@ -219,12 +229,26 @@ def fetch_topics_with_fallback(date_str: str, hour: int) -> Tuple[List[dict], bo
             hour,
             exc,
         )
+        if REMOTE_ONLY:
+            logging.warning(
+                "Remote-only mode: skip local fallback for %s %02d after failure",
+                date_str,
+                hour,
+            )
+            return [], False
         return _maybe_fetch_local(date_str, hour, "remote failure")
 
     if topics:
         return topics, False
 
     logging.warning("Remote returned empty list for %s %02d, attempting local fallback", date_str, hour)
+    if REMOTE_ONLY:
+        logging.warning(
+            "Remote-only mode: skip local fallback for %s %02d because payload empty",
+            date_str,
+            hour,
+        )
+        return [], False
     return _maybe_fetch_local(date_str, hour, "remote empty payload")
 
 
@@ -263,6 +287,14 @@ def should_trigger_local(date_str: str, hour: int) -> bool:
 
 
 def _maybe_fetch_local(date_str: str, hour: int, reason: str) -> Tuple[List[dict], bool]:
+    if REMOTE_ONLY:
+        logging.info(
+            "Remote-only mode: local crawler disabled for %s %02d (%s)",
+            date_str,
+            hour,
+            reason,
+        )
+        return [], False
     if not should_trigger_local(date_str, hour):
         logging.info(
             "Local fallback for %s %02d postponed: only %s minutes since top of hour",
