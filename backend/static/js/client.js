@@ -138,6 +138,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
   loadDaily30();
   connectHotlistWS(); 
   connectRiskWS(); 
-  loadCentral("week");
+  // 预取较大时间窗的数据，前端本地过滤避免频繁请求慢接口
+  loadCentral("halfyear");
   // document.getElementById('central-range').addEventListener('change', e => loadCentral(e.target.value));
 });

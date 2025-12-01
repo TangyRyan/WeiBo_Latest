@@ -24,6 +24,7 @@ from backend.storage import (
     save_daily_totals,
     save_risk_archive,
     save_risk_warnings,
+    write_json,
 )
 from spider.hot_topics_api import bp as hot_topics_bp
 from spider.crawler_core import slugify_title
@@ -42,6 +43,9 @@ _risk_clients = set()
 _hotlist_stream: HotTopicsHotlistStream | None = None
 _daily_totals_cache: Dict[str, Any] | None = None
 DAILY_TOTAL_DAYS = 30
+CENTRAL_CACHE_PATH = ARCHIVE_DIR / "central_data_cache.json"
+CENTRAL_CACHE_MAX_DAYS = 182
+_central_cache: Dict[str, Any] | None = None
 
 
 def _latest_risk_payload(limit: int | None = 5) -> Dict[str, Any]:
@@ -224,6 +228,102 @@ def _resolve_daily_totals_window(days: int = DAILY_TOTAL_DAYS) -> List[Dict[str,
     return ordered
 
 
+def _parse_date(raw: Any):
+    """Best-effort parse of YYYY-MM-DD to date object."""
+    if not raw:
+        return None
+    try:
+        return datetime.strptime(str(raw)[:10], "%Y-%m-%d").date()
+    except Exception:
+        return None
+
+
+def _load_central_cache_disk() -> Dict[str, Any] | None:
+    return read_json(CENTRAL_CACHE_PATH, default=None)
+
+
+def _persist_central_cache(payload: Dict[str, Any]) -> None:
+    global _central_cache
+    _central_cache = payload
+    try:
+        write_json(CENTRAL_CACHE_PATH, payload)
+    except Exception:
+        logger.exception("Persist central cache failed")
+
+
+def _build_central_cache(days: int = CENTRAL_CACHE_MAX_DAYS) -> Dict[str, Any]:
+    """Build a lightweight cache for central_data to avoid频繁全量解析."""
+    end = datetime.now().date()
+    out: List[Dict[str, Any]] = []
+    seen: set[str] = set()
+    for i in range(days):
+        d = (end - timedelta(days=i)).strftime("%Y-%m-%d")
+        arc = load_daily_archive(d)
+        if not isinstance(arc, dict) or not arc:
+            continue
+        for name, ev in arc.items():
+            if name in seen:
+                continue
+            llm = ev.get("llm")
+            if not llm:
+                continue
+            seen.add(name)
+            try:
+                risk_value = float(ev.get("risk_score", 0.0) or 0.0)
+            except (TypeError, ValueError):
+                risk_value = 0.0
+            tiers = risk_tier_segments(risk_value)
+            slug = ev.get("slug") or slugify_title(name) or f"evt-{abs(hash(name)) % 10000}"
+            event_date = (ev.get("last_seen_at") or f"{d}T00:00:00")[:10]
+            out.append({
+                "event_id": f"{d}-{slug}",
+                "name": name,
+                "date": event_date,
+                "领域": llm.get("topic_type") or "其他",
+                "地区": llm.get("region") or "国外",
+                "情绪": float(llm.get("sentiment", 0.0) or 0.0),
+                "风险": risk_value,
+                "风险值": risk_value,
+                "risk_low": tiers["low"],
+                "risk_mid": tiers["mid"],
+                "risk_high": tiers["high"],
+                "risk_level": risk_level_from_score(risk_value),
+                "risk_level_label": risk_level_label(risk_level_from_score(risk_value)),
+                "热度": _extract_event_heat(ev),
+            })
+    payload = {
+        "generated_until": end.strftime("%Y-%m-%d"),
+        "max_days": days,
+        "data": out,
+    }
+    _persist_central_cache(payload)
+    return payload
+
+
+def _resolve_central_data(days: int, force: bool = False) -> List[Dict[str, Any]]:
+    """Return deduped event list for the requested window, backed by on-disk cache."""
+    if days <= 0:
+        return []
+    today = datetime.now().date()
+    payload: Dict[str, Any] | None = None if force else (_central_cache or _load_central_cache_disk())
+    if payload:
+        until = payload.get("generated_until")
+        max_days = int(payload.get("max_days") or 0)
+        data_ok = isinstance(payload.get("data"), list)
+        if until != today.strftime("%Y-%m-%d") or max_days < days or not data_ok:
+            payload = None
+    if payload is None:
+        payload = _build_central_cache(max(days, CENTRAL_CACHE_MAX_DAYS))
+    data = payload.get("data") or []
+    start_date = today - timedelta(days=days - 1)
+    filtered = []
+    for row in data:
+        row_date = _parse_date(row.get("date"))
+        if row_date and start_date <= row_date <= today:
+            filtered.append(row)
+    return filtered
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -294,44 +394,10 @@ def risk_event():
 @app.route("/api/central_data")
 def central_data():
     range_opt = request.args.get("range", "week")
-    days = {"week": 7, "month": 30, "halfyear": 182}.get(range_opt, 7)
-    _ = request.args.get("color", "领域")
-    end = datetime.now().date()
-    out = []
-    seen = set()
-    for i in range(days):
-        d = (end - timedelta(days=i)).strftime("%Y-%m-%d")
-        arc = load_daily_archive(d)
-        for name, ev in arc.items():
-            if name in seen:
-                continue
-            llm = ev.get("llm")
-            if not llm:
-                continue
-            seen.add(name)
-            risk_value = float(ev.get("risk_score", 0.0))
-            tiers = risk_tier_segments(risk_value)
-            slug = ev.get("slug") or slugify_title(name) or f"evt-{abs(hash(name)) % 10000}"
-            # 使用 'd' (当前循环的日期字符串) 来构建 ID
-            event_id = f"{d}-{slug}"
-            out.append({
-                "event_id": event_id,
-                "name": name,
-                "date": ev.get("last_seen_at", f"{d}T00:00:00")[:10],
-                "领域": llm.get("topic_type") or "其他",
-                "地区": llm.get("region") or "国外",
-                "情绪": float(llm.get("sentiment", 0.0)),
-                "风险": risk_value,
-                "风险值": risk_value,
-                "risk_low": tiers["low"],
-                "risk_mid": tiers["mid"],
-                "risk_high": tiers["high"],
-                "risk_level": risk_level_from_score(risk_value),
-                "risk_level_label": risk_level_label(risk_level_from_score(risk_value)),
-                "热度": _extract_event_heat(ev),
-                
-            })
-    return jsonify({"data": out})
+    days = {"week": 7, "month": 30, "three-months": 90, "halfyear": 182}.get(range_opt, 7)
+    force_refresh = str(request.args.get("refresh", "")).lower() in {"1", "true", "yes"}
+    data = _resolve_central_data(days, force=force_refresh)
+    return jsonify({"data": data})
 
 
 @app.route("/api/admin/run_daily_llm", methods=["POST", "GET"])
