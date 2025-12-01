@@ -552,11 +552,11 @@ button.active {
   background-color: #000410;
   height: 3px;
   margin: 0;
-  bottom: 0;
+  bottom: 12px;
 }
 
 #health-timeline-chart .milestones__vertical_line {
-  bottom: 0;
+  bottom: 12px;
 }
 
 #health-timeline-chart .milestones__group {

@@ -40,6 +40,9 @@
     .style("visibility","hidden");
   let lastAttr = null;
   let lastColor = null;
+  let lastSidebarGroup = null;
+  let lastSidebarAttr = null;
+  let lastSidebarEvent = null;
 
   // 兼容多种日期格式的解析器（含兜底）
   const dateParsers = [
@@ -135,7 +138,8 @@
 
 
   // 隐藏侧边栏
-  function hideSidebar() {
+  function hideSidebar(opts = {}) {
+    const preserveSelection = !!(opts && opts.preserveSelection);
     try {
       //在函数内部实时查找元素
       const sidebar = d3.select("#event-sidebar");
@@ -155,6 +159,11 @@
         if(detailsSummary.node()) detailsSummary.text("点击右侧列表中的事件以查看详情。");
         if(detailsPosts.node()) detailsPosts.text("(热门贴文内容)");
       }, 300); 
+      if (!preserveSelection) {
+        lastSidebarGroup = null;
+        lastSidebarAttr = null;
+        lastSidebarEvent = null;
+      }
     } catch (err) {
        console.error("Error hiding sidebar:", err);
     }
@@ -176,6 +185,10 @@
       console.error("FATAL ERROR: Can't find #event-sidebar. Did you move it inside #central-vis in your HTML?");
       return;
     }
+
+    lastSidebarAttr = document.getElementById("central-attribute").value;
+    lastSidebarGroup = (nodeData && nodeData.data && nodeData.data.name) ? nodeData.data.name : null;
+    lastSidebarEvent = null;
 
     // 【修复】JS只负责添加 'open' 类，CSS 负责所有样式和动画
     sidebar.classed("open", true); 
@@ -201,6 +214,7 @@
       sortedChildren.forEach(childNode => {
         const event = childNode.data.data || childNode.data;
         const li = eventList.append("li")
+          .datum(event)
           .text(`${event.name} (风险: ${event["风险值"] || 'N/A'})`)
           .attr("title", `点击查看 ${event.name} 详情`)
           .style("padding", "8px 12px")
@@ -210,6 +224,7 @@
           .on("click", () => {
             eventList.selectAll("li").style("background", "none").style("color", "#a8b3cf");
             li.style("background", "#162034").style("color", "#e8e8e8");
+            lastSidebarEvent = event.name;
             showEventDetails(event);
           });
       });
@@ -231,6 +246,8 @@
       const detailsPosts = d3.select("#details-posts");
 
       if (!eventDetails.node()) return; // 安全退出
+
+      lastSidebarEvent = (event && event.name) ? event.name : lastSidebarEvent;
 
       // CSS 负责所有定位和样式，JS 只负责设为可见
       eventDetails.style("visibility", "visible");
@@ -318,14 +335,8 @@
     .style("opacity", 0)
     .attr("r", 0)
     .remove();
-
-  // 清理上一次 renderBubbles 留下的所有 g 容器
-  rootGroup.selectAll("g.pack-parent, g.pack-leaf-g")
-    .interrupt() 
-    .transition().duration(transitionDuration / 2) 
-    .attr("transform", `translate(${currentWidth/2},${currentHeight/2})scale(0)`)
-    .style("opacity", 0)
-    .remove();
+  // 清理旧动画，保留元素供数据绑定复用，避免切换时跳闪
+  rootGroup.selectAll("g.pack-parent, g.pack-leaf-g").interrupt();
 
   // 隐藏 tooltip
   tooltip.style("visibility","hidden").html("");
@@ -525,12 +536,13 @@
   });
 
   rootGroup.selectAll("g.pack-parent").raise();
+  return packRoot;
 }
 
 
   // ---------------- renderBeeswarm ----------------
   function renderBeeswarm(data, attribute, colorby){
-    hideSidebar();
+    hideSidebar({ preserveSelection: true });
 
     // === 关键清理：平滑移除 pack (气泡图) 相关元素，避免残留 ===
     // 1) 淡出并移除 pack 内的 leaf / parent circle
@@ -1040,6 +1052,11 @@
     const attr = document.getElementById("central-attribute").value;
     const colorby = document.getElementById("central-colorby").value;
 
+    const sidebarWasOpen = d3.select("#event-sidebar").classed("open");
+    const prevSidebarGroup = lastSidebarGroup;
+    const prevSidebarAttr = lastSidebarAttr;
+    const prevSidebarEvent = lastSidebarEvent;
+
     let processedData = data;
     const activeBtn = d3.select(".time-filter button.active").node();
     const timeRange = activeBtn ? activeBtn.dataset.range : 'all';
@@ -1081,13 +1098,32 @@
       tooltip.style("visibility","hidden").html("");
     }
 
+    let packRoot = null;
     if (discreteFields.includes(attr)) {
-      renderBubbles(processedData, attr, colorby);
+      packRoot = renderBubbles(processedData, attr, colorby);
     } else {
       renderBeeswarm(processedData, attr, colorby);
     }
     lastAttr = attr;
     lastColor = colorby;
+
+    if (packRoot && sidebarWasOpen && prevSidebarGroup && prevSidebarAttr === attr) {
+      const targetNode = packRoot.descendants().find(d => d.depth === 1 && d.data && d.data.name === prevSidebarGroup);
+      if (targetNode) {
+        populateAndShowSidebar(targetNode);
+        if (prevSidebarEvent) {
+          const listSel = d3.select("#event-list");
+          const items = listSel.selectAll("li");
+          const match = items.filter(d => d && d.name === prevSidebarEvent);
+          if (!match.empty()) {
+            items.style("background", "none").style("color", "#a8b3cf");
+            match.style("background", "#162034").style("color", "#e8e8e8");
+            match.each(d => { if (d) showEventDetails(d); });
+            lastSidebarEvent = prevSidebarEvent;
+          }
+        }
+      }
+    }
   }
 
   // 事件绑定
