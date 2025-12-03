@@ -50,6 +50,13 @@
   // 根组
   const rootGroup = svg.append("g");
   const nodePositionCache = new Map();
+  // xpack 布局（用于蜂群图）
+  const xpackLayout = (typeof window !== "undefined" && typeof window.xpack === "function") ? window.xpack() : null;
+  if (xpackLayout) {
+    xpackLayout.xpos(d => d.x);
+    xpackLayout.radius(d => d.radius);
+    xpackLayout.score(d => (d.radius || 1));
+  }
 
   // 颜色获取函数
  function getColor(input, colorby){
@@ -510,10 +517,49 @@
   rootGroup.selectAll("g.pack-parent").raise();
 }
 
+  // 使用 xpack 计算蜂群坐标的便捷函数
+  function runXpack(nodes, baseY = 0){
+    if (!xpackLayout || !Array.isArray(nodes) || !nodes.length) return null;
+    const packed = xpackLayout(nodes);
+    if (!packed || !packed.nodes) return null;
+    packed.nodes.forEach(n => {
+      n.x = n.px;
+      n.y = baseY + (n.py || 0);
+    });
+    return packed.nodes;
+  }
+
 
   // ---------------- renderBeeswarm ----------------
   function renderBeeswarm(data, attribute, colorby){
     hideSidebar();
+    const shiftIntoRange = (arr, minX, maxX) => {
+      if (!arr || !arr.length) return;
+      const xMin = d3.min(arr, n => n.x);
+      const xMax = d3.max(arr, n => n.x);
+      let delta = 0;
+      if (xMin < minX) {
+        delta = minX - xMin;
+      } else if (xMax > maxX) {
+        delta = maxX - xMax;
+      }
+      if (delta !== 0) {
+        arr.forEach(n => { n.x += delta; });
+      }
+    };
+    const relaxNodes = (arr, opts = {}) => {
+      const padding = opts.padding ?? 2;
+      const iterations = opts.iterations ?? 220;
+      const yStrength = opts.yStrength ?? 0.5;
+      if (!arr || !arr.length) return arr;
+      const sim = d3.forceSimulation(arr)
+        .force("x", d3.forceX(d => d.x).strength(1))
+        .force("y", d3.forceY(d => d.y).strength(yStrength))
+        .force("collide", d3.forceCollide(d => (d.radius || 0) + padding))
+        .stop();
+      for (let i = 0; i < iterations; i++) sim.tick();
+      return arr;
+    };
 
     // === 关键清理：平滑移除 pack (气泡图) 相关元素，避免残留 ===
     // 1) 淡出并移除 pack 内的 leaf / parent circle
@@ -771,8 +817,8 @@
         const safeDate = date && !isNaN(date.getTime()) ? date : startDate;
         d.__x = xTime(safeDate);
       });
-      //计算最终位置（D3 力导向模拟）
-      const nodes = data.map(d => {
+      //计算最终位置（优先 xpack，无则回退力导向）
+      let nodes = data.map(d => {
         const heatVal = Number(d["热度"]) || 0;
         return {
           x: d.__x,
@@ -782,18 +828,33 @@
           radius: radiusScale(heatVal),
         };
       });
-      //初始化力导向模拟
-      const sim = d3.forceSimulation(nodes)
-      .force("x", d3.forceX(d => d.x).strength(0.7))
-      .force("y", d3.forceY(d => d.y).strength(0.6))
-      .force("collide", d3.forceCollide(d => (d.radius || 7) + 6))
-        .stop();
-      for (let i=0;i<300;i++) sim.tick();
       const minX = xTime(startDate);
       const maxX = xTime(today);
-      nodes.forEach(node => {
-        node.x = Math.min(maxX, Math.max(minX, node.x));
-      });
+      if (xpackLayout) {
+        const grouped = d3.group(nodes, d => d.data.__levelKey || "fallback");
+        const packedNodes = [];
+        grouped.forEach((groupNodes, key) => {
+          const baseY = bandPositions[key] || padding.top + rowSpacing;
+          const packed = runXpack(groupNodes, baseY);
+          if (packed) {
+            packed.forEach(n => {
+              packedNodes.push(n);
+            });
+          } else {
+            packedNodes.push(...groupNodes);
+          }
+        });
+        nodes = packedNodes;
+      } else {
+        const sim = d3.forceSimulation(nodes)
+          .force("x", d3.forceX(d => d.x).strength(0.7))
+          .force("y", d3.forceY(d => d.y).strength(0.6))
+          .force("collide", d3.forceCollide(d => (d.radius || 7) + 6))
+          .stop();
+        for (let i=0;i<300;i++) sim.tick();
+      }
+      nodes = relaxNodes(nodes, { padding: 2, iterations: 320, yStrength: 1 });
+      shiftIntoRange(nodes, minX, maxX);
 
       // 绘制风险值蜂群点
       const startX = currentWidth / 2;
@@ -866,7 +927,7 @@
 
       circles.merge(circlesEnter)
         .transition().duration(transitionDuration)
-        // 将圆点平滑移动到它们在力导向模拟中计算出的最终 x (时间) 和 y (泳道) 坐标
+        // 将圆点平滑移动到最终布局计算出的 x (时间) 和 y (泳道) 坐标
         .attr("cx", d => d.x)
         .attr("cy", d => d.y)
         .attr("r", d => d.radius)
@@ -885,7 +946,7 @@
 
     // 非风险值常规蜂群（时间/情绪）
     //映射成图表所需的结构化数据
-    const nodes = data.map(d => {
+    let nodes = data.map(d => {
         const heatVal = Number(d["热度"]) || 0;
         return {
         x: d.__x + padding.left,
@@ -895,13 +956,21 @@
         radius: radiusScale(heatVal)
       };
     });
-    // 力导向模拟
-    const sim = d3.forceSimulation(nodes)
-      .force("x", d3.forceX(d => d.x).strength(1))
-      .force("y", d3.forceY(currentHeight/2))
-      .force("collide", d3.forceCollide(8))
-      .stop();
-    for (let i=0;i<200;i++) sim.tick();
+    const minX = padding.left;
+    const maxX = padding.left + innerW;
+    const packed = runXpack(nodes, currentHeight/2);
+    if (packed) {
+      nodes = packed;
+    } else {
+      const sim = d3.forceSimulation(nodes)
+        .force("x", d3.forceX(d => d.x).strength(1))
+        .force("y", d3.forceY(currentHeight/2))
+        .force("collide", d3.forceCollide(8))
+        .stop();
+      for (let i=0;i<200;i++) sim.tick();
+    }
+    nodes = relaxNodes(nodes, { padding: 2, iterations: 240, yStrength: 0.7 });
+    shiftIntoRange(nodes, minX, maxX);
 
     //使用D3的 Enter/Update/Exit 模式在 SVG的根部（svg，而不是 rootGroup）绘制X轴
     let gAxis = svg.selectAll(".x-axis").data([null]);

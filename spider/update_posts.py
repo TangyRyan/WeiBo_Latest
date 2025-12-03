@@ -9,6 +9,7 @@ from spider.crawler_core import CHINA_TZ, CrawlParams, crawl_topic, ensure_hasht
 from spider.weibo_topic_detail import WeiboPost, get_top_20_hot_posts
 from backend.config import ARCHIVE_DIR, POST_DIR
 from backend.storage import load_daily_archive, save_daily_archive, to_data_relative, write_json
+from backend.proxy import attach_proxy_to_media
 
 # ------- CONFIG -------
 _DEFAULT_TARGET_DATE = "2025-10-25"
@@ -116,22 +117,23 @@ def update_topic(title: str, record: Dict, date_str: str) -> Dict:
 
     post_path = POST_DIR / date_str / f"{slug}.json"
     post_path.parent.mkdir(parents=True, exist_ok=True)
-    write_json(post_path, result)
+    proxied_result = attach_proxy_to_media(result, images_only=True) or result
+    write_json(post_path, proxied_result)
 
     record["last_post_refresh"] = date_str
     snapshot_rel = to_data_relative(post_path)
     record["post_output"] = snapshot_rel
-    record["known_ids"] = [item["id"] for item in result.get("items", []) if item.get("id")]
-    has_posts = bool(result.get("items"))
+    record["known_ids"] = [item["id"] for item in proxied_result.get("items", []) if item.get("id")]
+    has_posts = bool(proxied_result.get("items"))
     record["latest_posts"] = {
         "snapshot": snapshot_rel,
-        "total": result.get("total", 0),
-        "top_n": result.get("top_n", TOP_N),
-        "fetched_at": result.get("fetched_at"),
+        "total": proxied_result.get("total", 0),
+        "top_n": proxied_result.get("top_n", TOP_N),
+        "fetched_at": proxied_result.get("fetched_at"),
         "has_posts": has_posts,
     }
     record["needs_refresh"] = not has_posts
-    record["last_post_total"] = result.get("total", 0)
+    record["last_post_total"] = proxied_result.get("total", 0)
     return record
 
 

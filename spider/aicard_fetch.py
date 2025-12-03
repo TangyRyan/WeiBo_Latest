@@ -7,6 +7,7 @@ from urllib.parse import unquote_plus
 
 from spider.aicard_client import AICardError, AICardResult, fetch_ai_card
 from spider.aicard_parser import MediaAsset, ParsedCard, render_aicard_markdown
+from spider.aicard_proxy import apply_proxy_to_card
 from spider.crawler_core import slugify_title
 from backend.config import AICARD_DIR
 from backend.storage import write_json
@@ -124,12 +125,19 @@ def _persist_outputs(
     markdown_path = output_dir / f"{slug}.md"
     json_path = output_dir / f"{slug}.json"
 
-    markdown_path.write_text(parsed.markdown, encoding="utf-8")
-    html_doc = _wrap_html(parsed.html, title)
+    html_raw = _wrap_html(parsed.html, title)
+    markdown_content, html_doc, proxied_media, proxied_links = apply_proxy_to_card(
+        parsed.markdown,
+        html_raw,
+        [_serialize_media(item) for item in parsed.media],
+        parsed.links,
+    )
+
+    markdown_path.write_text(markdown_content, encoding="utf-8")
     payload = {
         "meta": result.to_dict(),
-        "links": parsed.links,
-        "media": [_serialize_media(item) for item in parsed.media],
+        "links": proxied_links,
+        "media": proxied_media,
         "markdown_path": str(markdown_path),
         "html": html_doc,
     }

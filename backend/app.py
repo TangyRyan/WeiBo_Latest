@@ -6,7 +6,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List
 
-from flask import Flask, jsonify, render_template, request
+import requests
+from flask import Flask, Response, jsonify, render_template, request, stream_with_context
 from flask_cors import CORS
 from flask_sock import Sock
 
@@ -26,6 +27,7 @@ from backend.storage import (
     save_risk_warnings,
     write_json,
 )
+from backend.proxy import is_allowed_image_host, normalize_image_url
 from spider.hot_topics_api import bp as hot_topics_bp
 from spider.crawler_core import slugify_title
 
@@ -327,6 +329,60 @@ def _resolve_central_data(days: int, force: bool = False) -> List[Dict[str, Any]
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/proxy/media")
+@app.route("/api/proxy/image")  # legacy path for stored references
+def proxy_media():
+    raw_url = request.args.get("url", "")
+    if not raw_url:
+        return jsonify({"error": "missing url"}), 400
+
+    target_url = normalize_image_url(raw_url)
+    if not target_url or target_url.startswith(("/proxy/media", "/api/proxy/image")):
+        return jsonify({"error": "invalid url"}), 400
+    if not target_url.startswith(("http://", "https://")):
+        return jsonify({"error": "invalid url"}), 400
+    if not is_allowed_image_host(target_url):
+        return jsonify({"error": "unsupported host"}), 400
+
+    headers = {
+        "Referer": "https://weibo.com/",
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+        ),
+        "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+    }
+
+    try:
+        resp = requests.get(target_url, headers=headers, stream=True, timeout=10)
+    except requests.RequestException as exc:
+        logger.error("Image proxy failed for %s: %s", target_url, exc)
+        return jsonify({"error": "fetch_failed"}), 502
+
+    excluded_headers = {
+        "content-encoding",
+        "content-length",
+        "transfer-encoding",
+        "connection",
+        "content-disposition",
+    }
+    forward_headers = []
+    content_type = resp.headers.get("Content-Type")
+    if content_type:
+        forward_headers.append(("Content-Type", content_type))
+    for name, value in resp.headers.items():
+        lname = name.lower()
+        if lname in excluded_headers or lname == "content-type":
+            continue
+        forward_headers.append((name, value))
+
+    return Response(
+        stream_with_context(resp.iter_content(chunk_size=1024)),
+        status=resp.status_code,
+        headers=forward_headers,
+    )
 
 
 @app.route("/api/daily_30")

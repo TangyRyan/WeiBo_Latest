@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from flask import Blueprint, Flask, Response, jsonify, request
 
+from backend.proxy import attach_proxy_to_media, rewrite_html_images, rewrite_markdown_images
 from spider.config import get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ, slugify_title
 from spider.aicard_client import AICardCooldownError, AICardRateLimitError
@@ -645,6 +646,18 @@ def _format_post_timestamp(value: Any) -> Optional[str]:
     return dt.strftime("%y-%m-%d %H:%M")
 
 
+def _rewrite_post_media(entry: Dict[str, Any]) -> Dict[str, Any]:
+    """Proxy media URLs so the frontend only sees our own host."""
+    copy = dict(entry)
+    if "pics" in copy:
+        copy["pics"] = attach_proxy_to_media(copy.get("pics"))
+    if "video" in copy:
+        copy["video"] = attach_proxy_to_media(copy.get("video"))
+    if "media" in copy:
+        copy["media"] = attach_proxy_to_media(copy.get("media"))
+    return copy
+
+
 def _load_post_payload(date: str, slug: str) -> Tuple[Optional[Dict[str, Any]], Optional[Path]]:
     path = POSTS_DIR / date / f"{slug}.json"
     if not path.exists():
@@ -795,16 +808,32 @@ def topic_posts() -> Any:
 
     payload, source_path = _load_post_payload(date, slug)
     archive: Optional[Dict[str, Dict[str, Any]]] = None
+    record: Optional[Dict[str, Any]] = None
 
     if payload is None:
         try:
             archive = load_archive(date)
         except FileNotFoundError:
             archive = {}
-        title, record = (_locate_archive_record_by_slug(archive, slug, title) if archive else (title, None))
-        if title and archive:
+
+        if slug and archive:
+            title, record = _locate_archive_record_by_slug(archive, slug, title)
+
+        if (not title or record is None) and slug and snapshot:
+            for topic_entry in snapshot.topics:
+                topic_title = topic_entry.get("title") or ""
+                if slugify_title(topic_title) == slug:
+                    title = title or topic_title
+                    record = record or archive.get(topic_title)
+                    break
+
+        if title and archive is not None:
+            record = record or {"slug": slug or slugify_title(title)}
+            archive[title] = record
             refreshed = _ensure_posts_exist(date, title, archive)
             if refreshed:
+                record = refreshed
+                slug = record.get("slug") or slug
                 payload, source_path = _load_post_payload(date, slug)
                 if payload is None:
                     logging.warning("Post payload missing after refresh for %s (%s)", title, date)
@@ -828,7 +857,7 @@ def topic_posts() -> Any:
     for entry in items_raw:
         if not isinstance(entry, dict):
             continue
-        copy = dict(entry)
+        copy = _rewrite_post_media(entry)
         original_ts = copy.get("created_at") or copy.get("timestamp")
         formatted_ts = _format_post_timestamp(original_ts)
         if formatted_ts:
@@ -929,6 +958,21 @@ def topic_aicard() -> Any:
         if record and hour is None:
             hour = _derive_hour_from_record(record)
 
+    # 即便带了 hour，也尝试加载归档，避免 record 为空导致后续 500
+    if record is None and date:
+        try:
+            archive = archive or load_archive(date)
+        except FileNotFoundError:
+            archive = {}
+        if slug and archive:
+            title, record = _locate_archive_record_by_slug(archive, slug, title)
+        if record is None and title and archive:
+            record = archive.get(title)
+        if record and record.get("slug"):
+            slug = record.get("slug") or slug
+
+    record = record or {}
+
     if not title or not slug:
         return jsonify({"error": "Unable to resolve topic title or slug"}), 404
 
@@ -969,6 +1013,7 @@ def topic_aicard() -> Any:
     markdown_rel = aicard_snapshot.get("markdown_path") or aicard_info.get("markdown")
     markdown_abs = from_data_relative(markdown_rel) if markdown_rel else None
     markdown_content = _read_text_file(markdown_abs) if markdown_abs else None
+    markdown_content = rewrite_markdown_images(markdown_content)
 
     raw_html_value = aicard_snapshot.get("html") or aicard_info.get("html")
     html_path: Optional[str] = None
@@ -981,6 +1026,9 @@ def topic_aicard() -> Any:
             html_path = raw_html_value
             html_abs = from_data_relative(html_path)
             html_content = _read_text_file(html_abs)
+    html_content = rewrite_html_images(html_content)
+
+    media_payload = attach_proxy_to_media(aicard_snapshot.get("media"))
 
     response: Dict[str, Any] = {
         "date": date,
@@ -993,7 +1041,7 @@ def topic_aicard() -> Any:
         "html": html_content,
         "meta": aicard_snapshot.get("meta"),
         "links": aicard_snapshot.get("links"),
-        "media": aicard_snapshot.get("media"),
+        "media": media_payload,
         "fetched_at": aicard_snapshot.get("fetched_at"),
     }
 

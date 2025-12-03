@@ -5,6 +5,7 @@ from typing import Dict, List, Optional
 
 from spider.aicard_client import AICardCooldownError, AICardError, AICardRateLimitError, fetch_ai_card
 from spider.aicard_parser import ParsedCard, render_aicard_markdown
+from spider.aicard_proxy import apply_proxy_to_card
 from spider.crawler_core import ensure_hashtag_format, slugify_title
 from backend.config import AICARD_DIR
 from backend.storage import to_data_relative
@@ -116,17 +117,24 @@ def ensure_aicard_snapshot(
         links if isinstance(links, list) else None,
     )
 
+    html_raw = _wrap_html(parsed.html, query)
+    markdown_content, html_doc, proxied_media, proxied_links = apply_proxy_to_card(
+        parsed.markdown,
+        html_raw,
+        [asdict(asset) for asset in parsed.media],
+        parsed.links,
+    )
+
     target_dir.mkdir(parents=True, exist_ok=True)
-    markdown_path.write_text(parsed.markdown, encoding="utf-8")
-    html_doc = _wrap_html(parsed.html, query)
+    markdown_path.write_text(markdown_content, encoding="utf-8")
 
     return {
         "slug": normalized_slug,
         "markdown_path": _relative_to_repo(markdown_path),
         "html": html_doc,
         "title": title,
-        "links": parsed.links,
-        "media": [asdict(asset) for asset in parsed.media],
+        "links": proxied_links,
+        "media": proxied_media,
         "meta": result.to_dict(),
         "fetched_at": result.fetched_at.isoformat(timespec="seconds"),
     }
