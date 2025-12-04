@@ -100,7 +100,7 @@ def get_event():
 @app.route("/api/central_data")
 def central_data():
     range_opt = request.args.get("range", "week")
-    days = {"week": 7, "month": 30, "halfyear": 182}.get(range_opt, 7)
+    days = {"week": 7, "month": 30, "three_months": 90, "halfyear": 90, "three-months": 90}.get(range_opt, 7)
     end = datetime.now().date()
     out = []
     seen = set()

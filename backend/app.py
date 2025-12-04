@@ -46,7 +46,7 @@ _hotlist_stream: HotTopicsHotlistStream | None = None
 _daily_totals_cache: Dict[str, Any] | None = None
 DAILY_TOTAL_DAYS = 30
 CENTRAL_CACHE_PATH = ARCHIVE_DIR / "central_data_cache.json"
-CENTRAL_CACHE_MAX_DAYS = 182
+CENTRAL_CACHE_MAX_DAYS = 90
 _central_cache: Dict[str, Any] | None = None
 
 
@@ -450,7 +450,7 @@ def risk_event():
 @app.route("/api/central_data")
 def central_data():
     range_opt = request.args.get("range", "week")
-    days = {"week": 7, "month": 30, "three-months": 90, "halfyear": 182}.get(range_opt, 7)
+    days = {"week": 7, "month": 30, "three_months": 90, "halfyear": 90, "three-months": 90}.get(range_opt, 7)
     force_refresh = str(request.args.get("refresh", "")).lower() in {"1", "true", "yes"}
     data = _resolve_central_data(days, force=force_refresh)
     return jsonify({"data": data})

@@ -642,7 +642,7 @@
         startDate = d3.timeDay.offset(today, -7);
       } else if (timeRange === 'month') {
         startDate = d3.timeMonth.offset(today, -1);
-      } else if (timeRange === 'three-months') {
+      } else if (timeRange === 'three_months') {
         startDate = d3.timeMonth.offset(today, -3);
       } else {
         const dates = data.map(d => parseDateSafe(d.date)).filter(d => d && !isNaN(d.getTime()));
@@ -710,7 +710,7 @@
         startDate = d3.timeDay.offset(today, -7);
       } else if (timeRange === 'month') {
         startDate = d3.timeMonth.offset(today, -1);
-      } else if (timeRange === 'three-months') {
+      } else if (timeRange === 'three_months') {
         startDate = d3.timeMonth.offset(today, -3);
       } else {
         const dates = data.map(d => parseDateSafe(d.date)).filter(d => d && !isNaN(d.getTime()));
@@ -733,7 +733,7 @@
         axis.ticks(d3.timeDay.every(1));
       } else if (timeRange === 'month') {
         axis.ticks(d3.timeWeek.every(1));
-      } else if (timeRange === 'three-months') {
+      } else if (timeRange === 'three_months') {
         axis.ticks(d3.timeMonth.every(1));
       }
       const axisNode = axisEnter.merge(axisGroup);
@@ -1069,7 +1069,7 @@
         startDate = d3.timeDay.offset(today, -7);
       } else if (timeRange === 'month') {
         startDate = d3.timeMonth.offset(today, -1);
-      } else if (timeRange === 'three-months') {
+      } else if (timeRange === 'three_months') {
         startDate = d3.timeMonth.offset(today, -3);
       }
 
