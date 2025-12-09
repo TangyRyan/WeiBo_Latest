@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime
 
 # ---------- 可配置 ----------
-PEER_BASE_URL = "http://127.0.0.1:8766"   
+PEER_BASE_URL = "http://127.0.0.1:8767"
 TIMEOUT = 20                              # 请求超时时间（秒）
 # ---------------------------
 

@@ -1097,7 +1097,7 @@ def daily_bundle() -> Any:
 def main() -> None:
     logging.basicConfig(level=LOG_LEVEL, format="%(asctime)s [%(levelname)s] %(message)s")
     host = get_env_str("WEIBO_API_HOST", "0.0.0.0") or "0.0.0.0"
-    port = get_env_int("WEIBO_API_PORT", 8766) or 8766
+    port = get_env_int("WEIBO_API_PORT", 8767) or 8767
     app = Flask(__name__)
     app.register_blueprint(bp)
     app.run(host=host, port=port)

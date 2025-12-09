@@ -10,10 +10,13 @@ from typing import Any, Dict, List, Optional
 import requests
 
 from backend.storage import from_data_relative, load_daily_archive, load_hour_hotlist, save_daily_archive
+from backend.settings import get_env_int, get_env_str
 from spider.crawler_core import CHINA_TZ
 from spider.update_posts import ensure_topic_posts
 
-PEER_BASE_URL = "http://127.0.0.1:8766"
+PEER_HOST = get_env_str("WEIBO_API_HOST", "127.0.0.1") or "127.0.0.1"
+PEER_PORT = get_env_int("WEIBO_API_PORT", 8767) or 8767
+PEER_BASE_URL = f"http://{PEER_HOST}:{PEER_PORT}"
 TIMEOUT = 20
 
 

@@ -543,8 +543,8 @@ def start_scheduler() -> BackgroundScheduler:
             "interval",
             minutes=HOUR_CHECK_INTERVAL_MINUTES,
             id="hot_topics_monitor",
+            next_run_time=datetime.now(tz=CHINA_TZ),  # run once ASAP without blocking app startup
         )
-        _monitor_tick()
     else:
         logger.info("Hot topics monitor disabled via WEIBO_MONITOR_ENABLED")
     if LLM_ENABLED:

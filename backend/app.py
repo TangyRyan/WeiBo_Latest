@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List
@@ -526,4 +527,5 @@ def create_app():
 
 if __name__ == "__main__":
     start_scheduler()
-    app.run(host="0.0.0.0", port=8000)
+    port = int(os.environ.get("PORT", "8766"))
+    app.run(host="0.0.0.0", port=port)

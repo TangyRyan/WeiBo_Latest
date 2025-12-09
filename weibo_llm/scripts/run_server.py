@@ -12,5 +12,5 @@ from backend.app import create_app
 from backend.scheduler import check_current_day_hours
 app = create_app(); check_current_day_hours()  # 启动即跑一次，夹具会产出 hotlist/archive/risk_warnings
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", "8000"))
+    port = int(os.environ.get("PORT", "8766"))
     app.run(host="0.0.0.0", port=port, debug=True)
