@@ -544,6 +544,10 @@
   function renderBeeswarm(data, attribute, colorby){
     hideSidebar({ preserveSelection: true });
 
+    // 当前时间筛选（周/月/三月），后续用于轴范围与力导向参数
+    const activeBtn = d3.select(".time-filter button.active").node();
+    const timeRange = activeBtn ? activeBtn.dataset.range : 'week';
+
     // === 关键清理：平滑移除 pack (气泡图) 相关元素，避免残留 ===
     // 1) 淡出并移除 pack 内的 leaf / parent circle
     rootGroup.selectAll(".pack-leaf, .pack-parent-circle")
@@ -636,8 +640,6 @@
       //时间轴范围
       const today = new Date();
       let startDate;
-      const activeBtn = d3.select(".time-filter button.active").node();
-      const timeRange = activeBtn ? activeBtn.dataset.range : 'all';
       if (timeRange === 'week') {
         startDate = d3.timeDay.offset(today, -7);
       } else if (timeRange === 'month') {
@@ -702,13 +704,12 @@
       gridGroup.transition().duration(transitionDuration).style("opacity",1);
       labelGroup.transition().duration(transitionDuration).style("opacity",1);
 
-      const activeBtn = d3.select(".time-filter button.active").node();
-      const timeRange = activeBtn ? activeBtn.dataset.range : 'week';
+      const range = timeRange || 'week';
       const today = new Date();
       let startDate;
-      if (timeRange === 'week') {
+      if (range === 'week') {
         startDate = d3.timeDay.offset(today, -7);
-      } else if (timeRange === 'month') {
+      } else if (range === 'month') {
         startDate = d3.timeMonth.offset(today, -1);
       } else if (timeRange === 'three_months') {
         startDate = d3.timeMonth.offset(today, -3);
@@ -924,12 +925,14 @@
       };
     });
     // 力导向模拟
+    const collidePadding = 4; // 额外的碰撞缓冲，避免重叠
     const sim = d3.forceSimulation(nodes)
       .force("x", d3.forceX(d => d.x).strength(1))
       .force("y", d3.forceY(currentHeight/2))
-      .force("collide", d3.forceCollide(8))
+      .force("collide", d3.forceCollide(d => (d.radius || 6) + collidePadding))
       .stop();
-    for (let i=0;i<200;i++) sim.tick();
+    const tickCount = timeRange === 'week' ? 320 : 240;
+    for (let i=0;i<tickCount;i++) sim.tick();
 
     //使用D3的 Enter/Update/Exit 模式在 SVG的根部（svg，而不是 rootGroup）绘制X轴
     let gAxis = svg.selectAll(".x-axis").data([null]);
@@ -948,8 +951,6 @@
 
     if (attribute === "时间") {
       bottomAxis = d3.axisBottom(xTime).tickFormat(d3.timeFormat("%Y-%m-%d"));
-      const activeBtn = d3.select(".time-filter button.active").node();
-      const timeRange = activeBtn ? activeBtn.dataset.range : 'all';
       if (timeRange === 'week') {
         bottomAxis.ticks(d3.timeDay.every(1));
       }

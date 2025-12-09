@@ -134,15 +134,18 @@ def _send_request(
             continue
         if isinstance(value, bool):
             value = int(value)
-        key_str = quote_plus(str(key))
+        key_str = quote_plus(str(key), encoding="utf-8")
         if isinstance(value, (int, float)):
             value_str = str(value)
         else:
             value_str = str(value)
             if "%" not in value_str:
-                value_str = quote_plus(value_str)
+                value_str = quote_plus(value_str, encoding="utf-8")
         encoded_items.append(f"{key_str}={value_str}")
-    encoded_payload = "&".join(encoded_items)
+    encoded_payload = "&".join(encoded_items).encode("utf-8")
+
+    headers = dict(headers)
+    headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
     return session.post(
         AICARD_URL,
         headers=headers,

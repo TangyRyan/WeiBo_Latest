@@ -311,8 +311,17 @@ def _resolve_central_data(days: int, force: bool = False) -> List[Dict[str, Any]
     if payload:
         until = payload.get("generated_until")
         max_days = int(payload.get("max_days") or 0)
-        data_ok = isinstance(payload.get("data"), list)
-        if until != today.strftime("%Y-%m-%d") or max_days < days or not data_ok:
+        data = payload.get("data")
+        data_ok = isinstance(data, list)
+        # å¦‚æžœæœ€æ–°æ—¥æœŸè·ç¦»å½“å‰æ—¥æœŸè¿‡è¿œï¼Œè®¤ä¸ºç¼“å­˜å·²è¿‡æœŸï¼ˆé˜²æ­¢ generated_until æ›´æ–°ä½†æ•°æ®æ²¡æœ‰è¦†ç›–è¿‘æœŸï¼‰
+        latest_date = None
+        if data_ok:
+            for row in data:
+                row_date = _parse_date(row.get("date"))
+                if row_date and (latest_date is None or row_date > latest_date):
+                    latest_date = row_date
+        stale = latest_date is None or latest_date < (today - timedelta(days=2))
+        if until != today.strftime("%Y-%m-%d") or max_days < days or not data_ok or stale:
             payload = None
     if payload is None:
         payload = _build_central_cache(max(days, CENTRAL_CACHE_MAX_DAYS))
