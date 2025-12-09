@@ -1,6 +1,5 @@
 import json
 import logging
-import os
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -11,6 +10,7 @@ from requests import Response, Session
 from urllib.parse import quote_plus
 
 from spider.rate_limiter import create_policy_from_env
+from spider.cookie_pool import CookieChoice, get_cookie_pool
 
 CHINA_TZ = timezone.utc  # fallback; overwritten on module load
 
@@ -36,6 +36,7 @@ _RATE_POLICY = create_policy_from_env(
     cooldown_window=3600,
     soft_threshold=2,
 )
+_COOKIE_POOL = get_cookie_pool()
 
 DEFAULT_HEADERS: Dict[str, str] = {
     "Pragma": "no-cache",
@@ -101,11 +102,13 @@ def _ensure_query(query: str) -> str:
     return quote_plus(query)
 
 
-def _build_headers(extra_headers: Optional[Mapping[str, str]]) -> Dict[str, str]:
+def _build_headers(
+    extra_headers: Optional[Mapping[str, str]], cookie_value: Optional[str]
+) -> Dict[str, str]:
     headers = dict(DEFAULT_HEADERS)
     if extra_headers:
         headers.update(extra_headers)
-    cookie = os.getenv("WEIBO_COOKIE")
+    cookie = (cookie_value or "").strip()
     if cookie:
         headers.setdefault("Cookie", cookie)
     return headers
@@ -170,7 +173,9 @@ def fetch_ai_card(
     if retries < 0:
         raise ValueError("retries must be non-negative")
 
-    headers = _build_headers(extra_headers)
+    cookie_choice = _COOKIE_POOL.current()
+    extra_has_cookie = bool(extra_headers and "Cookie" in extra_headers)
+    headers = _build_headers(extra_headers, cookie_choice.cookie if not extra_has_cookie else None)
     payload = _build_payload(query, extra_payload, request_id)
     owns_session = session is None
     sess = session or requests.Session()
@@ -186,10 +191,14 @@ def fetch_ai_card(
                     raise AICardCooldownError(policy.cooldown_level or "soft", cooldown_wait)
                 response = _send_request(sess, payload, headers, timeout)
                 status = response.status_code
-                if status == 418:
+                if status in {403, 418}:
+                    if not extra_has_cookie:
+                        cookie_choice = _COOKIE_POOL.mark_bad(cookie_choice, f"aicard_http_{status}")
+                        headers["Cookie"] = cookie_choice.cookie
                     wait_seconds = policy.next_delay()
                     logger.warning(
-                        "AI Card request hit HTTP 418 (rate limit) on attempt %s/%s; sleeping %.1fs",
+                        "AI Card request hit HTTP %s on attempt %s/%s; sleeping %.1fs",
+                        status,
                         attempt + 1,
                         retries + 1,
                         wait_seconds,
@@ -201,7 +210,7 @@ def fetch_ai_card(
                             cooldown_info.level,
                             cooldown_info.duration,
                         )
-                    last_error = AICardRateLimitError("AI Card request was rate limited (HTTP 418)")
+                    last_error = AICardRateLimitError(f"AI Card request was rate limited (HTTP {status})")
                     continue
                 if status >= 500:
                     logger.warning(

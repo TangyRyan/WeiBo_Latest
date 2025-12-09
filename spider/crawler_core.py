@@ -12,7 +12,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 import requests
 
-from spider.config import get_env_str
+from spider.cookie_pool import CookieChoice, get_cookie_pool
 from spider.rate_limiter import create_policy_from_env
 
 try:
@@ -22,8 +22,6 @@ except ImportError:  # pragma: no cover - optional dependency
 
 
 BASE_URL = "https://m.weibo.cn/api/container/getIndex"
-FALLBACK_COOKIE = "SCF=Ag66U6NXNgzpvI1h1GSjWh8w7HR4yV1THrr4GQFUaPUroylue-wKVTgdNYbxXPXaA4OykzyEAw1XrwEWSLHXGnc.;"
-DEFAULT_COOKIE = get_env_str("WEIBO_COOKIE", FALLBACK_COOKIE) or FALLBACK_COOKIE
 
 DEFAULT_HEADERS = {
     "User-Agent": (
@@ -36,7 +34,6 @@ DEFAULT_HEADERS = {
     "Pragma": "no-cache",
     "X-XSRF-TOKEN": "d8443b",
     "sec-ch-ua-mobile": "?1",
-    "Cookie": DEFAULT_COOKIE,
 }
 REQUEST_TIMEOUT = 10
 MAX_RETRIES = 3
@@ -55,6 +52,20 @@ _CRAWLER_POLICY = create_policy_from_env(
     cooldown_window=3600,
     soft_threshold=2,
 )
+
+_COOKIE_POOL = get_cookie_pool()
+
+
+def _apply_cookie(session: requests.Session, choice: CookieChoice) -> CookieChoice:
+    session.headers["Cookie"] = choice.cookie
+    return choice
+
+
+def _rotate_cookie(session: requests.Session, current: CookieChoice, reason: str) -> CookieChoice:
+    new_choice = _COOKIE_POOL.mark_bad(current, reason=reason)
+    session.headers["Cookie"] = new_choice.cookie
+    logging.warning("Switched cookie to %s (%s)", new_choice.label, reason)
+    return new_choice
 
 
 @dataclass
@@ -197,8 +208,8 @@ def calculate_score(mblog: Dict[str, Any]) -> float:
 
 
 def fetch_page(
-    session: requests.Session, hashtag: str, page: int
-) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
+    session: requests.Session, hashtag: str, page: int, cookie: CookieChoice
+) -> Tuple[Optional[Dict[str, Any]], Optional[str], CookieChoice]:
     params = {"containerid": f"231522type=60&q={hashtag}&t=10"}
     if page > 1:
         params["page"] = page
@@ -206,6 +217,7 @@ def fetch_page(
     attempt = 0
     last_error: Optional[str] = None
     policy = _CRAWLER_POLICY
+    active_cookie = cookie
     while attempt < MAX_RETRIES:
         attempt += 1
         while True:
@@ -223,16 +235,24 @@ def fetch_page(
             response = session.get(BASE_URL, params=params, timeout=REQUEST_TIMEOUT)
             if response.status_code == 200:
                 data = response.json()
-                print(data)
                 policy.record_success()
                 if data.get("ok") == 1:
-                    return data, None
+                    return data, None, active_cookie
                 last_error = f"ok={data.get('ok')}"
+                msg = str(data.get("msg") or data.get("message") or "").lower()
+                if any(key in msg for key in ["login", "登录", "auth", "频繁"]):
+                    active_cookie = _rotate_cookie(
+                        session,
+                        active_cookie,
+                        f"api_msg:{msg[:32]}",
+                    )
+                    continue
                 logging.warning("page %s returned ok=%s (stopping)", page, data.get("ok"))
-                return None, last_error
+                return None, last_error, active_cookie
             if response.status_code in {403, 418}:
                 last_error = f"http_{response.status_code}"
                 logging.error("HTTP %s requires new cookie or lower frequency", response.status_code)
+                active_cookie = _rotate_cookie(session, active_cookie, last_error)
                 wait_seconds = policy.next_delay()
                 logging.warning(
                     "Crawler rate limit backoff sleeping %.1fs (attempt %s/%s)",
@@ -258,14 +278,15 @@ def fetch_page(
         delay = (RETRY_BACKOFF ** (attempt - 1)) + random.uniform(0, 0.5)
         time.sleep(delay)
     logging.error("page %s failed after max retries", page)
-    return None, last_error or "max_retries"
+    return None, last_error or "max_retries", active_cookie
 
 
 
 def crawl_topic(params: CrawlParams) -> Dict[str, Any]:
     session = requests.Session()
     session.headers.update(DEFAULT_HEADERS)
-    print(DEFAULT_HEADERS["Cookie"][:20])
+    active_cookie = _apply_cookie(session, _COOKIE_POOL.current())
+    logging.info("Using cookie %s for topic %s", active_cookie.label, params.hashtag)
     skip_ids = set(params.skip_ids or [])
     seen_ids = set(skip_ids)
     collected: List[Dict[str, Any]] = []
@@ -290,7 +311,7 @@ def crawl_topic(params: CrawlParams) -> Dict[str, Any]:
         stats["pages_requested"] += 1
         if page > 1:
             time.sleep(random.uniform(*SLEEP_RANGE))
-        data, error = fetch_page(session, params.hashtag, page)
+        data, error, active_cookie = fetch_page(session, params.hashtag, page, active_cookie)
         if error:
             errors.append(f"page_{page}:{error}")
         if not data:
